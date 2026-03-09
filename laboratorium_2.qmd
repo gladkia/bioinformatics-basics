@@ -1,0 +1,75 @@
+---
+title: "Laboratorium 2: Algorytmy przyrównań sekwencji"
+format: html
+engine: knitr
+filters:
+  - webr
+---
+
+```{r, echo = FALSE, results='asis'}
+library(webexercises)
+```
+
+## Globalne vs. Lokalne dopasowanie sekwencji
+
+W bioinformatyce często stajemy przed wyborem algorytmu do przyrównania sekwencji. Różnica polega na podejściu:
+* [cite_start]**Algorytm Needleman-Wunsch (globalny):** Próbuje dopasować całe sekwencje[cite: 118].
+* [cite_start]**Algorytm Smith-Waterman (lokalny):** Szuka najlepiej dopasowanych fragmentów[cite: 118].
+
+
+
+### Interaktywne zadanie 1: Zmień typ przyrównania
+
+[cite_start]Poniżej znajduje się kod wykorzystujący pakiet `Biostrings` (podobnie jak w środowisku RStudio [cite: 124]). 
+**Działanie:** 1. Uruchom kod (przycisk *Run Code*) i zanotuj wartość punktacji. 2. Zmień `type = "global"` na `type = "local"` i uruchom ponownie.
+
+```{webr-r}
+webr::install("Biostrings")
+library(Biostrings)
+
+seq1 <- "VDFWAE"
+seq2 <- "VDFWAP"
+
+# Obliczenie przyrównania
+alignment <- pairwiseAlignment(pattern = seq1, 
+                               subject = seq2,
+                               substitutionMatrix = "BLOSUM62",
+                               type = "global",
+                               gapOpening = -10,
+                               gapExtension = -1)
+
+print(alignment)
+print(paste("Punktacja (score):", score(alignment)))
+```
+
+---
+
+## Kary za przerwy (Gap Penalties)
+
+Procesy ewolucyjne sprawiają, że w sekwencjach pojawiają się przerwy. [cite_start]Jak wartość kar wpływa na ostateczne dopasowanie sekwencji[cite: 122]? Zazwyczaj otwarcie nowej przerwy kosztuje więcej niż jej przedłużenie.
+
+### Interaktywne zadanie 2: Poeksperymentuj z karami!
+
+[cite_start]Zmień karę za otwarcie przerwy (`gapOpening`) z `-10` na `-1`[cite: 120]. Zobacz, jak algorytm "chętniej" rozrywa sekwencję!
+
+```{webr-r}
+sekwencja_A <- "ACDEFGHIKLMN"
+sekwencja_B <- "ACDEFGHLMN"
+
+eksperyment <- pairwiseAlignment(pattern = sekwencja_A, 
+                                 subject = sekwencja_B,
+                                 substitutionMatrix = "BLOSUM62",
+                                 gapOpening = -10,  # <-- ZMIEŃ NA -1
+                                 gapExtension = -1)
+print(eksperyment)
+```
+
+---
+
+## Sprawdź swoją wiedzę!
+
+**Pytanie 1:** Który algorytm lepiej sprawdzi się do znalezienia wspólnej domeny w dwóch zupełnie różnych białkach?
+`r mcq(c("Needleman-Wunsch (Globalny)", answer = "Smith-Waterman (Lokalny)"))`
+
+[cite_start]**Pytanie 2:** Jaką macierz substytucji (stosowaną do obliczania wartości "score" dla dopasowania [cite: 283]) zastosowaliśmy w powyższym kodzie? (wpisz nazwę dużymi literami)
+`r fitb("BLOSUM62")`

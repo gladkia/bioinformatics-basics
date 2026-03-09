@@ -1,0 +1,85 @@
+---
+title: "Laboratorium 3: Profile sekwencyjne, Ewolucja i ukryte wiadomości"
+format: html
+engine: knitr
+filters:
+  - webr
+---
+
+```{r, echo = FALSE, results='asis'}
+library(webexercises)
+```
+
+## Część 1: BLAST, E-value i... Dinozaury!
+
+W 1990 roku Michael Crichton wydał słynną powieść "Park Jurajski". [cite_start]Na stronie 103 przedstawił sekwencję nukleotydową, która rzekomo miała pochodzić z wyekstrahowanego DNA dinozaura[cite: 246]. 
+
+W prawdziwym świecie naukowcy, tacy jak Mark Boguski, szybko zauważyli pewne nieścisłości. [cite_start]Boguski zaproponował własną, poprawioną sekwencję, w której... ukrył wiadomość![cite: 248, 249]. Aby ją odczytać, należy przetłumaczyć sekwencję na białko i przyrównać ją do bazy danych.
+
+### Jak ocenić wiarygodność znaleziska? (E-value)
+
+Zanim pobawimy się w detektywów, musimy zrozumieć, jak algorytm BLAST ocenia, czy podobieństwo dwóch sekwencji nie jest dziełem przypadku. [cite_start]Służy do tego parametr **E-value** (Expect value). 
+* Im E-value jest **mniejsze** (bliższe zeru), tym wynik jest **bardziej wiarygodny**. 
+* E-value rzędu $10^{-5}$ ($1e-5$) uznaje się za granice istotności statystycznej.
+
+[cite_start]**Sprawdź swoją wiedzę:** Który z poniższych wyników BLAST jest najbardziej znaczący statystycznie? [cite: 236, 239, 242, 245]
+`r mcq(c("E-VALUE: 0.39", "E-VALUE: 2e-29", answer = "E-VALUE: 6e-145"))`
+
+---
+
+## Część 2: Multiple Sequence Alignment (MSA) i WebLogo w R
+
+[cite_start]Kiedy mamy do czynienia z wieloma sekwencjami (np. z tej samej rodziny białek), wykonujemy przyrównanie wielu sekwencji (MSA)[cite: 18]. [cite_start]Dzięki temu możemy znaleźć regiony konserwatywne – takie, które nie zmieniają się w toku ewolucji, co sugeruje ich kluczową funkcję[cite: 32].
+
+[cite_start]Dawniej użylibyście zewnętrznej strony WebLogo [cite: 37][cite_start], aby wygenerować graficzną reprezentację (tzw. logo) konserwatywnych aminokwasów[cite: 38]. Dzisiaj wygenerujemy taki wykres samodzielnie w R!
+
+
+
+### Interaktywne zadanie: Stwórz własne Logo!
+
+[cite_start]Poniżej przygotowaliśmy zestaw krótkich sekwencji peptydowych, które pochodzą z wcześniejszego etapu ewolucyjnego [cite: 74-97]. Użyjemy fantastycznego pakietu `ggseqlogo`, aby je zwizualizować.
+
+**Zadanie:** Uruchom poniższy kod. [cite_start]Zwróć uwagę, jak wysokość litery odzwierciedla stopień konserwatywności danego aminokwasu[cite: 39]!
+
+```{webr-r}
+# Instalacja i ładowanie bibliotek do wizualizacji
+webr::install("ggplot2")
+webr::install("ggseqlogo")
+library(ggplot2)
+library(ggseqlogo)
+
+# Nasze przyrównanie wielu sekwencji (MSA) w formie wektora
+alignment <- c(
+  "VDFWAE",
+  "VDFWAP",
+  "VDFSAT",
+  "VDFSAV",
+  "LDFYAT",
+  "ADFYAD"
+)
+
+# Rysujemy piękne logo!
+ggseqlogo(alignment) + 
+  ggtitle("Motyw sekwencyjny naszych peptydów") +
+  theme_minimal()
+```
+
+**Do przemyślenia:** Patrząc na wygenerowany wykres, odpowiedz na pytanie – na których pozycjach (1-6) aminokwasy ulegają najczęstszym mutacjom, a które pozycje są wysoce konserwatywne?
+
+---
+
+## Część 3: PSI-BLAST i Profile PSSM
+
+[cite_start]Czasami homologii nie widać na pierwszy rzut oka, ponieważ sekwencje są ze sobą spokrewnione bardzo daleko (tzw. dalecy homolodzy)[cite: 101]. Zwykły BLAST sobie z nimi nie poradzi. [cite_start]Wtedy wkracza **PSI-BLAST**[cite: 102].
+
+Jak to działa?
+1. PSI-BLAST wykonuje zwykłe przeszukiwanie.
+2. [cite_start]Z najlepszych wyników buduje profil (macierz PSSM) uwzględniający to, jakie aminokwasy mogą wymieniać się na określonych pozycjach[cite: 106, 107].
+3. Używa tego profilu, by szukać głębiej. [cite_start]Proces ten (iteracje) powtarza się, aż przestaną pojawiać się nowe sekwencje – ten moment nazywamy konwergencją[cite: 104, 105].
+
+
+
+**Zadanie końcowe (Detektywistyczne):**
+Użyj standardowej, przeglądarkowej wersji PSI-BLAST na stronie NCBI. Przeszukaj bazę *nr* używając tajemniczej sekwencji z "Parku Jurajskiego" (plik dostępny na dysku sieciowym w naszych materiałach). 
+* [cite_start]Zrób 3 iteracje[cite: 102]. 
+* [cite_start]Zobacz, co ukrył Mark Boguski w swojej zrewidowanej sekwencji (zwróć uwagę na nazwy znalezionych białek i wyniki w przyrównaniu)! [cite: 250, 251]

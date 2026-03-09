@@ -1,0 +1,78 @@
+---
+title: "Laboratorium 1: Od klikania do kodowania – eksploracja baz danych przez API"
+format: html
+engine: knitr
+filters:
+  - webr
+---
+
+```{r, echo = FALSE, results='asis'}
+# Ładujemy pakiet do interaktywnych quizów (jeśli zdecydujesz się go użyć)
+# library(webexercises)
+```
+
+## Wprowadzenie
+
+[cite_start]W biologicznych bazach danych powszechnie korzysta się z systemu taksonomicznego stworzonego przez NCBI[cite: 296]. Ręczne wyszukiwanie i kopiowanie sekwencji z przeglądarki jest jednak żmudne. Dzisiaj nauczymy się pobierać dane bezpośrednio do naszych skryptów w R oraz Pythonie, wykorzystując API (Application Programming Interface).
+
+
+
+## Część 1: Rozgrzewka w R – Zamiast przeglądarki używamy API
+
+[cite_start]W klasycznym podejściu wyszukiwalibyśmy rekord dotyczący genu APOE pod numerem `NM_000041.4`. Teraz zrobimy to za pomocą kodu w języku R.
+
+**Zadanie 1:**
+Uruchom poniższy kod, aby pobrać sekwencję genu APOE za pomocą pakietu `rentrez`.
+
+```{webr-r}
+# Ładowanie pakietów (w WebR są one preinstalowane lub pobierane w locie)
+webr::install("rentrez")
+webr::install("seqinr")
+library(rentrez)
+library(seqinr)
+
+# Pobieranie sekwencji APOE (Nuccore) w formacie FASTA
+apoe_fasta <- entrez_fetch(db="nuccore", id="NM_000041.4", rettype="fasta")
+
+# Wyświetlamy wynik
+cat(apoe_fasta)
+```
+
+**Do dyskusji:**
+* Zmień w kodzie bazę z `"nuccore"` na `"protein"` i spróbuj pobrać sekwencję białkową kodowaną przez ten gen (musisz znaleźć jej *protein_id*).
+* Użyj funkcji z pakietu `seqinr`, aby sprawdzić częstotliwość występowania poszczególnych nukleotydów.
+
+---
+
+## Część 2: Nowy Gracz – Wprowadzenie do Pythona i Biopython
+
+W bioinformatyce równie ważny jest dzisiaj Python. [cite_start]Zamiast ręcznie przeszukiwać bazę PubMed, by znaleźć publikacje Piotra Zielenkiewicza, użyjemy biblioteki Biopython.
+
+
+
+**Zadanie 2:**
+(Uwaga: Ten fragment wykonaj w Google Colab, ponieważ WebR obsługuje na razie natywnie tylko język R).
+
+```python
+!pip install biopython
+from Bio import Entrez
+
+# Etykieta dobrych praktyk NCBI - zawsze podawaj swój email!
+Entrez.email = "twoj_adres@student.pw.edu.pl"
+
+# Przeszukujemy bazę PubMed
+handle = Entrez.esearch(db="pubmed", term="Zielenkiewicz P[Author]")
+record = Entrez.read(handle)
+
+print(f"Liczba publikacji autora to: {record['Count']}")
+print(f"ID najnowszych publikacji (PMID): {record['IdList']}")
+```
+
+**Do zrobienia:** Zmodyfikuj zmienną `term`, aby znaleźć artykuły Watsona i Cricka z 1953 roku opublikowane w Nature[cite: 346].
+
+---
+
+## Część 3: Mini-projekt integracyjny – Wirus Ebola
+
+W bazie NCBI odnajdź dostępne sekwencje wirusa Ebola. 
+Napisz krótki skrypt w R (używając powyższego edytora WebR), który pobierze pełny genom wirusa (np. wariant Zaire), a następnie oblicz zawartość par G-C (GC-content).

@@ -1,0 +1,93 @@
+---
+title: "Laboratorium 4: Wstęp do danych NGS i poszukiwania wariantów"
+format: html
+engine: knitr
+filters:
+  - webr
+---
+
+```{r, echo = FALSE, results='asis'}
+library(webexercises)
+```
+
+## Od pojedynczego genu do całych genomów
+
+W minionych dekadach sekwencjonowanie metodą Sangera pozwalało na odczytanie pojedynczych genów. Dzisiaj technologie NGS (Next-Generation Sequencing) generują miliony krótkich odczytów (ang. *reads*) w ciągu kilku godzin. 
+
+[cite_start]Tradycyjnie podobieństwo sekwencji badano szukając ortologów i paralogów w bazach danych. Dziś, aby zbadać różnice między organizmami (np. znaleźć mutację nowotworową lub nowy wariant wirusa), mapujemy miliony odczytów NGS pacjenta do tzw. **genomu referencyjnego**.
+
+
+
+### Formaty danych w erze Big Data
+
+W bioinformatyce NGS spotkasz się z czterema głównymi formatami plików:
+1. **FASTA** (`.fasta`, `.fa`) - Znasz go już doskonale. Zawiera samą sekwencję (np. genom referencyjny).
+2. **FASTQ** (`.fastq`, `.fq`) - Format wyjściowy z sekwenatora. Oprócz sekwencji zawiera ocenę jakości (Phred Score) dla *każdego* nukleotydu.
+3. **SAM/BAM** (`.sam`, `.bam`) - Pliki zawierające informacje o tym, jak nasze krótkie odczyty z FASTQ "przykleiły się" (zmapowały) do genomu referencyjnego z FASTA.
+4. **VCF** (`.vcf`) - Variant Call Format. Lista zidentyfikowanych mutacji (np. SNP, insercje, delecje).
+
+
+
+---
+
+## Część 1: Zrozumieć Mapowanie i Warianty (Variant Calling)
+
+W profesjonalnej pracy używa się narzędzi konsolowych takich jak `BWA` (do mapowania) i `GATK` (do szukania wariantów). My jednak zasymulujemy ten proces w R, abyś zrozumiał, co dzieje się "pod maską"!
+
+### Interaktywne zadanie: Znajdź mutację!
+
+Poniżej zasymulowaliśmy fragment genomu referencyjnego (np. fragment wirusa) oraz jeden krótki odczyt (read) z próbki pacjenta. 
+
+**Twoje zadanie:** 1. Uruchom kod, aby zmapować odczyt pacjenta do referencji.
+2. Przyjrzyj się wynikowi przyrównania. Czy potrafisz wzrokowo zidentyfikować mutację (SNP)? 
+3. W jakiej pozycji na odczycie pacjenta nastąpiła zmiana i z jakiego nukleotydu na jaki?
+
+```{webr-r}
+webr::install("Biostrings")
+library(Biostrings)
+
+# Genom referencyjny (zdrowy / dziki typ)
+referencja <- DNAString("ATGCGTACGTAGCTAGCTAGCTGATCGATCGTAGCTAGCTAGCTGATCG")
+
+# Krótki odczyt z próbki od pacjenta (FASTQ wyciągnięty do samej sekwencji)
+# Zauważ, że gdzieś ukryła się tu pojedyncza mutacja punktowa (SNP)
+odczyt_pacjenta <- DNAString("CGTACGTAGCTTGCTAGCTG")
+
+# Mapowanie (przyrównanie lokalne)
+mapowanie <- pairwiseAlignment(pattern = odczyt_pacjenta, 
+                               subject = referencja, 
+                               type = "local")
+
+# Wyświetlamy proces mapowania
+print("Wynik mapowania odczytu do genomu referencyjnego:")
+print(mapowanie)
+```
+
+**Analiza wyników:**
+W prawdziwym świecie, jeśli setki odczytów w danym miejscu pokazują "T" zamiast "A" jak w referencji, oprogramowanie zapisze to jako potwierdzony wariant (SNP) w pliku **VCF**.
+
+---
+
+## Część 2: Kontrola jakości (QC) i Phred Scores
+
+Skąd oprogramowanie wie, czy mutacja jest prawdziwa, czy to tylko błąd maszyny sekwencjonującej? Z pliku FASTQ!
+W formacie FASTQ litery i znaki specjalne pod sekwencją oznaczają pewność odczytu. Kodowanie ASCII przekłada znaki na wartości liczbowe:
+* Znak `!` to bardzo zła jakość (duża szansa na błąd).
+* Znak `I` lub `~` to doskonała jakość.
+
+W analizie NGS pierwszym krokiem jest zawsze uruchomienie programu takiego jak **FastQC**, aby wygenerować raport jakości odczytów i usunąć te słabe (tzw. *trimming*).
+
+---
+
+## Sprawdź swoją wiedzę!
+
+Na podstawie dzisiejszych informacji, uzupełnij poniższy mini-quiz:
+
+**Pytanie 1:** W jakim formacie zapisuje się odczyty prosto z sekwenatora, zawierające dodatkowe informacje o jakości?
+`r mcq(c("FASTA", answer = "FASTQ", "BAM", "VCF"))`
+
+**Pytanie 2:** Jeśli chcemy przekazać lekarzowi samą listę zidentyfikowanych mutacji u pacjenta nowotworowego, użyjemy formatu:
+`r mcq(c("FASTA", "FASTQ", "BAM", answer = "VCF"))`
+
+**Pytanie 3:** Jak nazywa się pojedyncza zmiana nukleotydowa (taka jak w naszym ćwiczeniu w R)? Skrót to:
+`r fitb(c("SNP", "snp"))`

@@ -1,0 +1,96 @@
+project:
+  type: website
+
+website:
+  title: "Bioinformatics Basics"
+  site-url: "[https://gladkia.github.io/bioinformatics-basics/](https://gladkia.github.io/bioinformatics-basics/)"
+  
+  # Górny pasek nawigacji (wspólny dla obu języków)
+  navbar:
+    background: primary
+    left:
+      - text: "Home"
+        href: index.qmd
+    right:
+      # Przełącznik języków!
+      - text: "🌐 Język / Language"
+        menu:
+          - text: "🇵🇱 Polski"
+            href: index.qmd
+          - text: "🇬🇧 English"
+            href: en/index.qmd
+      - icon: github
+        href: [https://github.com/gladkia/bioinformatics-basics](https://github.com/gladkia/bioinformatics-basics)
+        aria-label: "Kod źródłowy na GitHub"
+        
+  # Definiujemy dwa panele boczne
+  sidebar:
+    # 1. Pasek boczny dla wersji POLSKIEJ (ładuje się dla plików w katalogu głównym)
+    - id: pl-sidebar
+      title: "Podstawy Bioinformatyki"
+      style: "docked"
+      search: true
+      contents:
+        - section: "Informacje organizacyjne"
+          contents:
+            - text: "Sylabus i zaliczenie"
+              file: index.qmd
+        - section: "Materiały ćwiczeniowe"
+          contents:
+            - text: "Lab 1: Bazy danych i API"
+              file: laboratorium_1.qmd
+            - text: "Lab 2: Algorytmy przyrównań"
+              file: laboratorium_2.qmd
+            - text: "Lab 3: Profile i Ewolucja"
+              file: laboratorium_3.qmd
+            - text: "Lab 4: Analiza danych NGS"
+              file: laboratorium_4.qmd
+            - text: "Lab 5: Struktury białek (AI)"
+              file: laboratorium_5.qmd
+        - section: "Ważne linki"
+          contents:
+            - text: "Wyniki (Google Docs)"
+              href: "[https://docs.google.com/spreadsheets/d/1pdv6M2151NoPEwe6whF-1X7mp4Gs_tpneWl-c_C56jQ/edit?gid=1783411386#gid=1783411386](https://docs.google.com/spreadsheets/d/1pdv6M2151NoPEwe6whF-1X7mp4Gs_tpneWl-c_C56jQ/edit?gid=1783411386#gid=1783411386)"
+            - text: "Wykłady (Google Drive)"
+              href: "[https://drive.google.com/drive/u/1/folders/1EmS-7E9PmF8m_cQynngF-KqBEX8W2KWX](https://drive.google.com/drive/u/1/folders/1EmS-7E9PmF8m_cQynngF-KqBEX8W2KWX)"
+            - text: "Test zaliczeniowy (Moodle)"
+              href: "[https://moodle.dobio.link/mod/quiz/view.php?id=3](https://moodle.dobio.link/mod/quiz/view.php?id=3)"
+
+    # 2. Pasek boczny dla wersji ANGIELSKIEJ (ładuje się dla plików w folderze en/)
+    - id: en-sidebar
+      title: "Bioinformatics Basics"
+      style: "docked"
+      search: true
+      contents:
+        - section: "Course Information"
+          contents:
+            - text: "Syllabus & Grading"
+              file: en/index.qmd
+        - section: "Laboratory Classes"
+          contents:
+            - text: "Lab 1: Databases & APIs"
+              file: en/lab_1.qmd
+            - text: "Lab 2: Sequence Alignment"
+              file: en/lab_2.qmd
+            - text: "Lab 3: Profiles & Evolution"
+              file: en/lab_3.qmd
+            - text: "Lab 4: Intro to NGS"
+              file: en/lab_4.qmd
+            - text: "Lab 5: Protein Structures (AI)"
+              file: en/lab_5.qmd
+        - section: "Important Links"
+          contents:
+            - text: "Grades (Google Docs)"
+              href: "[https://docs.google.com/spreadsheets/d/1pdv6M2151NoPEwe6whF-1X7mp4Gs_tpneWl-c_C56jQ/edit?gid=1783411386#gid=1783411386](https://docs.google.com/spreadsheets/d/1pdv6M2151NoPEwe6whF-1X7mp4Gs_tpneWl-c_C56jQ/edit?gid=1783411386#gid=1783411386)"
+            - text: "Lectures (Google Drive)"
+              href: "[https://drive.google.com/drive/u/1/folders/1EmS-7E9PmF8m_cQynngF-KqBEX8W2KWX](https://drive.google.com/drive/u/1/folders/1EmS-7E9PmF8m_cQynngF-KqBEX8W2KWX)"
+
+format:
+  html:
+    theme: 
+      light: flatly
+      dark: darkly
+    toc: true
+    toc-title: "Spis treści / Content"
+    toc-depth: 3
+    smooth-scroll: true
