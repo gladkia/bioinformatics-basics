@@ -1,1 +1,1 @@
-Sitemap: [https://gladkia.github.io/bioinformatics-basics/](https://gladkia.github.io/bioinformatics-basics/)/sitemap.xml
+Sitemap: https://gladkia.github.io/bioinformatics-basics/sitemap.xml
