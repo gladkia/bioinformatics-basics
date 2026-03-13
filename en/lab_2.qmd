@@ -1,0 +1,82 @@
+---
+title: "Lab 2: Sequence Alignment Algorithms"
+format: html
+engine: knitr
+filters:
+  - webr
+---
+
+```{r, echo = FALSE, results='asis'}
+# Required for interactive quizzes
+library(webexercises)
+```
+
+## Global vs. Local Alignment
+
+In bioinformatics, choosing the right alignment algorithm is crucial. [cite_start]The primary difference lies in their approach:
+* [cite_start]**Needleman-Wunsch Algorithm (Global):** Attempts to align the sequences across their entire length[cite: 118, 119].
+* [cite_start]**Smith-Waterman Algorithm (Local):** Searches for the best-matching regions, ignoring mismatched ends[cite: 118, 119].
+
+
+
+### Interactive Task 1: Changing the Alignment Type
+
+[cite_start]Below is a code snippet using the `Biostrings` package[cite: 124, 129]. 
+[cite_start]**Your task:** 1. Run the code (click *Run Code*) and note the score for the global alignment [cite: 172-175].
+2. [cite_start]Change `type = "global"` to `type = "local"` and run it again [cite: 187-192].
+3. [cite_start]Observe how the score and the alignment display change [cite: 196-197].
+
+```{webr-r}
+# Install and load Biostrings if not already available
+webr::install("Biostrings")
+library(Biostrings)
+
+seq1 <- "VDFWAE"
+seq2 <- "VDFWAP"
+
+# Calculating the alignment
+alignment <- pairwiseAlignment(pattern = seq1, 
+                               subject = seq2,
+                               substitutionMatrix = "BLOSUM62",
+                               type = "global",
+                               gapOpening = -10,
+                               gapExtension = -1)
+
+print(alignment)
+print(paste("Alignment Score:", score(alignment)))
+```
+
+---
+
+## Gap Penalties
+
+Evolutionary processes like insertions and deletions lead to gaps in sequences. [cite_start]How we penalize these gaps significantly affects the final alignment[cite: 122]. [cite_start]Typically, opening a new gap (`gapOpening`) costs more than extending an existing one (`gapExtension`) [cite: 123, 175-177].
+
+### Interactive Task 2: Experimenting with Gap Costs
+
+[cite_start]Change the gap opening penalty (`gapOpening`) from `-10` to `-1`[cite: 190, 212, 228]. Observe how the algorithm becomes more "willing" to tear the sequence apart to find matches!
+
+```{webr-r}
+sequence_A <- "ACDEFGHIKLMN"
+sequence_B <- "ACDEFGHLMN"
+
+experiment <- pairwiseAlignment(pattern = sequence_A, 
+                                 subject = sequence_B,
+                                 substitutionMatrix = "BLOSUM62",
+                                 gapOpening = -10,  # <-- CHANGE TO -1
+                                 gapExtension = -1)
+print(experiment)
+```
+
+---
+
+## Knowledge Check
+
+[cite_start]**Question 1:** Which algorithm is better suited for finding a shared domain within two very different, long proteins? 
+`r mcq(c("Needleman-Wunsch (Global)", answer = "Smith-Waterman (Local)"))`
+
+[cite_start]**Question 2:** In the affine gap penalty model, which value is typically more restrictive (more negative)? [cite: 122, 175-177]
+`r mcq(c(answer = "Gap Opening", "Gap Extension"))`
+
+[cite_start]**Question 3:** Which substitution matrix was used in the code above to score amino acid matches? [cite: 173, 210]
+`r fitb("BLOSUM62")`

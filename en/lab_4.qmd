@@ -1,0 +1,89 @@
+---
+title: "Lab 4: Introduction to NGS Data and Variant Calling"
+format: html
+engine: knitr
+filters:
+  - webr
+---
+
+```{r, echo = FALSE, results='asis'}
+library(webexercises)
+```
+
+## From Single Genes to Whole Genomes
+
+[cite_start]For decades, bioinformaticians focused on comparing individual sequences to find **orthologs** (homologs in different species) and **paralogs** (homologs within the same species resulting from duplication)[cite: 56]. [cite_start]Today, technologies like Next-Generation Sequencing (NGS) allow us to sequence entire genomes by generating millions of short "reads"[cite: 414].
+
+
+
+To make sense of this data, we map these reads to a **reference genome**. This process allows us to identify differences, such as mutations in cancer cells or new variants of a virus.
+
+## Part 1: NGS Data Formats
+
+Working with NGS requires moving beyond the simple FASTA format. You will encounter four essential file types:
+
+1.  [cite_start]**FASTA** (`.fasta`): Stores the reference sequence[cite: 266].
+2.  **FASTQ** (`.fastq`): The raw output from a sequencer. It includes the sequence AND a **Phred quality score** for every single nucleotide.
+3.  **SAM/BAM** (`.sam`, `.bam`): Contains information on how the short reads "aligned" or mapped to the reference genome.
+4.  **VCF** (`.vcf`): The **Variant Call Format**. A list of all identified mutations (SNPs, insertions, deletions).
+
+
+
+---
+
+## Part 2: Understanding Mapping and Variant Calling
+
+In a professional environment, you would use command-line tools like `BWA` or `Bowtie2`. Here, we will simulate the logic of mapping using R to see how a "variant" is actually found.
+
+### Interactive Task: Find the Mutation!
+
+Below is a segment of a reference genome and one short read from a patient's sample. 
+**Your task:** 1. Run the code to map the patient's read to the reference.
+2. Examine the alignment. Can you spot the **SNP** (Single Nucleotide Polymorphism)?
+3. At which position does the patient differ from the reference?
+
+```{webr-r}
+# Loading Biostrings for sequence manipulation
+webr::install("Biostrings")
+library(Biostrings)
+
+# The Reference Genome (Wild Type)
+reference <- DNAString("ATGCGTACGTAGCTAGCTAGCTGATCGATCGTAGCTAGCTAGCTGATCG")
+
+# A short read from a patient (extracted from a FASTQ file)
+patient_read <- DNAString("CGTACGTAGCTTGCTAGCTG")
+
+# Mapping (Local Alignment)
+mapping <- pairwiseAlignment(pattern = patient_read, 
+                               subject = reference, 
+                               type = "local")
+
+# Display the mapping results
+print("Mapping result (Read vs Reference):")
+print(mapping)
+```
+
+**Observation:** If hundreds of different reads covering this same position show a 'T' instead of the reference 'A', the software "calls" a variant and records it in a **VCF file**.
+
+---
+
+## Part 3: Orthology and Practical Searching
+
+[cite_start]Before the NGS era, researchers often used BLAST to find orthologs in other organisms, such as comparing mouse *FHIT* to human or rhesus macaque sequences[cite: 58, 62].
+
+[cite_start]**Task:** 1. Use the NCBI BLAST website to find the rhesus macaque (*Macaca mulatta*) homolog of the mouse *FHIT* protein[cite: 58].
+2. [cite_start]Perform a **Reciprocal BLAST**: Take the macaque sequence you found and BLAST it back against the mouse database[cite: 61].
+3. [cite_start]If the top hit is the original mouse *FHIT* protein, you have likely identified a true **ortholog**[cite: 60].
+
+---
+
+## Knowledge Check
+
+**Question 1:** Which file format is used to store raw sequencing reads along with their quality scores?
+`r mcq(c("FASTA", answer = "FASTQ", "BAM", "VCF"))`
+
+[cite_start]**Question 2:** What is the term for homologous genes found in different species that evolved from a common ancestral gene? [cite: 56]
+`r mcq(c(answer = "Orthologs", "Paralogs", "Analogs"))`
+
+[cite_start]**Question 3:** What is the name of the statistical value that indicates the number of hits one can "expect" to see by chance when searching a database? [cite: 236, 379]
+`r fitb(c("E-value", "e-value", "Expect value"))`

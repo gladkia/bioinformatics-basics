@@ -1,0 +1,73 @@
+---
+title: "Lab 1: From Clicking to Coding – Database Exploration via API"
+format: html
+engine: knitr
+filters:
+  - webr
+---
+
+## Introduction
+
+Biological databases are growing at an exponential rate. While manual searching via web interfaces is common, modern bioinformatics relies on automation. Today, we will learn how to bypass the graphical interface and retrieve data directly into our scripts using APIs (Application Programming Interface).
+
+
+
+## Part 1: Warming up with R – Using APIs instead of Browsers
+
+[cite_start]In the past, you might have searched for the human *APOE* gene (Accession: `NM_000041.4`) manually [cite: 310-312]. Now, we will do this using R code.
+
+**Task 1:**
+Run the code below to fetch the *APOE* gene sequence using the `rentrez` package.
+
+```{webr-r}
+# Loading packages (pre-installed in WebR)
+webr::install("rentrez")
+webr::install("seqinr")
+library(rentrez)
+library(seqinr)
+
+# Fetching APOE sequence (Nuccore) in FASTA format
+apoe_fasta <- entrez_fetch(db="nuccore", id="NM_000041.4", rettype="fasta")
+
+# Display the result
+cat(apoe_fasta)
+```
+
+**Discussion:**
+* [cite_start]Change the database from `"nuccore"` to `"protein"` and try to fetch the protein sequence encoded by this gene (you'll need to find its *protein_id* [cite: 319]).
+* Use the `seqinr` package to check the frequency of each nucleotide.
+
+---
+
+## Part 2: Introduction to Python and Biopython
+
+Python is equally essential in bioinformatics. [cite_start]Instead of manually searching PubMed for publications by Piotr Zielenkiewicz[cite: 336], we will use the Biopython library.
+
+
+
+**Task 2:**
+(Note: Perform this task in Google Colab, as WebR currently supports R natively).
+
+```python
+!pip install biopython
+from Bio import Entrez
+
+# NCBI Good Practice - always provide your email!
+Entrez.email = "your_email@student.pw.edu.pl"
+
+# Searching the PubMed database
+handle = Entrez.esearch(db="pubmed", term="Zielenkiewicz P[Author]")
+record = Entrez.read(handle)
+
+print(f"Number of publications found: {record['Count']}")
+print(f"IDs of latest publications (PMIDs): {record['IdList']}")
+```
+
+**To do:** Modify the `term` variable to find the 1953 Nature papers by Watson and Crick [cite: 346-347].
+
+---
+
+## Part 3: Integration Project – Ebola Virus
+
+Using the NCBI Taxonomy database, we can find sequences for the Ebola virus[cite: 349]. 
+Write a short R script (using the WebR editor above) to fetch the full genome of the Zaire Ebolavirus (find its Accession ID online) and calculate its **GC-content** [cite: 350-353].

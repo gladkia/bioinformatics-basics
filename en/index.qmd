@@ -1,0 +1,49 @@
+---
+title: "Bioinformatics Basics"
+format: html
+---
+
+Welcome to the official website of the **Bioinformatics Basics** course at the Faculty of Chemistry, Warsaw University of Technology!
+
+::: {.callout-important}
+## 🪰 2026 Theme: The Year of the Fruit Fly (*Drosophila melanogaster*)
+This year, our main theme is the fruit fly! Why? [cite_start]Because this organism has recently become the protagonist of an absolute breakthrough at the intersection of biology and computer science: the first digital brain has just started walking [cite: 433-434].
+
+[cite_start]A team at Eon Systems PBC, led by senior scientist Philip Shiu, has demonstrated the world's first embodied whole-brain emulation[cite: 439]. [cite_start]In 2024, Shiu and collaborators published in *Nature* a computational model of the entire adult fruit fly brain—consisting of 125,000 neurons and 50 million synaptic connections—built from the FlyWire connectome[cite: 442]. 
+
+[cite_start]Now, using the NeuroMechFly v2 framework and MuJoCo physics simulation, scientists have integrated this digital brain with a virtual fly body[cite: 444]. [cite_start]The biology was copied neuron by neuron, and the digital fly simply "woke up" and started walking without any training data or machine learning algorithms [cite: 447-449]. This is a powerful testament to the future of *in silico* biological simulations!
+:::
+
+::: {.callout-note}
+## New Curriculum – "From Sequence to System in the Era of AI"
+The course has undergone a major update! Instead of manual database searching, you will learn how to automate your workflow using **R** and **Python** scripts (via Jupyter/Colab). We have also introduced cutting-edge topics such as NGS data analysis and protein structure prediction using Artificial Intelligence (AlphaFold).
+:::
+
+## 👨‍🏫 General Information
+* **Instructor:** Arkadiusz Gładki, PhD, Eng.
+* **E-mail:** arek at gladki.pl
+* [cite_start]**Course Hours:** 30 (including laboratory classes and lectures) [cite: 384]
+
+## 🧬 Course Description
+[cite_start]Bioinformatics is a relatively young, dynamically developing, interdisciplinary field of science that aims to solve biological problems using modern information technology[cite: 376].
+
+[cite_start]During the classes, we will present methods and strategies for effective searching of biological databases available online[cite: 377]. Throughout the course:
+* [cite_start]You will become familiar with tools for sequence alignment and searching for potential homologs[cite: 378].
+* [cite_start]You will understand concepts such as local and global alignment, Hidden Markov Models (HMM), substitution matrices, PSSM matrices, and statistical values (E-value, score, identity)[cite: 379].
+* [cite_start]You will learn to identify functional and regulatory elements of the genome (including Open Reading Frames - ORF)[cite: 380].
+* [cite_start]You will explore services gathering information on genomes, genes, and metabolic pathways (e.g., KEGG and COG databases)[cite: 381].
+* [cite_start]We will cover the evolution of protein structure prediction—from classical homology modeling to the latest machine learning algorithms (AlphaFold)[cite: 382].
+
+## 🎓 Grading & Requirements
+To complete the course, the following conditions must be met:
+1.  [cite_start]**Attendance:** Participation in laboratory classes is mandatory[cite: 391].
+2.  [cite_start]**Final Exam:** The grade is based on a final test[cite: 388].
+    * [cite_start]The exam is conducted on the Moodle platform (100 minutes)[cite: 389].
+    * [cite_start]Format: Multiple-choice questions and 2-3 descriptive questions[cite: 390].
+
+## 📚 Additional Materials & Curiosities
+To expand your knowledge beyond the classroom, feel free to explore the following resources:
+* [cite_start]Free Online Book: [The Art of R Programming (Norman Matloff)](https://diytranscriptomics.com/Reading/files/The%20Art%20of%20R%20Programming.pdf)[cite: 407].
+* [cite_start]Cloud Workstation (25h of free computing per month): [Posit Cloud](https://rstudio.cloud/)[cite: 415].
+* [cite_start]Genetics Milestone: The 2022 complete human genome sequencing via the [T2T method](https://www.science.org/doi/10.1126/science.abp8653)[cite: 414].
+* [cite_start]Recommended AI Course: [Machine Learning via Python Notebooks by Andrew Ng](https://www.coursera.org/specializations/machine-learning-introduction)[cite: 416].

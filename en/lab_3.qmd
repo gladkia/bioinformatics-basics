@@ -1,0 +1,84 @@
+---
+title: "Lab 3: Sequence Profiles, Evolution, and Hidden Messages"
+format: html
+engine: knitr
+filters:
+  - webr
+---
+
+```{r, echo = FALSE, results='asis'}
+library(webexercises)
+```
+
+## Part 1: BLAST, E-values, and... Dinosaurs?
+
+[cite_start]In Michael Crichton's "Jurassic Park," a nucleotide sequence supposedly belonging to a dinosaur was presented[cite: 246]. [cite_start]However, bioinformaticians like Mark Boguski noted that the sequence was not well-chosen and proposed a better one, in which he hid a secret message[cite: 248, 249]. [cite_start]To see it, one must compare the sequence against the 'nr' protein database using the appropriate BLAST tool[cite: 250].
+
+### Assessing Reliability (E-value)
+
+Before playing detective, we must understand how BLAST evaluates whether a match is significant or just a coincidence. [cite_start]The **E-value** (Expect value) is key[cite: 236]:
+* [cite_start]The **lower** the E-value (closer to zero), the more significant the match[cite: 239, 245].
+* [cite_start]For example, an E-value of $6e-145$ is extremely significant [cite: 239][cite_start], while $0.39$ suggests the match could be random[cite: 242].
+
+
+
+**Quick Check:** Which of the following E-values represents the most statistically significant result?
+`r mcq(c("E-VALUE: 0.39", "E-VALUE: 2e-29", answer = "E-VALUE: 6e-145"))`
+
+---
+
+## Part 2: Multiple Sequence Alignment (MSA) and Sequence Logos
+
+[cite_start]When dealing with many sequences, we use Multiple Sequence Alignment (MSA) to identify conserved regions—parts of the sequence that remain unchanged through evolution, indicating functional importance[cite: 32].
+
+[cite_start]A **Sequence Logo** graphically represents this conservation[cite: 37]. [cite_start]The height of each letter reflects how conserved that residue is at a specific position[cite: 39].
+
+
+
+### Interactive Task: Generate a Sequence Logo in R
+
+[cite_start]We will use the `ggseqlogo` package to visualize a set of peptide sequences [cite: 74-79, 86-97].
+
+**Task:** Run the code below. Observe which positions are highly conserved and which are variable.
+
+```{webr-r}
+# Installing and loading visualization packages
+webr::install("ggplot2")
+webr::install("ggseqlogo")
+library(ggplot2)
+library(ggseqlogo)
+
+# Our MSA peptide sequences from previous studies
+alignment <- c(
+  "VDFWAE",
+  "VDFWAP",
+  "VDFWAE",
+  "VDFWAE",
+  "VDFWAP",
+  "VDFSAT",
+  "VDFSAT",
+  "VDFYAT"
+)
+
+# Generate the logo
+ggseqlogo(alignment) + 
+  ggtitle("Sequence Logo of our Peptide Alignment") +
+  theme_minimal()
+```
+
+---
+
+## Part 3: PSI-BLAST and PSSM Profiles
+
+Standard BLAST might miss distant homologs. **PSI-BLAST** (Position-Specific Iterative BLAST) solves this by building a **PSSM** (Position-Specific Scoring Matrix) profile from the results of each iteration[cite: 105, 107]. 
+
+
+
+* It performs an initial search[cite: 102].
+* It builds a profile from the best hits[cite: 107].
+* It uses this profile to search again, repeating the process until **convergence** (when no new sequences appear)[cite: 104, 105].
+
+**Final Challenge:**
+Perform several iterations of PSI-BLAST on the NCBI website using the "Mark Boguski sequence" (dino2.txt)[cite: 102, 250]. 
+* Check the alignment results to find the hidden message[cite: 251].
+* What protein family does the sequence actually belong to?

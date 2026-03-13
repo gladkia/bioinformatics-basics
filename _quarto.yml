@@ -5,14 +5,12 @@ website:
   title: "Bioinformatics Basics"
   site-url: "[https://gladkia.github.io/bioinformatics-basics/](https://gladkia.github.io/bioinformatics-basics/)"
   
-  # Górny pasek nawigacji (wspólny dla obu języków)
   navbar:
     background: primary
     left:
       - text: "Home"
         href: index.qmd
     right:
-      # Przełącznik języków!
       - text: "🌐 Język / Language"
         menu:
           - text: "🇵🇱 Polski"
@@ -20,12 +18,10 @@ website:
           - text: "🇬🇧 English"
             href: en/index.qmd
       - icon: github
-        href: [https://github.com/gladkia/bioinformatics-basics](https://github.com/gladkia/bioinformatics-basics)
+        href: "[https://github.com/gladkia/bioinformatics-basics](https://github.com/gladkia/bioinformatics-basics)"
         aria-label: "Kod źródłowy na GitHub"
         
-  # Definiujemy dwa panele boczne
   sidebar:
-    # 1. Pasek boczny dla wersji POLSKIEJ (ładuje się dla plików w katalogu głównym)
     - id: pl-sidebar
       title: "Podstawy Bioinformatyki"
       style: "docked"
@@ -56,7 +52,6 @@ website:
             - text: "Test zaliczeniowy (Moodle)"
               href: "[https://moodle.dobio.link/mod/quiz/view.php?id=3](https://moodle.dobio.link/mod/quiz/view.php?id=3)"
 
-    # 2. Pasek boczny dla wersji ANGIELSKIEJ (ładuje się dla plików w folderze en/)
     - id: en-sidebar
       title: "Bioinformatics Basics"
       style: "docked"
@@ -87,10 +82,11 @@ website:
 
 format:
   html:
+    embed-resources: true
     theme: 
       light: flatly
       dark: darkly
     toc: true
-    toc-title: "Spis treści / Content"
+    toc-title: "Content"
     toc-depth: 3
     smooth-scroll: true

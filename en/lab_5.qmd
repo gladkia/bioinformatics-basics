@@ -1,0 +1,83 @@
+---
+title: "Lab 5: Evolutionary 3D – MSA, Phylogenetic Trees, and AlphaFold"
+format: html
+engine: knitr
+filters:
+  - webr
+---
+
+```{r, echo = FALSE, results='asis'}
+library(webexercises)
+```
+
+## From Alignment to Evolution
+
+In previous labs, we focused on comparing two sequences. [cite_start]However, to understand a whole protein family, we perform **Multiple Sequence Alignment (MSA)**[cite: 5, 25]. [cite_start]Tools like **T-COFFEE** and **MUSCLE** are commonly used to align several sequences simultaneously to find conserved patterns [cite: 18-19].
+
+MSA allows us to:
+1.  [cite_start]**Trace Evolutionary History:** By calculating the genetic "distance" between sequences, we can construct phylogenetic trees[cite: 23].
+2.  [cite_start]**Identify Functional Domains:** Conserved regions that remain unchanged across species often represent critical functional domains, such as ATP-binding sites [cite: 32, 34-35].
+
+
+
+### Interactive Task 1: Building an Evolutionary Tree in R
+
+[cite_start]In earlier versions of this course, you would use **Jalview** to calculate trees using the "Average Distance" method and **BLOSUM62** matrix[cite: 20, 23]. Let's perform this clustering programmatically!
+
+**Task:** Run the code below. It takes a distance matrix (representing how different 5 species are) and generates a dendrogram. 
+**Challenge:** Change the label "Species_D" to "Human" and "Species_E" to "Chimpanzee" to see how they cluster!
+
+```{webr-r}
+# Simulated distance matrix based on an MSA
+distances <- matrix(c(
+  0,  2,  8, 10, 11,
+  2,  0,  7,  9, 10,
+  8,  7,  0,  4,  5,
+ 10,  9,  4,  0,  3,
+ 11, 10,  5,  3,  0
+), nrow=5, byrow=TRUE)
+
+# Naming our samples
+colnames(distances) <- c("Species_A", "Species_B", "Species_C", "Species_D", "Species_E")
+rownames(distances) <- colnames(distances)
+
+# Clustering using UPGMA (Average Distance)
+dist_obj <- as.dist(distances)
+tree <- hclust(dist_obj, method = "average")
+
+# Plotting the tree
+plot(tree, main="Phylogenetic Tree from MSA", xlab="Organisms", ylab="Evolutionary Distance", sub="")
+```
+
+---
+
+## The AI Revolution: AlphaFold
+
+For decades, predicting the 3D structure of a protein from its amino acid sequence (homology modeling) was one of the greatest challenges in biology. This changed with **AlphaFold**, an AI system that predicts protein structures with incredible accuracy.
+
+**How does AlphaFold use MSA?**
+AlphaFold does not predict structures in a vacuum. Its primary input is an **MSA**. By looking at hundreds of related sequences, the AI identifies "co-evolving" residues. If two positions in a protein mutate together across different species, they are likely touching each other in 3D space.
+
+
+
+### Final Challenge: Predict a Structure with ColabFold
+
+Today, you will use AI to see a protein in 3D! We will use **ColabFold**, a cloud-based version of AlphaFold.
+
+1.  Open the [ColabFold Notebook](https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb).
+2.  Paste the sequence of the rat **NRD convertase** (Accession: `gi:1352519`) or a conserved domain you identified earlier[cite: 29, 34].
+3.  Run the prediction. 
+4.  Download the `.pdb` file and visualize it!
+
+---
+
+## Knowledge Check
+
+**Question 1:** What is the most critical input that AlphaFold uses to predict the 3D shape of a protein?
+`r mcq(c("A single DNA sequence", answer = "Multiple Sequence Alignment (MSA)", "A PubMed bibliography", "A FASTQ file"))`
+
+**Question 2:** Which database is used to check if a specific amino acid fragment is part of a known protein domain? 
+`r mcq(c(answer = "CDD (Conserved Domain Database)", "UniProt", "GenBank", "PDB"))`
+
+**Question 3:** What is the file extension for a 3D protein structure file that contains the X, Y, and Z coordinates of every atom?
+`r fitb(c("PDB", "pdb", ".pdb"))`
