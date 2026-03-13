@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://gladkia.github.io/bioinformatics-basics/en/lab_4.html</loc>
+    <loc>https://gladkia.github.io/bioinformatics-basics/wyklad_1.html</loc>
+    <lastmod>2026-03-13T14:40:21.805Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gladkia.github.io/bioinformatics-basics/en/lab_5.html</loc>
     <lastmod>2026-03-13T09:54:32.887Z</lastmod>
   </url>
   <url>
-    <loc>https://gladkia.github.io/bioinformatics-basics/en/lab_2.html</loc>
-    <lastmod>2026-03-13T09:54:32.886Z</lastmod>
+    <loc>https://gladkia.github.io/bioinformatics-basics/en/lab_3.html</loc>
+    <lastmod>2026-03-13T09:54:32.887Z</lastmod>
   </url>
   <url>
-    <loc>https://gladkia.github.io/bioinformatics-basics/en/lab_1.html</loc>
-    <lastmod>2026-03-13T09:54:32.886Z</lastmod>
+    <loc>https://gladkia.github.io/bioinformatics-basics/en/lecture_2.html</loc>
+    <lastmod>2026-03-13T15:11:11.036Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gladkia.github.io/bioinformatics-basics/en/lecture_1.html</loc>
+    <lastmod>2026-03-13T14:46:09.104Z</lastmod>
   </url>
   <url>
     <loc>https://gladkia.github.io/bioinformatics-basics/index.html</loc>
     <lastmod>2026-03-13T10:55:47.586Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gladkia.github.io/bioinformatics-basics/laboratorium_7.html</loc>
+    <lastmod>2026-03-13T15:47:09.211Z</lastmod>
   </url>
   <url>
     <loc>https://gladkia.github.io/bioinformatics-basics/laboratorium_4.html</loc>
@@ -37,15 +49,27 @@
     <lastmod>2026-03-13T13:57:01.048Z</lastmod>
   </url>
   <url>
+    <loc>https://gladkia.github.io/bioinformatics-basics/laboratorium_6.html</loc>
+    <lastmod>2026-03-13T15:46:57.968Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gladkia.github.io/bioinformatics-basics/wyklad_2.html</loc>
+    <lastmod>2026-03-13T15:10:48.166Z</lastmod>
+  </url>
+  <url>
     <loc>https://gladkia.github.io/bioinformatics-basics/en/index.html</loc>
     <lastmod>2026-03-13T09:54:32.886Z</lastmod>
   </url>
   <url>
-    <loc>https://gladkia.github.io/bioinformatics-basics/en/lab_3.html</loc>
-    <lastmod>2026-03-13T09:54:32.887Z</lastmod>
+    <loc>https://gladkia.github.io/bioinformatics-basics/en/lab_1.html</loc>
+    <lastmod>2026-03-13T09:54:32.886Z</lastmod>
   </url>
   <url>
-    <loc>https://gladkia.github.io/bioinformatics-basics/en/lab_5.html</loc>
+    <loc>https://gladkia.github.io/bioinformatics-basics/en/lab_2.html</loc>
+    <lastmod>2026-03-13T09:54:32.886Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gladkia.github.io/bioinformatics-basics/en/lab_4.html</loc>
     <lastmod>2026-03-13T09:54:32.887Z</lastmod>
   </url>
 </urlset>
