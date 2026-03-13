@@ -1,0 +1,634 @@
+[
+  {
+    "objectID": "en/lab_4.html",
+    "href": "en/lab_4.html",
+    "title": "Lab 4: Introduction to NGS Data and Variant Calling",
+    "section": "",
+    "text": "[cite_start]For decades, bioinformaticians focused on comparing individual sequences to find orthologs (homologs in different species) and paralogs (homologs within the same species resulting from duplication)[cite: 56]. [cite_start]Today, technologies like Next-Generation Sequencing (NGS) allow us to sequence entire genomes by generating millions of short “reads”[cite: 414].\nTo make sense of this data, we map these reads to a reference genome. This process allows us to identify differences, such as mutations in cancer cells or new variants of a virus.",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 4: Intro to NGS"
+    ]
+  },
+  {
+    "objectID": "en/lab_4.html#from-single-genes-to-whole-genomes",
+    "href": "en/lab_4.html#from-single-genes-to-whole-genomes",
+    "title": "Lab 4: Introduction to NGS Data and Variant Calling",
+    "section": "",
+    "text": "[cite_start]For decades, bioinformaticians focused on comparing individual sequences to find orthologs (homologs in different species) and paralogs (homologs within the same species resulting from duplication)[cite: 56]. [cite_start]Today, technologies like Next-Generation Sequencing (NGS) allow us to sequence entire genomes by generating millions of short “reads”[cite: 414].\nTo make sense of this data, we map these reads to a reference genome. This process allows us to identify differences, such as mutations in cancer cells or new variants of a virus.",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 4: Intro to NGS"
+    ]
+  },
+  {
+    "objectID": "en/lab_4.html#part-1-ngs-data-formats",
+    "href": "en/lab_4.html#part-1-ngs-data-formats",
+    "title": "Lab 4: Introduction to NGS Data and Variant Calling",
+    "section": "Part 1: NGS Data Formats",
+    "text": "Part 1: NGS Data Formats\nWorking with NGS requires moving beyond the simple FASTA format. You will encounter four essential file types:\n\n[cite_start]FASTA (.fasta): Stores the reference sequence[cite: 266].\nFASTQ (.fastq): The raw output from a sequencer. It includes the sequence AND a Phred quality score for every single nucleotide.\nSAM/BAM (.sam, .bam): Contains information on how the short reads “aligned” or mapped to the reference genome.\nVCF (.vcf): The Variant Call Format. A list of all identified mutations (SNPs, insertions, deletions).",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 4: Intro to NGS"
+    ]
+  },
+  {
+    "objectID": "en/lab_4.html#part-2-understanding-mapping-and-variant-calling",
+    "href": "en/lab_4.html#part-2-understanding-mapping-and-variant-calling",
+    "title": "Lab 4: Introduction to NGS Data and Variant Calling",
+    "section": "Part 2: Understanding Mapping and Variant Calling",
+    "text": "Part 2: Understanding Mapping and Variant Calling\nIn a professional environment, you would use command-line tools like BWA or Bowtie2. Here, we will simulate the logic of mapping using R to see how a “variant” is actually found.\n\nInteractive Task: Find the Mutation!\nBelow is a segment of a reference genome and one short read from a patient’s sample. Your task: 1. Run the code to map the patient’s read to the reference. 2. Examine the alignment. Can you spot the SNP (Single Nucleotide Polymorphism)? 3. At which position does the patient differ from the reference?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nObservation: If hundreds of different reads covering this same position show a ‘T’ instead of the reference ‘A’, the software “calls” a variant and records it in a VCF file.",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 4: Intro to NGS"
+    ]
+  },
+  {
+    "objectID": "en/lab_4.html#part-3-orthology-and-practical-searching",
+    "href": "en/lab_4.html#part-3-orthology-and-practical-searching",
+    "title": "Lab 4: Introduction to NGS Data and Variant Calling",
+    "section": "Part 3: Orthology and Practical Searching",
+    "text": "Part 3: Orthology and Practical Searching\n[cite_start]Before the NGS era, researchers often used BLAST to find orthologs in other organisms, such as comparing mouse FHIT to human or rhesus macaque sequences[cite: 58, 62].\n[cite_start]Task: 1. Use the NCBI BLAST website to find the rhesus macaque (Macaca mulatta) homolog of the mouse FHIT protein[cite: 58]. 2. [cite_start]Perform a Reciprocal BLAST: Take the macaque sequence you found and BLAST it back against the mouse database[cite: 61]. 3. [cite_start]If the top hit is the original mouse FHIT protein, you have likely identified a true ortholog[cite: 60].",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 4: Intro to NGS"
+    ]
+  },
+  {
+    "objectID": "en/lab_4.html#knowledge-check",
+    "href": "en/lab_4.html#knowledge-check",
+    "title": "Lab 4: Introduction to NGS Data and Variant Calling",
+    "section": "Knowledge Check",
+    "text": "Knowledge Check\nQuestion 1: Which file format is used to store raw sequencing reads along with their quality scores? FASTAFASTQBAMVCF\n[cite_start]Question 2: What is the term for homologous genes found in different species that evolved from a common ancestral gene? [cite: 56] OrthologsParalogsAnalogs\n[cite_start]Question 3: What is the name of the statistical value that indicates the number of hits one can “expect” to see by chance when searching a database? [cite: 236, 379]",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 4: Intro to NGS"
+    ]
+  },
+  {
+    "objectID": "en/lab_2.html",
+    "href": "en/lab_2.html",
+    "title": "Lab 2: Sequence Alignment Algorithms",
+    "section": "",
+    "text": "In bioinformatics, choosing the right alignment algorithm is crucial. [cite_start]The primary difference lies in their approach: * [cite_start]Needleman-Wunsch Algorithm (Global): Attempts to align the sequences across their entire length[cite: 118, 119]. * [cite_start]Smith-Waterman Algorithm (Local): Searches for the best-matching regions, ignoring mismatched ends[cite: 118, 119].\n\n\n[cite_start]Below is a code snippet using the Biostrings package[cite: 124, 129]. [cite_start]Your task: 1. Run the code (click Run Code) and note the score for the global alignment [cite: 172-175]. 2. [cite_start]Change type = \"global\" to type = \"local\" and run it again [cite: 187-192]. 3. [cite_start]Observe how the score and the alignment display change [cite: 196-197].\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 2: Sequence Alignment"
+    ]
+  },
+  {
+    "objectID": "en/lab_2.html#global-vs.-local-alignment",
+    "href": "en/lab_2.html#global-vs.-local-alignment",
+    "title": "Lab 2: Sequence Alignment Algorithms",
+    "section": "",
+    "text": "In bioinformatics, choosing the right alignment algorithm is crucial. [cite_start]The primary difference lies in their approach: * [cite_start]Needleman-Wunsch Algorithm (Global): Attempts to align the sequences across their entire length[cite: 118, 119]. * [cite_start]Smith-Waterman Algorithm (Local): Searches for the best-matching regions, ignoring mismatched ends[cite: 118, 119].\n\n\n[cite_start]Below is a code snippet using the Biostrings package[cite: 124, 129]. [cite_start]Your task: 1. Run the code (click Run Code) and note the score for the global alignment [cite: 172-175]. 2. [cite_start]Change type = \"global\" to type = \"local\" and run it again [cite: 187-192]. 3. [cite_start]Observe how the score and the alignment display change [cite: 196-197].\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 2: Sequence Alignment"
+    ]
+  },
+  {
+    "objectID": "en/lab_2.html#gap-penalties",
+    "href": "en/lab_2.html#gap-penalties",
+    "title": "Lab 2: Sequence Alignment Algorithms",
+    "section": "Gap Penalties",
+    "text": "Gap Penalties\nEvolutionary processes like insertions and deletions lead to gaps in sequences. [cite_start]How we penalize these gaps significantly affects the final alignment[cite: 122]. [cite_start]Typically, opening a new gap (gapOpening) costs more than extending an existing one (gapExtension) [cite: 123, 175-177].\n\nInteractive Task 2: Experimenting with Gap Costs\n[cite_start]Change the gap opening penalty (gapOpening) from -10 to -1[cite: 190, 212, 228]. Observe how the algorithm becomes more “willing” to tear the sequence apart to find matches!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 2: Sequence Alignment"
+    ]
+  },
+  {
+    "objectID": "en/lab_2.html#knowledge-check",
+    "href": "en/lab_2.html#knowledge-check",
+    "title": "Lab 2: Sequence Alignment Algorithms",
+    "section": "Knowledge Check",
+    "text": "Knowledge Check\n[cite_start]Question 1: Which algorithm is better suited for finding a shared domain within two very different, long proteins? Needleman-Wunsch (Global)Smith-Waterman (Local)\n[cite_start]Question 2: In the affine gap penalty model, which value is typically more restrictive (more negative)? [cite: 122, 175-177] Gap OpeningGap Extension\n[cite_start]Question 3: Which substitution matrix was used in the code above to score amino acid matches? [cite: 173, 210]",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 2: Sequence Alignment"
+    ]
+  },
+  {
+    "objectID": "en/lab_1.html",
+    "href": "en/lab_1.html",
+    "title": "Lab 1: From Clicking to Coding – Database Exploration via API",
+    "section": "",
+    "text": "Biological databases are growing at an exponential rate. While manual searching via web interfaces is common, modern bioinformatics relies on automation. Today, we will learn how to bypass the graphical interface and retrieve data directly into our scripts using APIs (Application Programming Interface).",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 1: Databases & APIs"
+    ]
+  },
+  {
+    "objectID": "en/lab_1.html#introduction",
+    "href": "en/lab_1.html#introduction",
+    "title": "Lab 1: From Clicking to Coding – Database Exploration via API",
+    "section": "",
+    "text": "Biological databases are growing at an exponential rate. While manual searching via web interfaces is common, modern bioinformatics relies on automation. Today, we will learn how to bypass the graphical interface and retrieve data directly into our scripts using APIs (Application Programming Interface).",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 1: Databases & APIs"
+    ]
+  },
+  {
+    "objectID": "en/lab_1.html#part-1-warming-up-with-r-using-apis-instead-of-browsers",
+    "href": "en/lab_1.html#part-1-warming-up-with-r-using-apis-instead-of-browsers",
+    "title": "Lab 1: From Clicking to Coding – Database Exploration via API",
+    "section": "Part 1: Warming up with R – Using APIs instead of Browsers",
+    "text": "Part 1: Warming up with R – Using APIs instead of Browsers\n[cite_start]In the past, you might have searched for the human APOE gene (Accession: NM_000041.4) manually [cite: 310-312]. Now, we will do this using R code.\nTask 1: Run the code below to fetch the APOE gene sequence using the rentrez package.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nDiscussion: * [cite_start]Change the database from \"nuccore\" to \"protein\" and try to fetch the protein sequence encoded by this gene (you’ll need to find its protein_id [cite: 319]). * Use the seqinr package to check the frequency of each nucleotide.",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 1: Databases & APIs"
+    ]
+  },
+  {
+    "objectID": "en/lab_1.html#part-2-introduction-to-python-and-biopython",
+    "href": "en/lab_1.html#part-2-introduction-to-python-and-biopython",
+    "title": "Lab 1: From Clicking to Coding – Database Exploration via API",
+    "section": "Part 2: Introduction to Python and Biopython",
+    "text": "Part 2: Introduction to Python and Biopython\nPython is equally essential in bioinformatics. [cite_start]Instead of manually searching PubMed for publications by Piotr Zielenkiewicz[cite: 336], we will use the Biopython library.\nTask 2: (Note: Perform this task in Google Colab, as WebR currently supports R natively).\n!pip install biopython\nfrom Bio import Entrez\n\n# NCBI Good Practice - always provide your email!\nEntrez.email = \"your_email@student.pw.edu.pl\"\n\n# Searching the PubMed database\nhandle = Entrez.esearch(db=\"pubmed\", term=\"Zielenkiewicz P[Author]\")\nrecord = Entrez.read(handle)\n\nprint(f\"Number of publications found: {record['Count']}\")\nprint(f\"IDs of latest publications (PMIDs): {record['IdList']}\")\nTo do: Modify the term variable to find the 1953 Nature papers by Watson and Crick [cite: 346-347].",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 1: Databases & APIs"
+    ]
+  },
+  {
+    "objectID": "en/lab_1.html#part-3-integration-project-ebola-virus",
+    "href": "en/lab_1.html#part-3-integration-project-ebola-virus",
+    "title": "Lab 1: From Clicking to Coding – Database Exploration via API",
+    "section": "Part 3: Integration Project – Ebola Virus",
+    "text": "Part 3: Integration Project – Ebola Virus\nUsing the NCBI Taxonomy database, we can find sequences for the Ebola virus[cite: 349]. Write a short R script (using the WebR editor above) to fetch the full genome of the Zaire Ebolavirus (find its Accession ID online) and calculate its GC-content [cite: 350-353].",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 1: Databases & APIs"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Podstawy Bioinformatyki",
+    "section": "",
+    "text": "Witaj na oficjalnej stronie przedmiotu Podstawy Bioinformatyki realizowanego na Wydziale Chemicznym Politechniki Warszawskiej!",
+    "crumbs": [
+      "Home",
+      "Informacje organizacyjne",
+      "Sylabus i zaliczenie"
+    ]
+  },
+  {
+    "objectID": "index.html#informacje-ogólne",
+    "href": "index.html#informacje-ogólne",
+    "title": "Podstawy Bioinformatyki",
+    "section": "👨‍🏫 Informacje ogólne",
+    "text": "👨‍🏫 Informacje ogólne\n\nProwadzący: dr inż. Arkadiusz Gładki\nKontakt e-mail: arek at gladki.pl\nLiczba godzin: 30 (w tym ćwiczenia laboratoryjne i wykłady)",
+    "crumbs": [
+      "Home",
+      "Informacje organizacyjne",
+      "Sylabus i zaliczenie"
+    ]
+  },
+  {
+    "objectID": "index.html#opis-przedmiotu",
+    "href": "index.html#opis-przedmiotu",
+    "title": "Podstawy Bioinformatyki",
+    "section": "🧬 Opis przedmiotu",
+    "text": "🧬 Opis przedmiotu\nBioinformatyka jest stosunkowo młodą, dynamicznie rozwijającą się, interdyscyplinarną dziedziną nauki, której celem jest rozwiązywanie problemów biologicznych przy użyciu nowoczesnych technik informatycznych.\nNa zajęciach zaprezentowane zostaną metody i strategie efektywnego przeszukiwania biologicznych baz danych dostępnych w sieci. W trakcie kursu: * Zapoznasz się z narzędziami służącymi do przyrównania sekwencji oraz wyszukiwania ich homologów. * Zrozumiesz pojęcia takie jak: przyrównanie lokalne i globalne, ukryte modele Markova (HMM), macierz substytucji, macierz PSSM oraz wartości statystyczne (E-value, score, identyczność). * Nauczysz się identyfikować elementy funkcjonalne i regulatorowe genomu (m.in. otwarte ramki odczytu - ORF). * Poznasz serwisy gromadzące informacje dotyczące genomów, genów i szlaków metabolicznych (np. bazy KEGG i COG). * Przejdziemy przez ewolucję metod przewidywania struktury przestrzennej białek – od klasycznego modelowania homologicznego po najnowsze algorytmy oparte o uczenie maszynowe (AlphaFold).",
+    "crumbs": [
+      "Home",
+      "Informacje organizacyjne",
+      "Sylabus i zaliczenie"
+    ]
+  },
+  {
+    "objectID": "index.html#zaliczenie-przedmiotu",
+    "href": "index.html#zaliczenie-przedmiotu",
+    "title": "Podstawy Bioinformatyki",
+    "section": "🎓 Zaliczenie przedmiotu",
+    "text": "🎓 Zaliczenie przedmiotu\nWarunki uzyskania zaliczenia są następujące: 1. Obecność: Obecność na zajęciach laboratoryjnych jest jednym z warunków zaliczenia ćwiczeń. 2. Kolokwium końcowe: Podstawą oceny jest pozytywna ocena z kolokwium końcowego. * Egzamin odbywa się na platformie Moodle i trwa 100 minut. * Forma: kilkadziesiąt pytań jednokrotnego wyboru oraz 2-3 pytania opisowe.",
+    "crumbs": [
+      "Home",
+      "Informacje organizacyjne",
+      "Sylabus i zaliczenie"
+    ]
+  },
+  {
+    "objectID": "index.html#materiały-dodatkowe-i-ciekawostki",
+    "href": "index.html#materiały-dodatkowe-i-ciekawostki",
+    "title": "Podstawy Bioinformatyki",
+    "section": "📚 Materiały dodatkowe i Ciekawostki",
+    "text": "📚 Materiały dodatkowe i Ciekawostki\nAby poszerzyć swoją wiedzę poza zajęciami, zachęcam do zapoznania się z poniższymi materiałami: * Książka online (za darmo): The Art of R Programming (Norman Matloff). * Środowisko pracy w chmurze (25h darmowych obliczeń w miesiącu): RStudio Cloud / Posit Cloud. * Ciekawostka genetyczna: Publikacja z 2022 roku dotycząca pełnego zsekwencjonowania ludzkiego genomu metodą T2T. * Polecany kurs dla pasjonatów AI: Machine Learning via Python Notebooks by Andrew Ng.",
+    "crumbs": [
+      "Home",
+      "Informacje organizacyjne",
+      "Sylabus i zaliczenie"
+    ]
+  },
+  {
+    "objectID": "laboratorium_4.html",
+    "href": "laboratorium_4.html",
+    "title": "Laboratorium 4: Wstęp do danych NGS i poszukiwania wariantów",
+    "section": "",
+    "text": "W minionych dekadach sekwencjonowanie metodą Sangera pozwalało na odczytanie pojedynczych genów. Dzisiaj technologie NGS (Next-Generation Sequencing) generują miliony krótkich odczytów (ang. reads) w ciągu kilku godzin.\n[cite_start]Tradycyjnie podobieństwo sekwencji badano szukając ortologów i paralogów w bazach danych. Dziś, aby zbadać różnice między organizmami (np. znaleźć mutację nowotworową lub nowy wariant wirusa), mapujemy miliony odczytów NGS pacjenta do tzw. genomu referencyjnego.\n\n\nW bioinformatyce NGS spotkasz się z czterema głównymi formatami plików: 1. FASTA (.fasta, .fa) - Znasz go już doskonale. Zawiera samą sekwencję (np. genom referencyjny). 2. FASTQ (.fastq, .fq) - Format wyjściowy z sekwenatora. Oprócz sekwencji zawiera ocenę jakości (Phred Score) dla każdego nukleotydu. 3. SAM/BAM (.sam, .bam) - Pliki zawierające informacje o tym, jak nasze krótkie odczyty z FASTQ “przykleiły się” (zmapowały) do genomu referencyjnego z FASTA. 4. VCF (.vcf) - Variant Call Format. Lista zidentyfikowanych mutacji (np. SNP, insercje, delecje).",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 4: Analiza danych NGS"
+    ]
+  },
+  {
+    "objectID": "laboratorium_4.html#od-pojedynczego-genu-do-całych-genomów",
+    "href": "laboratorium_4.html#od-pojedynczego-genu-do-całych-genomów",
+    "title": "Laboratorium 4: Wstęp do danych NGS i poszukiwania wariantów",
+    "section": "",
+    "text": "W minionych dekadach sekwencjonowanie metodą Sangera pozwalało na odczytanie pojedynczych genów. Dzisiaj technologie NGS (Next-Generation Sequencing) generują miliony krótkich odczytów (ang. reads) w ciągu kilku godzin.\n[cite_start]Tradycyjnie podobieństwo sekwencji badano szukając ortologów i paralogów w bazach danych. Dziś, aby zbadać różnice między organizmami (np. znaleźć mutację nowotworową lub nowy wariant wirusa), mapujemy miliony odczytów NGS pacjenta do tzw. genomu referencyjnego.\n\n\nW bioinformatyce NGS spotkasz się z czterema głównymi formatami plików: 1. FASTA (.fasta, .fa) - Znasz go już doskonale. Zawiera samą sekwencję (np. genom referencyjny). 2. FASTQ (.fastq, .fq) - Format wyjściowy z sekwenatora. Oprócz sekwencji zawiera ocenę jakości (Phred Score) dla każdego nukleotydu. 3. SAM/BAM (.sam, .bam) - Pliki zawierające informacje o tym, jak nasze krótkie odczyty z FASTQ “przykleiły się” (zmapowały) do genomu referencyjnego z FASTA. 4. VCF (.vcf) - Variant Call Format. Lista zidentyfikowanych mutacji (np. SNP, insercje, delecje).",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 4: Analiza danych NGS"
+    ]
+  },
+  {
+    "objectID": "laboratorium_4.html#część-1-zrozumieć-mapowanie-i-warianty-variant-calling",
+    "href": "laboratorium_4.html#część-1-zrozumieć-mapowanie-i-warianty-variant-calling",
+    "title": "Laboratorium 4: Wstęp do danych NGS i poszukiwania wariantów",
+    "section": "Część 1: Zrozumieć Mapowanie i Warianty (Variant Calling)",
+    "text": "Część 1: Zrozumieć Mapowanie i Warianty (Variant Calling)\nW profesjonalnej pracy używa się narzędzi konsolowych takich jak BWA (do mapowania) i GATK (do szukania wariantów). My jednak zasymulujemy ten proces w R, abyś zrozumiał, co dzieje się “pod maską”!\n\nInteraktywne zadanie: Znajdź mutację!\nPoniżej zasymulowaliśmy fragment genomu referencyjnego (np. fragment wirusa) oraz jeden krótki odczyt (read) z próbki pacjenta.\nTwoje zadanie: 1. Uruchom kod, aby zmapować odczyt pacjenta do referencji. 2. Przyjrzyj się wynikowi przyrównania. Czy potrafisz wzrokowo zidentyfikować mutację (SNP)? 3. W jakiej pozycji na odczycie pacjenta nastąpiła zmiana i z jakiego nukleotydu na jaki?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAnaliza wyników: W prawdziwym świecie, jeśli setki odczytów w danym miejscu pokazują “T” zamiast “A” jak w referencji, oprogramowanie zapisze to jako potwierdzony wariant (SNP) w pliku VCF.",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 4: Analiza danych NGS"
+    ]
+  },
+  {
+    "objectID": "laboratorium_4.html#część-2-kontrola-jakości-qc-i-phred-scores",
+    "href": "laboratorium_4.html#część-2-kontrola-jakości-qc-i-phred-scores",
+    "title": "Laboratorium 4: Wstęp do danych NGS i poszukiwania wariantów",
+    "section": "Część 2: Kontrola jakości (QC) i Phred Scores",
+    "text": "Część 2: Kontrola jakości (QC) i Phred Scores\nSkąd oprogramowanie wie, czy mutacja jest prawdziwa, czy to tylko błąd maszyny sekwencjonującej? Z pliku FASTQ! W formacie FASTQ litery i znaki specjalne pod sekwencją oznaczają pewność odczytu. Kodowanie ASCII przekłada znaki na wartości liczbowe: * Znak ! to bardzo zła jakość (duża szansa na błąd). * Znak I lub ~ to doskonała jakość.\nW analizie NGS pierwszym krokiem jest zawsze uruchomienie programu takiego jak FastQC, aby wygenerować raport jakości odczytów i usunąć te słabe (tzw. trimming).",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 4: Analiza danych NGS"
+    ]
+  },
+  {
+    "objectID": "laboratorium_4.html#sprawdź-swoją-wiedzę",
+    "href": "laboratorium_4.html#sprawdź-swoją-wiedzę",
+    "title": "Laboratorium 4: Wstęp do danych NGS i poszukiwania wariantów",
+    "section": "Sprawdź swoją wiedzę!",
+    "text": "Sprawdź swoją wiedzę!\nNa podstawie dzisiejszych informacji, uzupełnij poniższy mini-quiz:\nPytanie 1: W jakim formacie zapisuje się odczyty prosto z sekwenatora, zawierające dodatkowe informacje o jakości? FASTAFASTQBAMVCF\nPytanie 2: Jeśli chcemy przekazać lekarzowi samą listę zidentyfikowanych mutacji u pacjenta nowotworowego, użyjemy formatu: FASTAFASTQBAMVCF\nPytanie 3: Jak nazywa się pojedyncza zmiana nukleotydowa (taka jak w naszym ćwiczeniu w R)? Skrót to:",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 4: Analiza danych NGS"
+    ]
+  },
+  {
+    "objectID": "laboratorium_3.html",
+    "href": "laboratorium_3.html",
+    "title": "Laboratorium 3: Profile sekwencyjne, Ewolucja i ukryte wiadomości",
+    "section": "",
+    "text": "W 1990 roku Michael Crichton wydał słynną powieść “Park Jurajski”. [cite_start]Na stronie 103 przedstawił sekwencję nukleotydową, która rzekomo miała pochodzić z wyekstrahowanego DNA dinozaura[cite: 246].\nW prawdziwym świecie naukowcy, tacy jak Mark Boguski, szybko zauważyli pewne nieścisłości. [cite_start]Boguski zaproponował własną, poprawioną sekwencję, w której… ukrył wiadomość![cite: 248, 249]. Aby ją odczytać, należy przetłumaczyć sekwencję na białko i przyrównać ją do bazy danych.\n\n\nZanim pobawimy się w detektywów, musimy zrozumieć, jak algorytm BLAST ocenia, czy podobieństwo dwóch sekwencji nie jest dziełem przypadku. [cite_start]Służy do tego parametr E-value (Expect value). * Im E-value jest mniejsze (bliższe zeru), tym wynik jest bardziej wiarygodny. * E-value rzędu \\(10^{-5}\\) (\\(1e-5\\)) uznaje się za granice istotności statystycznej.\n[cite_start]Sprawdź swoją wiedzę: Który z poniższych wyników BLAST jest najbardziej znaczący statystycznie? [cite: 236, 239, 242, 245] E-VALUE: 0.39E-VALUE: 2e-29E-VALUE: 6e-145",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 3: Profile i Ewolucja"
+    ]
+  },
+  {
+    "objectID": "laboratorium_3.html#część-1-blast-e-value-i-dinozaury",
+    "href": "laboratorium_3.html#część-1-blast-e-value-i-dinozaury",
+    "title": "Laboratorium 3: Profile sekwencyjne, Ewolucja i ukryte wiadomości",
+    "section": "",
+    "text": "W 1990 roku Michael Crichton wydał słynną powieść “Park Jurajski”. [cite_start]Na stronie 103 przedstawił sekwencję nukleotydową, która rzekomo miała pochodzić z wyekstrahowanego DNA dinozaura[cite: 246].\nW prawdziwym świecie naukowcy, tacy jak Mark Boguski, szybko zauważyli pewne nieścisłości. [cite_start]Boguski zaproponował własną, poprawioną sekwencję, w której… ukrył wiadomość![cite: 248, 249]. Aby ją odczytać, należy przetłumaczyć sekwencję na białko i przyrównać ją do bazy danych.\n\n\nZanim pobawimy się w detektywów, musimy zrozumieć, jak algorytm BLAST ocenia, czy podobieństwo dwóch sekwencji nie jest dziełem przypadku. [cite_start]Służy do tego parametr E-value (Expect value). * Im E-value jest mniejsze (bliższe zeru), tym wynik jest bardziej wiarygodny. * E-value rzędu \\(10^{-5}\\) (\\(1e-5\\)) uznaje się za granice istotności statystycznej.\n[cite_start]Sprawdź swoją wiedzę: Który z poniższych wyników BLAST jest najbardziej znaczący statystycznie? [cite: 236, 239, 242, 245] E-VALUE: 0.39E-VALUE: 2e-29E-VALUE: 6e-145",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 3: Profile i Ewolucja"
+    ]
+  },
+  {
+    "objectID": "laboratorium_3.html#część-2-multiple-sequence-alignment-msa-i-weblogo-w-r",
+    "href": "laboratorium_3.html#część-2-multiple-sequence-alignment-msa-i-weblogo-w-r",
+    "title": "Laboratorium 3: Profile sekwencyjne, Ewolucja i ukryte wiadomości",
+    "section": "Część 2: Multiple Sequence Alignment (MSA) i WebLogo w R",
+    "text": "Część 2: Multiple Sequence Alignment (MSA) i WebLogo w R\n[cite_start]Kiedy mamy do czynienia z wieloma sekwencjami (np. z tej samej rodziny białek), wykonujemy przyrównanie wielu sekwencji (MSA)[cite: 18]. [cite_start]Dzięki temu możemy znaleźć regiony konserwatywne – takie, które nie zmieniają się w toku ewolucji, co sugeruje ich kluczową funkcję[cite: 32].\n[cite_start]Dawniej użylibyście zewnętrznej strony WebLogo [cite: 37][cite_start], aby wygenerować graficzną reprezentację (tzw. logo) konserwatywnych aminokwasów[cite: 38]. Dzisiaj wygenerujemy taki wykres samodzielnie w R!\n\nInteraktywne zadanie: Stwórz własne Logo!\n[cite_start]Poniżej przygotowaliśmy zestaw krótkich sekwencji peptydowych, które pochodzą z wcześniejszego etapu ewolucyjnego [cite: 74-97]. Użyjemy fantastycznego pakietu ggseqlogo, aby je zwizualizować.\nZadanie: Uruchom poniższy kod. [cite_start]Zwróć uwagę, jak wysokość litery odzwierciedla stopień konserwatywności danego aminokwasu[cite: 39]!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nDo przemyślenia: Patrząc na wygenerowany wykres, odpowiedz na pytanie – na których pozycjach (1-6) aminokwasy ulegają najczęstszym mutacjom, a które pozycje są wysoce konserwatywne?",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 3: Profile i Ewolucja"
+    ]
+  },
+  {
+    "objectID": "laboratorium_3.html#część-3-psi-blast-i-profile-pssm",
+    "href": "laboratorium_3.html#część-3-psi-blast-i-profile-pssm",
+    "title": "Laboratorium 3: Profile sekwencyjne, Ewolucja i ukryte wiadomości",
+    "section": "Część 3: PSI-BLAST i Profile PSSM",
+    "text": "Część 3: PSI-BLAST i Profile PSSM\n[cite_start]Czasami homologii nie widać na pierwszy rzut oka, ponieważ sekwencje są ze sobą spokrewnione bardzo daleko (tzw. dalecy homolodzy)[cite: 101]. Zwykły BLAST sobie z nimi nie poradzi. [cite_start]Wtedy wkracza PSI-BLAST[cite: 102].\nJak to działa? 1. PSI-BLAST wykonuje zwykłe przeszukiwanie. 2. [cite_start]Z najlepszych wyników buduje profil (macierz PSSM) uwzględniający to, jakie aminokwasy mogą wymieniać się na określonych pozycjach[cite: 106, 107]. 3. Używa tego profilu, by szukać głębiej. [cite_start]Proces ten (iteracje) powtarza się, aż przestaną pojawiać się nowe sekwencje – ten moment nazywamy konwergencją[cite: 104, 105].\nZadanie końcowe (Detektywistyczne): Użyj standardowej, przeglądarkowej wersji PSI-BLAST na stronie NCBI. Przeszukaj bazę nr używając tajemniczej sekwencji z “Parku Jurajskiego” (plik dostępny na dysku sieciowym w naszych materiałach). * [cite_start]Zrób 3 iteracje[cite: 102]. * [cite_start]Zobacz, co ukrył Mark Boguski w swojej zrewidowanej sekwencji (zwróć uwagę na nazwy znalezionych białek i wyniki w przyrównaniu)! [cite: 250, 251]",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 3: Profile i Ewolucja"
+    ]
+  },
+  {
+    "objectID": "laboratorium_2.html",
+    "href": "laboratorium_2.html",
+    "title": "Laboratorium 2: Algorytmy przyrównań sekwencji",
+    "section": "",
+    "text": "W bioinformatyce często stajemy przed wyborem algorytmu do przyrównania sekwencji. Różnica polega na podejściu: * [cite_start]Algorytm Needleman-Wunsch (globalny): Próbuje dopasować całe sekwencje[cite: 118]. * [cite_start]Algorytm Smith-Waterman (lokalny): Szuka najlepiej dopasowanych fragmentów[cite: 118].\n\n\n[cite_start]Poniżej znajduje się kod wykorzystujący pakiet Biostrings (podobnie jak w środowisku RStudio [cite: 124]). Działanie: 1. Uruchom kod (przycisk Run Code) i zanotuj wartość punktacji. 2. Zmień type = \"global\" na type = \"local\" i uruchom ponownie.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 2: Algorytmy przyrównań"
+    ]
+  },
+  {
+    "objectID": "laboratorium_2.html#globalne-vs.-lokalne-dopasowanie-sekwencji",
+    "href": "laboratorium_2.html#globalne-vs.-lokalne-dopasowanie-sekwencji",
+    "title": "Laboratorium 2: Algorytmy przyrównań sekwencji",
+    "section": "",
+    "text": "W bioinformatyce często stajemy przed wyborem algorytmu do przyrównania sekwencji. Różnica polega na podejściu: * [cite_start]Algorytm Needleman-Wunsch (globalny): Próbuje dopasować całe sekwencje[cite: 118]. * [cite_start]Algorytm Smith-Waterman (lokalny): Szuka najlepiej dopasowanych fragmentów[cite: 118].\n\n\n[cite_start]Poniżej znajduje się kod wykorzystujący pakiet Biostrings (podobnie jak w środowisku RStudio [cite: 124]). Działanie: 1. Uruchom kod (przycisk Run Code) i zanotuj wartość punktacji. 2. Zmień type = \"global\" na type = \"local\" i uruchom ponownie.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 2: Algorytmy przyrównań"
+    ]
+  },
+  {
+    "objectID": "laboratorium_2.html#kary-za-przerwy-gap-penalties",
+    "href": "laboratorium_2.html#kary-za-przerwy-gap-penalties",
+    "title": "Laboratorium 2: Algorytmy przyrównań sekwencji",
+    "section": "Kary za przerwy (Gap Penalties)",
+    "text": "Kary za przerwy (Gap Penalties)\nProcesy ewolucyjne sprawiają, że w sekwencjach pojawiają się przerwy. [cite_start]Jak wartość kar wpływa na ostateczne dopasowanie sekwencji[cite: 122]? Zazwyczaj otwarcie nowej przerwy kosztuje więcej niż jej przedłużenie.\n\nInteraktywne zadanie 2: Poeksperymentuj z karami!\n[cite_start]Zmień karę za otwarcie przerwy (gapOpening) z -10 na -1[cite: 120]. Zobacz, jak algorytm “chętniej” rozrywa sekwencję!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 2: Algorytmy przyrównań"
+    ]
+  },
+  {
+    "objectID": "laboratorium_2.html#sprawdź-swoją-wiedzę",
+    "href": "laboratorium_2.html#sprawdź-swoją-wiedzę",
+    "title": "Laboratorium 2: Algorytmy przyrównań sekwencji",
+    "section": "Sprawdź swoją wiedzę!",
+    "text": "Sprawdź swoją wiedzę!\nPytanie 1: Który algorytm lepiej sprawdzi się do znalezienia wspólnej domeny w dwóch zupełnie różnych białkach? Needleman-Wunsch (Globalny)Smith-Waterman (Lokalny)\n[cite_start]Pytanie 2: Jaką macierz substytucji (stosowaną do obliczania wartości “score” dla dopasowania [cite: 283]) zastosowaliśmy w powyższym kodzie? (wpisz nazwę dużymi literami)",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 2: Algorytmy przyrównań"
+    ]
+  },
+  {
+    "objectID": "laboratorium_1.html",
+    "href": "laboratorium_1.html",
+    "title": "Laboratorium 1: Od klikania do kodowania – eksploracja baz danych przez API",
+    "section": "",
+    "text": "[cite_start]W biologicznych bazach danych powszechnie korzysta się z systemu taksonomicznego stworzonego przez NCBI[cite: 296]. Ręczne wyszukiwanie i kopiowanie sekwencji z przeglądarki jest jednak żmudne. Dzisiaj nauczymy się pobierać dane bezpośrednio do naszych skryptów w R oraz Pythonie, wykorzystując API (Application Programming Interface).",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 1: Bazy danych i API"
+    ]
+  },
+  {
+    "objectID": "laboratorium_1.html#wprowadzenie",
+    "href": "laboratorium_1.html#wprowadzenie",
+    "title": "Laboratorium 1: Od klikania do kodowania – eksploracja baz danych przez API",
+    "section": "",
+    "text": "[cite_start]W biologicznych bazach danych powszechnie korzysta się z systemu taksonomicznego stworzonego przez NCBI[cite: 296]. Ręczne wyszukiwanie i kopiowanie sekwencji z przeglądarki jest jednak żmudne. Dzisiaj nauczymy się pobierać dane bezpośrednio do naszych skryptów w R oraz Pythonie, wykorzystując API (Application Programming Interface).",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 1: Bazy danych i API"
+    ]
+  },
+  {
+    "objectID": "laboratorium_1.html#część-1-rozgrzewka-w-r-zamiast-przeglądarki-używamy-api",
+    "href": "laboratorium_1.html#część-1-rozgrzewka-w-r-zamiast-przeglądarki-używamy-api",
+    "title": "Laboratorium 1: Od klikania do kodowania – eksploracja baz danych przez API",
+    "section": "Część 1: Rozgrzewka w R – Zamiast przeglądarki używamy API",
+    "text": "Część 1: Rozgrzewka w R – Zamiast przeglądarki używamy API\n[cite_start]W klasycznym podejściu wyszukiwalibyśmy rekord dotyczący genu APOE pod numerem NM_000041.4. Teraz zrobimy to za pomocą kodu w języku R.\nZadanie 1: Uruchom poniższy kod, aby pobrać sekwencję genu APOE za pomocą pakietu rentrez.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nDo dyskusji: * Zmień w kodzie bazę z \"nuccore\" na \"protein\" i spróbuj pobrać sekwencję białkową kodowaną przez ten gen (musisz znaleźć jej protein_id). * Użyj funkcji z pakietu seqinr, aby sprawdzić częstotliwość występowania poszczególnych nukleotydów.",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 1: Bazy danych i API"
+    ]
+  },
+  {
+    "objectID": "laboratorium_1.html#część-2-nowy-gracz-wprowadzenie-do-pythona-i-biopython",
+    "href": "laboratorium_1.html#część-2-nowy-gracz-wprowadzenie-do-pythona-i-biopython",
+    "title": "Laboratorium 1: Od klikania do kodowania – eksploracja baz danych przez API",
+    "section": "Część 2: Nowy Gracz – Wprowadzenie do Pythona i Biopython",
+    "text": "Część 2: Nowy Gracz – Wprowadzenie do Pythona i Biopython\nW bioinformatyce równie ważny jest dzisiaj Python. [cite_start]Zamiast ręcznie przeszukiwać bazę PubMed, by znaleźć publikacje Piotra Zielenkiewicza, użyjemy biblioteki Biopython.\nZadanie 2: (Uwaga: Ten fragment wykonaj w Google Colab, ponieważ WebR obsługuje na razie natywnie tylko język R).\n!pip install biopython\nfrom Bio import Entrez\n\n# Etykieta dobrych praktyk NCBI - zawsze podawaj swój email!\nEntrez.email = \"twoj_adres@student.pw.edu.pl\"\n\n# Przeszukujemy bazę PubMed\nhandle = Entrez.esearch(db=\"pubmed\", term=\"Zielenkiewicz P[Author]\")\nrecord = Entrez.read(handle)\n\nprint(f\"Liczba publikacji autora to: {record['Count']}\")\nprint(f\"ID najnowszych publikacji (PMID): {record['IdList']}\")\nDo zrobienia: Zmodyfikuj zmienną term, aby znaleźć artykuły Watsona i Cricka z 1953 roku opublikowane w Nature[cite: 346].",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 1: Bazy danych i API"
+    ]
+  },
+  {
+    "objectID": "laboratorium_1.html#część-3-mini-projekt-integracyjny-wirus-ebola",
+    "href": "laboratorium_1.html#część-3-mini-projekt-integracyjny-wirus-ebola",
+    "title": "Laboratorium 1: Od klikania do kodowania – eksploracja baz danych przez API",
+    "section": "Część 3: Mini-projekt integracyjny – Wirus Ebola",
+    "text": "Część 3: Mini-projekt integracyjny – Wirus Ebola\nW bazie NCBI odnajdź dostępne sekwencje wirusa Ebola. Napisz krótki skrypt w R (używając powyższego edytora WebR), który pobierze pełny genom wirusa (np. wariant Zaire), a następnie oblicz zawartość par G-C (GC-content).",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 1: Bazy danych i API"
+    ]
+  },
+  {
+    "objectID": "laboratorium_5.html",
+    "href": "laboratorium_5.html",
+    "title": "Laboratorium 5: Ewolucja w 3D – MSA, Drzewa filogenetyczne i AlphaFold",
+    "section": "",
+    "text": "W poprzednich laboratoriach uczyliśmy się przyrównywać dwie sekwencje (Pairwise Alignment). Kiedy jednak chcemy zbadać całą rodzinę białek, wykonujemy Multiple Sequence Alignment (MSA). Historycznie używano do tego narzędzi takich jak T-COFFEE czy MUSCLE, a wyniki analizowano w programie Jalview.\nMSA pozwala nam na dwie kluczowe rzeczy: 1. Zrozumienie ewolucji: Na podstawie różnic (mutacji) między sekwencjami możemy wyliczyć ich “odległość” genetyczną i narysować drzewo filogenetyczne. 2. Znalezienie domen konserwatywnych: Jeśli dany fragment białka (np. domena wiążąca ATP) nie zmienił się od bakterii po człowieka, znaczy to, że jest krytyczny dla przetrwania. Takie domeny kataloguje baza CDD (Conserved Domain Database).\n\n\nDawniej używalibyście klikanego interfejsu (np. opcji Calculate Tree/Average Distance w Jalview), aby zgrupować sekwencje. Zróbmy to teraz programistycznie! Poniżej znajduje się kod, który bierze przykładową macierz odległości między 5 gatunkami i rysuje dla nich drzewo (dendrogram).\nZadanie: Uruchom kod. Na podstawie wygenerowanego drzewa odpowiedz sobie na pytanie: ile głównych grup (klastrów) ewolucyjnych można tutaj wyróżnić? Zmień w kodzie nazwę “Gatunek_D” na “Człowiek” i uruchom ponownie!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 5: Struktury białek (AI)"
+    ]
+  },
+  {
+    "objectID": "laboratorium_5.html#od-przyrównania-wielu-sekwencji-msa-do-ewolucji",
+    "href": "laboratorium_5.html#od-przyrównania-wielu-sekwencji-msa-do-ewolucji",
+    "title": "Laboratorium 5: Ewolucja w 3D – MSA, Drzewa filogenetyczne i AlphaFold",
+    "section": "",
+    "text": "W poprzednich laboratoriach uczyliśmy się przyrównywać dwie sekwencje (Pairwise Alignment). Kiedy jednak chcemy zbadać całą rodzinę białek, wykonujemy Multiple Sequence Alignment (MSA). Historycznie używano do tego narzędzi takich jak T-COFFEE czy MUSCLE, a wyniki analizowano w programie Jalview.\nMSA pozwala nam na dwie kluczowe rzeczy: 1. Zrozumienie ewolucji: Na podstawie różnic (mutacji) między sekwencjami możemy wyliczyć ich “odległość” genetyczną i narysować drzewo filogenetyczne. 2. Znalezienie domen konserwatywnych: Jeśli dany fragment białka (np. domena wiążąca ATP) nie zmienił się od bakterii po człowieka, znaczy to, że jest krytyczny dla przetrwania. Takie domeny kataloguje baza CDD (Conserved Domain Database).\n\n\nDawniej używalibyście klikanego interfejsu (np. opcji Calculate Tree/Average Distance w Jalview), aby zgrupować sekwencje. Zróbmy to teraz programistycznie! Poniżej znajduje się kod, który bierze przykładową macierz odległości między 5 gatunkami i rysuje dla nich drzewo (dendrogram).\nZadanie: Uruchom kod. Na podstawie wygenerowanego drzewa odpowiedz sobie na pytanie: ile głównych grup (klastrów) ewolucyjnych można tutaj wyróżnić? Zmień w kodzie nazwę “Gatunek_D” na “Człowiek” i uruchom ponownie!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 5: Struktury białek (AI)"
+    ]
+  },
+  {
+    "objectID": "laboratorium_5.html#rewolucja-ai-alphafold",
+    "href": "laboratorium_5.html#rewolucja-ai-alphafold",
+    "title": "Laboratorium 5: Ewolucja w 3D – MSA, Drzewa filogenetyczne i AlphaFold",
+    "section": "Rewolucja AI: AlphaFold",
+    "text": "Rewolucja AI: AlphaFold\nPrzez dziesięciolecia przewidywanie struktury 3D białka na podstawie samej sekwencji aminokwasowej (tzw. modelowanie homologiczne) było niezwykle trudne. Sytuację zmienił AlphaFold – algorytm sztucznej inteligencji stworzony przez Google DeepMind, który rozwiązał problem zwijania się białek (protein folding problem).\nJak AlphaFold łączy się z dzisiejszymi zajęciami? AlphaFold nie “zgaduje” struktury w ciemno. Jego głównym wejściem (inputem), na którym opiera swoje predykcje, jest właśnie MSA (Multiple Sequence Alignment)! Algorytm analizuje setki spokrewnionych ewolucyjnie sekwencji, by wywnioskować, które aminokwasy znajdują się blisko siebie w przestrzeni 3D (koewolucja).\n\nOstatnie Zadanie: Twój własny ColabFold\nDzisiaj zlecimy AI przewidzenie struktury! Nie potrzebujesz superkomputera – użyjemy narzędzia ColabFold, które działa w chmurze (Google Colab).\n\nOtwórz nowy notatnik Google Colab lub skorzystaj z gotowego środowiska ColabFold.\nWklej dowolną, krótką sekwencję białkową, z którą pracowaliście na dzisiejszych zajęciach (np. fragment domeny z bazy CDD).\nUruchom przewidywanie (Run all).\nPo kilku minutach algorytm wygeneruje plik struktury 3D (w formacie .pdb), który będziesz mógł obejrzeć w programie takim jak PyMOL lub prosto w przeglądarce!",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 5: Struktury białek (AI)"
+    ]
+  },
+  {
+    "objectID": "laboratorium_5.html#quiz-podsumowujący",
+    "href": "laboratorium_5.html#quiz-podsumowujący",
+    "title": "Laboratorium 5: Ewolucja w 3D – MSA, Drzewa filogenetyczne i AlphaFold",
+    "section": "Quiz Podsumowujący",
+    "text": "Quiz Podsumowujący\nPrzetestuj swoją wiedzę z 5. Laboratorium!\nPytanie 1: Co jest głównym zbiorem danych, który AlphaFold analizuje w celu przewidzenia struktury 3D białka? Tylko pojedyncza sekwencjaMultiple Sequence Alignment (MSA)Wyłącznie sekwencja DNABaza danych EST\nPytanie 2: Która z baz danych służy do identyfikacji konserwatywnych ewolucyjnie domen białkowych? CDD (Conserved Domain Database)PubMedOMIMSRA (Sequence Read Archive)\nPytanie 3: Jak w plikach nazywa się format, w którym zapisujemy wygenerowaną strukturę 3D białka (zawierający współrzędne X, Y, Z każdego atomu)?",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 5: Struktury białek (AI)"
+    ]
+  },
+  {
+    "objectID": "en/index.html",
+    "href": "en/index.html",
+    "title": "Bioinformatics Basics",
+    "section": "",
+    "text": "Welcome to the official website of the Bioinformatics Basics course at the Faculty of Chemistry, Warsaw University of Technology!",
+    "crumbs": [
+      "Course Information",
+      "Syllabus & Grading"
+    ]
+  },
+  {
+    "objectID": "en/index.html#general-information",
+    "href": "en/index.html#general-information",
+    "title": "Bioinformatics Basics",
+    "section": "👨‍🏫 General Information",
+    "text": "👨‍🏫 General Information\n\nInstructor: Arkadiusz Gładki, PhD, Eng.\nE-mail: arek at gladki.pl\n[cite_start]Course Hours: 30 (including laboratory classes and lectures) [cite: 384]",
+    "crumbs": [
+      "Course Information",
+      "Syllabus & Grading"
+    ]
+  },
+  {
+    "objectID": "en/index.html#course-description",
+    "href": "en/index.html#course-description",
+    "title": "Bioinformatics Basics",
+    "section": "🧬 Course Description",
+    "text": "🧬 Course Description\n[cite_start]Bioinformatics is a relatively young, dynamically developing, interdisciplinary field of science that aims to solve biological problems using modern information technology[cite: 376].\n[cite_start]During the classes, we will present methods and strategies for effective searching of biological databases available online[cite: 377]. Throughout the course: * [cite_start]You will become familiar with tools for sequence alignment and searching for potential homologs[cite: 378]. * [cite_start]You will understand concepts such as local and global alignment, Hidden Markov Models (HMM), substitution matrices, PSSM matrices, and statistical values (E-value, score, identity)[cite: 379]. * [cite_start]You will learn to identify functional and regulatory elements of the genome (including Open Reading Frames - ORF)[cite: 380]. * [cite_start]You will explore services gathering information on genomes, genes, and metabolic pathways (e.g., KEGG and COG databases)[cite: 381]. * [cite_start]We will cover the evolution of protein structure prediction—from classical homology modeling to the latest machine learning algorithms (AlphaFold)[cite: 382].",
+    "crumbs": [
+      "Course Information",
+      "Syllabus & Grading"
+    ]
+  },
+  {
+    "objectID": "en/index.html#grading-requirements",
+    "href": "en/index.html#grading-requirements",
+    "title": "Bioinformatics Basics",
+    "section": "🎓 Grading & Requirements",
+    "text": "🎓 Grading & Requirements\nTo complete the course, the following conditions must be met: 1. [cite_start]Attendance: Participation in laboratory classes is mandatory[cite: 391]. 2. [cite_start]Final Exam: The grade is based on a final test[cite: 388]. * [cite_start]The exam is conducted on the Moodle platform (100 minutes)[cite: 389]. * [cite_start]Format: Multiple-choice questions and 2-3 descriptive questions[cite: 390].",
+    "crumbs": [
+      "Course Information",
+      "Syllabus & Grading"
+    ]
+  },
+  {
+    "objectID": "en/index.html#additional-materials-curiosities",
+    "href": "en/index.html#additional-materials-curiosities",
+    "title": "Bioinformatics Basics",
+    "section": "📚 Additional Materials & Curiosities",
+    "text": "📚 Additional Materials & Curiosities\nTo expand your knowledge beyond the classroom, feel free to explore the following resources: * [cite_start]Free Online Book: The Art of R Programming (Norman Matloff)[cite: 407]. * [cite_start]Cloud Workstation (25h of free computing per month): Posit Cloud[cite: 415]. * [cite_start]Genetics Milestone: The 2022 complete human genome sequencing via the T2T method[cite: 414]. * [cite_start]Recommended AI Course: Machine Learning via Python Notebooks by Andrew Ng[cite: 416].",
+    "crumbs": [
+      "Course Information",
+      "Syllabus & Grading"
+    ]
+  },
+  {
+    "objectID": "en/lab_3.html",
+    "href": "en/lab_3.html",
+    "title": "Lab 3: Sequence Profiles, Evolution, and Hidden Messages",
+    "section": "",
+    "text": "[cite_start]In Michael Crichton’s “Jurassic Park,” a nucleotide sequence supposedly belonging to a dinosaur was presented[cite: 246]. [cite_start]However, bioinformaticians like Mark Boguski noted that the sequence was not well-chosen and proposed a better one, in which he hid a secret message[cite: 248, 249]. [cite_start]To see it, one must compare the sequence against the ‘nr’ protein database using the appropriate BLAST tool[cite: 250].\n\n\nBefore playing detective, we must understand how BLAST evaluates whether a match is significant or just a coincidence. [cite_start]The E-value (Expect value) is key[cite: 236]: * [cite_start]The lower the E-value (closer to zero), the more significant the match[cite: 239, 245]. * [cite_start]For example, an E-value of \\(6e-145\\) is extremely significant [cite: 239][cite_start], while \\(0.39\\) suggests the match could be random[cite: 242].\nQuick Check: Which of the following E-values represents the most statistically significant result? E-VALUE: 0.39E-VALUE: 2e-29E-VALUE: 6e-145",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 3: Profiles & Evolution"
+    ]
+  },
+  {
+    "objectID": "en/lab_3.html#part-1-blast-e-values-and-dinosaurs",
+    "href": "en/lab_3.html#part-1-blast-e-values-and-dinosaurs",
+    "title": "Lab 3: Sequence Profiles, Evolution, and Hidden Messages",
+    "section": "",
+    "text": "[cite_start]In Michael Crichton’s “Jurassic Park,” a nucleotide sequence supposedly belonging to a dinosaur was presented[cite: 246]. [cite_start]However, bioinformaticians like Mark Boguski noted that the sequence was not well-chosen and proposed a better one, in which he hid a secret message[cite: 248, 249]. [cite_start]To see it, one must compare the sequence against the ‘nr’ protein database using the appropriate BLAST tool[cite: 250].\n\n\nBefore playing detective, we must understand how BLAST evaluates whether a match is significant or just a coincidence. [cite_start]The E-value (Expect value) is key[cite: 236]: * [cite_start]The lower the E-value (closer to zero), the more significant the match[cite: 239, 245]. * [cite_start]For example, an E-value of \\(6e-145\\) is extremely significant [cite: 239][cite_start], while \\(0.39\\) suggests the match could be random[cite: 242].\nQuick Check: Which of the following E-values represents the most statistically significant result? E-VALUE: 0.39E-VALUE: 2e-29E-VALUE: 6e-145",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 3: Profiles & Evolution"
+    ]
+  },
+  {
+    "objectID": "en/lab_3.html#part-2-multiple-sequence-alignment-msa-and-sequence-logos",
+    "href": "en/lab_3.html#part-2-multiple-sequence-alignment-msa-and-sequence-logos",
+    "title": "Lab 3: Sequence Profiles, Evolution, and Hidden Messages",
+    "section": "Part 2: Multiple Sequence Alignment (MSA) and Sequence Logos",
+    "text": "Part 2: Multiple Sequence Alignment (MSA) and Sequence Logos\n[cite_start]When dealing with many sequences, we use Multiple Sequence Alignment (MSA) to identify conserved regions—parts of the sequence that remain unchanged through evolution, indicating functional importance[cite: 32].\n[cite_start]A Sequence Logo graphically represents this conservation[cite: 37]. [cite_start]The height of each letter reflects how conserved that residue is at a specific position[cite: 39].\n\nInteractive Task: Generate a Sequence Logo in R\n[cite_start]We will use the ggseqlogo package to visualize a set of peptide sequences [cite: 74-79, 86-97].\nTask: Run the code below. Observe which positions are highly conserved and which are variable.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 3: Profiles & Evolution"
+    ]
+  },
+  {
+    "objectID": "en/lab_3.html#part-3-psi-blast-and-pssm-profiles",
+    "href": "en/lab_3.html#part-3-psi-blast-and-pssm-profiles",
+    "title": "Lab 3: Sequence Profiles, Evolution, and Hidden Messages",
+    "section": "Part 3: PSI-BLAST and PSSM Profiles",
+    "text": "Part 3: PSI-BLAST and PSSM Profiles\nStandard BLAST might miss distant homologs. PSI-BLAST (Position-Specific Iterative BLAST) solves this by building a PSSM (Position-Specific Scoring Matrix) profile from the results of each iteration[cite: 105, 107].\n\nIt performs an initial search[cite: 102].\nIt builds a profile from the best hits[cite: 107].\nIt uses this profile to search again, repeating the process until convergence (when no new sequences appear)[cite: 104, 105].\n\nFinal Challenge: Perform several iterations of PSI-BLAST on the NCBI website using the “Mark Boguski sequence” (dino2.txt)[cite: 102, 250]. * Check the alignment results to find the hidden message[cite: 251]. * What protein family does the sequence actually belong to?",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 3: Profiles & Evolution"
+    ]
+  },
+  {
+    "objectID": "en/lab_5.html",
+    "href": "en/lab_5.html",
+    "title": "Lab 5: Evolutionary 3D – MSA, Phylogenetic Trees, and AlphaFold",
+    "section": "",
+    "text": "In previous labs, we focused on comparing two sequences. [cite_start]However, to understand a whole protein family, we perform Multiple Sequence Alignment (MSA)[cite: 5, 25]. [cite_start]Tools like T-COFFEE and MUSCLE are commonly used to align several sequences simultaneously to find conserved patterns [cite: 18-19].\nMSA allows us to: 1. [cite_start]Trace Evolutionary History: By calculating the genetic “distance” between sequences, we can construct phylogenetic trees[cite: 23]. 2. [cite_start]Identify Functional Domains: Conserved regions that remain unchanged across species often represent critical functional domains, such as ATP-binding sites [cite: 32, 34-35].\n\n\n[cite_start]In earlier versions of this course, you would use Jalview to calculate trees using the “Average Distance” method and BLOSUM62 matrix[cite: 20, 23]. Let’s perform this clustering programmatically!\nTask: Run the code below. It takes a distance matrix (representing how different 5 species are) and generates a dendrogram. Challenge: Change the label “Species_D” to “Human” and “Species_E” to “Chimpanzee” to see how they cluster!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 5: Protein Structures (AI)"
+    ]
+  },
+  {
+    "objectID": "en/lab_5.html#from-alignment-to-evolution",
+    "href": "en/lab_5.html#from-alignment-to-evolution",
+    "title": "Lab 5: Evolutionary 3D – MSA, Phylogenetic Trees, and AlphaFold",
+    "section": "",
+    "text": "In previous labs, we focused on comparing two sequences. [cite_start]However, to understand a whole protein family, we perform Multiple Sequence Alignment (MSA)[cite: 5, 25]. [cite_start]Tools like T-COFFEE and MUSCLE are commonly used to align several sequences simultaneously to find conserved patterns [cite: 18-19].\nMSA allows us to: 1. [cite_start]Trace Evolutionary History: By calculating the genetic “distance” between sequences, we can construct phylogenetic trees[cite: 23]. 2. [cite_start]Identify Functional Domains: Conserved regions that remain unchanged across species often represent critical functional domains, such as ATP-binding sites [cite: 32, 34-35].\n\n\n[cite_start]In earlier versions of this course, you would use Jalview to calculate trees using the “Average Distance” method and BLOSUM62 matrix[cite: 20, 23]. Let’s perform this clustering programmatically!\nTask: Run the code below. It takes a distance matrix (representing how different 5 species are) and generates a dendrogram. Challenge: Change the label “Species_D” to “Human” and “Species_E” to “Chimpanzee” to see how they cluster!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 5: Protein Structures (AI)"
+    ]
+  },
+  {
+    "objectID": "en/lab_5.html#the-ai-revolution-alphafold",
+    "href": "en/lab_5.html#the-ai-revolution-alphafold",
+    "title": "Lab 5: Evolutionary 3D – MSA, Phylogenetic Trees, and AlphaFold",
+    "section": "The AI Revolution: AlphaFold",
+    "text": "The AI Revolution: AlphaFold\nFor decades, predicting the 3D structure of a protein from its amino acid sequence (homology modeling) was one of the greatest challenges in biology. This changed with AlphaFold, an AI system that predicts protein structures with incredible accuracy.\nHow does AlphaFold use MSA? AlphaFold does not predict structures in a vacuum. Its primary input is an MSA. By looking at hundreds of related sequences, the AI identifies “co-evolving” residues. If two positions in a protein mutate together across different species, they are likely touching each other in 3D space.\n\nFinal Challenge: Predict a Structure with ColabFold\nToday, you will use AI to see a protein in 3D! We will use ColabFold, a cloud-based version of AlphaFold.\n\nOpen the ColabFold Notebook.\nPaste the sequence of the rat NRD convertase (Accession: gi:1352519) or a conserved domain you identified earlier[cite: 29, 34].\nRun the prediction.\nDownload the .pdb file and visualize it!",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 5: Protein Structures (AI)"
+    ]
+  },
+  {
+    "objectID": "en/lab_5.html#knowledge-check",
+    "href": "en/lab_5.html#knowledge-check",
+    "title": "Lab 5: Evolutionary 3D – MSA, Phylogenetic Trees, and AlphaFold",
+    "section": "Knowledge Check",
+    "text": "Knowledge Check\nQuestion 1: What is the most critical input that AlphaFold uses to predict the 3D shape of a protein? A single DNA sequenceMultiple Sequence Alignment (MSA)A PubMed bibliographyA FASTQ file\nQuestion 2: Which database is used to check if a specific amino acid fragment is part of a known protein domain? CDD (Conserved Domain Database)UniProtGenBankPDB\nQuestion 3: What is the file extension for a 3D protein structure file that contains the X, Y, and Z coordinates of every atom?",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 5: Protein Structures (AI)"
+    ]
+  }
+]
