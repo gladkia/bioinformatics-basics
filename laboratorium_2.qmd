@@ -13,15 +13,17 @@ library(webexercises)
 ## Globalne vs. Lokalne dopasowanie sekwencji
 
 W bioinformatyce często stajemy przed wyborem algorytmu do przyrównania sekwencji. Różnica polega na podejściu:
-* [cite_start]**Algorytm Needleman-Wunsch (globalny):** Próbuje dopasować całe sekwencje[cite: 118].
-* [cite_start]**Algorytm Smith-Waterman (lokalny):** Szuka najlepiej dopasowanych fragmentów[cite: 118].
 
-
+* **Algorytm Needleman-Wunsch (globalny):** Próbuje dopasować całe sekwencje.
+* **Algorytm Smith-Waterman (lokalny):** Szuka najlepiej dopasowanych fragmentów, ignorując niedopasowane końce.
 
 ### Interaktywne zadanie 1: Zmień typ przyrównania
 
-[cite_start]Poniżej znajduje się kod wykorzystujący pakiet `Biostrings` (podobnie jak w środowisku RStudio [cite: 124]). 
-**Działanie:** 1. Uruchom kod (przycisk *Run Code*) i zanotuj wartość punktacji. 2. Zmień `type = "global"` na `type = "local"` i uruchom ponownie.
+Poniżej znajduje się kod wykorzystujący pakiet `Biostrings`. 
+
+**Działanie:** 1. Uruchom kod (przycisk *Run Code*) i zanotuj wartość punktacji dla globalnego przyrównania. 
+2. Zmień `type = "global"` na `type = "local"` i uruchom ponownie.
+3. Zwróć uwagę, jak zmienia się punktacja oraz wygląd samego przyrównania.
 
 ```{webr-r}
 webr::install("Biostrings")
@@ -46,11 +48,11 @@ print(paste("Punktacja (score):", score(alignment)))
 
 ## Kary za przerwy (Gap Penalties)
 
-Procesy ewolucyjne sprawiają, że w sekwencjach pojawiają się przerwy. [cite_start]Jak wartość kar wpływa na ostateczne dopasowanie sekwencji[cite: 122]? Zazwyczaj otwarcie nowej przerwy kosztuje więcej niż jej przedłużenie.
+Procesy ewolucyjne sprawiają, że w sekwencjach pojawiają się przerwy. Jak wartość kar wpływa na ostateczne dopasowanie sekwencji? Zazwyczaj otwarcie nowej przerwy (`gapOpening`) kosztuje znacznie więcej niż jej przedłużenie (`gapExtension`).
 
 ### Interaktywne zadanie 2: Poeksperymentuj z karami!
 
-[cite_start]Zmień karę za otwarcie przerwy (`gapOpening`) z `-10` na `-1`[cite: 120]. Zobacz, jak algorytm "chętniej" rozrywa sekwencję!
+Zmień karę za otwarcie przerwy (`gapOpening`) z `-10` na `-1`. Zobacz, jak algorytm "chętniej" rozrywa sekwencję, aby znaleźć dopasowania!
 
 ```{webr-r}
 sekwencja_A <- "ACDEFGHIKLMN"
@@ -68,8 +70,11 @@ print(eksperyment)
 
 ## Sprawdź swoją wiedzę!
 
-**Pytanie 1:** Który algorytm lepiej sprawdzi się do znalezienia wspólnej domeny w dwóch zupełnie różnych białkach?
+**Pytanie 1:** Który algorytm lepiej sprawdzi się do znalezienia wspólnej domeny w dwóch zupełnie różnych, długich białkach?
 `r mcq(c("Needleman-Wunsch (Globalny)", answer = "Smith-Waterman (Lokalny)"))`
 
-[cite_start]**Pytanie 2:** Jaką macierz substytucji (stosowaną do obliczania wartości "score" dla dopasowania [cite: 283]) zastosowaliśmy w powyższym kodzie? (wpisz nazwę dużymi literami)
+**Pytanie 2:** W modelu afinicznym kar za przerwy, która wartość jest zazwyczaj bardziej restrykcyjna (bardziej ujemna)?
+`r mcq(c(answer = "Otwarcie przerwy (Gap Opening)", "Przedłużenie przerwy (Gap Extension)"))`
+
+**Pytanie 3:** Jaką macierz substytucji (stosowaną do obliczania wartości "score" dla dopasowania aminokwasów) zastosowaliśmy w powyższym kodzie?
 `r fitb("BLOSUM62")`

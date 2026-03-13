@@ -3,7 +3,7 @@ project:
 
 website:
   title: "Bioinformatics Basics"
-  site-url: "[https://gladkia.github.io/bioinformatics-basics/](https://gladkia.github.io/bioinformatics-basics/)"
+  site-url: "https://gladkia.github.io/bioinformatics-basics/"
   
   navbar:
     background: primary
@@ -18,7 +18,7 @@ website:
           - text: "🇬🇧 English"
             href: en/index.qmd
       - icon: github
-        href: "[https://github.com/gladkia/bioinformatics-basics](https://github.com/gladkia/bioinformatics-basics)"
+        href: "https://github.com/gladkia/bioinformatics-basics"
         aria-label: "Kod źródłowy na GitHub"
         
   sidebar:
@@ -46,11 +46,11 @@ website:
         - section: "Ważne linki"
           contents:
             - text: "Wyniki (Google Docs)"
-              href: "[https://docs.google.com/spreadsheets/d/1pdv6M2151NoPEwe6whF-1X7mp4Gs_tpneWl-c_C56jQ/edit?gid=1783411386#gid=1783411386](https://docs.google.com/spreadsheets/d/1pdv6M2151NoPEwe6whF-1X7mp4Gs_tpneWl-c_C56jQ/edit?gid=1783411386#gid=1783411386)"
+              href: "https://docs.google.com/spreadsheets/d/134NhK2FivqKk_JKwuKuD5fQUU7I2K1My4uIS0cXf9D4/edit?gid=1783411386#gid=1783411386"
             - text: "Wykłady (Google Drive)"
-              href: "[https://drive.google.com/drive/u/1/folders/1EmS-7E9PmF8m_cQynngF-KqBEX8W2KWX](https://drive.google.com/drive/u/1/folders/1EmS-7E9PmF8m_cQynngF-KqBEX8W2KWX)"
+              href: "https://drive.google.com/drive/u/1/folders/1_b4-G2htQCMede0pPzfo7Arm2nV-s874"
             - text: "Test zaliczeniowy (Moodle)"
-              href: "[https://moodle.dobio.link/mod/quiz/view.php?id=3](https://moodle.dobio.link/mod/quiz/view.php?id=3)"
+              href: "https://moodle.dobio.link/mod/quiz/view.php?id=3"
 
     - id: en-sidebar
       title: "Bioinformatics Basics"
@@ -76,9 +76,9 @@ website:
         - section: "Important Links"
           contents:
             - text: "Grades (Google Docs)"
-              href: "[https://docs.google.com/spreadsheets/d/1pdv6M2151NoPEwe6whF-1X7mp4Gs_tpneWl-c_C56jQ/edit?gid=1783411386#gid=1783411386](https://docs.google.com/spreadsheets/d/1pdv6M2151NoPEwe6whF-1X7mp4Gs_tpneWl-c_C56jQ/edit?gid=1783411386#gid=1783411386)"
+              href: "https://docs.google.com/spreadsheets/d/134NhK2FivqKk_JKwuKuD5fQUU7I2K1My4uIS0cXf9D4/edit?gid=1783411386#gid=1783411386"
             - text: "Lectures (Google Drive)"
-              href: "[https://drive.google.com/drive/u/1/folders/1EmS-7E9PmF8m_cQynngF-KqBEX8W2KWX](https://drive.google.com/drive/u/1/folders/1EmS-7E9PmF8m_cQynngF-KqBEX8W2KWX)"
+              href: "https://drive.google.com/drive/u/1/folders/1_b4-G2htQCMede0pPzfo7Arm2nV-s874"
 
 format:
   html:

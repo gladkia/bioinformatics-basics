@@ -12,35 +12,32 @@ library(webexercises)
 
 ## Od pojedynczego genu do całych genomów
 
-W minionych dekadach sekwencjonowanie metodą Sangera pozwalało na odczytanie pojedynczych genów. Dzisiaj technologie NGS (Next-Generation Sequencing) generują miliony krótkich odczytów (ang. *reads*) w ciągu kilku godzin. 
+Przez dziesięciolecia bioinformatycy skupiali się na porównywaniu pojedynczych sekwencji w celu znalezienia **ortologów** (homologów u różnych gatunków) i **paralogów** (homologów u tego samego gatunku). Dzisiaj technologie NGS (Next-Generation Sequencing) pozwalają nam na sekwencjonowanie całych genomów poprzez generowanie milionów krótkich odczytów (*reads*).
 
-[cite_start]Tradycyjnie podobieństwo sekwencji badano szukając ortologów i paralogów w bazach danych. Dziś, aby zbadać różnice między organizmami (np. znaleźć mutację nowotworową lub nowy wariant wirusa), mapujemy miliony odczytów NGS pacjenta do tzw. **genomu referencyjnego**.
+Aby nadać sens tym danym, mapujemy te odczyty do **genomu referencyjnego**. Pozwala to na zidentyfikowanie różnic, takich jak mutacje w komórkach nowotworowych lub nowe warianty wirusa.
 
+## Część 1: Formaty danych NGS
 
+W pracy z NGS musisz wyjść poza prosty format FASTA. Spotkasz cztery główne formaty plików:
 
-### Formaty danych w erze Big Data
-
-W bioinformatyce NGS spotkasz się z czterema głównymi formatami plików:
-1. **FASTA** (`.fasta`, `.fa`) - Znasz go już doskonale. Zawiera samą sekwencję (np. genom referencyjny).
-2. **FASTQ** (`.fastq`, `.fq`) - Format wyjściowy z sekwenatora. Oprócz sekwencji zawiera ocenę jakości (Phred Score) dla *każdego* nukleotydu.
-3. **SAM/BAM** (`.sam`, `.bam`) - Pliki zawierające informacje o tym, jak nasze krótkie odczyty z FASTQ "przykleiły się" (zmapowały) do genomu referencyjnego z FASTA.
-4. **VCF** (`.vcf`) - Variant Call Format. Lista zidentyfikowanych mutacji (np. SNP, insercje, delecje).
-
-
+1. **FASTA** (`.fasta`): Przechowuje sekwencję referencyjną.
+2. **FASTQ** (`.fastq`): Surowy wynik z sekwenatora. Oprócz sekwencji zawiera ocenę jakości (**Phred quality score**) dla każdego nukleotydu.
+3. **SAM/BAM** (`.sam`, `.bam`): Pliki zawierające informacje o tym, jak krótkie odczyty z FASTQ "przykleiły się" (zmapowały) do genomu referencyjnego.
+4. **VCF** (`.vcf`): Variant Call Format. Lista wszystkich zidentyfikowanych mutacji (SNP, insercje, delecje).
 
 ---
 
-## Część 1: Zrozumieć Mapowanie i Warianty (Variant Calling)
+## Część 2: Zrozumieć Mapowanie i Variant Calling
 
-W profesjonalnej pracy używa się narzędzi konsolowych takich jak `BWA` (do mapowania) i `GATK` (do szukania wariantów). My jednak zasymulujemy ten proces w R, abyś zrozumiał, co dzieje się "pod maską"!
+W środowisku profesjonalnym użyłbyś narzędzi konsolowych takich jak `BWA` czy `Bowtie2`. My zasymulujemy ten proces w R, abyś zrozumiał, jak fizycznie "znajduje" się wariant.
 
 ### Interaktywne zadanie: Znajdź mutację!
 
-Poniżej zasymulowaliśmy fragment genomu referencyjnego (np. fragment wirusa) oraz jeden krótki odczyt (read) z próbki pacjenta. 
+Poniżej zasymulowaliśmy fragment genomu referencyjnego oraz jeden krótki odczyt z próbki pacjenta. 
 
-**Twoje zadanie:** 1. Uruchom kod, aby zmapować odczyt pacjenta do referencji.
-2. Przyjrzyj się wynikowi przyrównania. Czy potrafisz wzrokowo zidentyfikować mutację (SNP)? 
-3. W jakiej pozycji na odczycie pacjenta nastąpiła zmiana i z jakiego nukleotydu na jaki?
+**Twoje zadanie:** 1. Uruchom kod, aby zmapować odczyt pacjenta.
+2. Przyjrzyj się wynikowi przyrównania. Czy potrafisz zidentyfikować mutację **SNP** (Single Nucleotide Polymorphism)? 
+3. Na jakiej pozycji pacjent różni się od referencji?
 
 ```{webr-r}
 webr::install("Biostrings")
@@ -49,8 +46,7 @@ library(Biostrings)
 # Genom referencyjny (zdrowy / dziki typ)
 referencja <- DNAString("ATGCGTACGTAGCTAGCTAGCTGATCGATCGTAGCTAGCTAGCTGATCG")
 
-# Krótki odczyt z próbki od pacjenta (FASTQ wyciągnięty do samej sekwencji)
-# Zauważ, że gdzieś ukryła się tu pojedyncza mutacja punktowa (SNP)
+# Krótki odczyt z próbki od pacjenta (FASTQ)
 odczyt_pacjenta <- DNAString("CGTACGTAGCTTGCTAGCTG")
 
 # Mapowanie (przyrównanie lokalne)
@@ -63,31 +59,27 @@ print("Wynik mapowania odczytu do genomu referencyjnego:")
 print(mapowanie)
 ```
 
-**Analiza wyników:**
-W prawdziwym świecie, jeśli setki odczytów w danym miejscu pokazują "T" zamiast "A" jak w referencji, oprogramowanie zapisze to jako potwierdzony wariant (SNP) w pliku **VCF**.
+**Analiza wyników:** Jeśli setki różnych odczytów pokrywających tę samą pozycję pokażą 'T' zamiast referencyjnego 'A', oprogramowanie potwierdzi wariant i zapisze go w pliku **VCF**.
 
 ---
 
-## Część 2: Kontrola jakości (QC) i Phred Scores
+## Część 3: Ortologia i Praktyczne Wyszukiwanie
 
-Skąd oprogramowanie wie, czy mutacja jest prawdziwa, czy to tylko błąd maszyny sekwencjonującej? Z pliku FASTQ!
-W formacie FASTQ litery i znaki specjalne pod sekwencją oznaczają pewność odczytu. Kodowanie ASCII przekłada znaki na wartości liczbowe:
-* Znak `!` to bardzo zła jakość (duża szansa na błąd).
-* Znak `I` lub `~` to doskonała jakość.
+Przed erą NGS, badacze często używali BLASTa do znalezienia ortologów w innych organizmach, np. porównując mysie białko *FHIT* z sekwencjami ludzkimi lub makaka królewskiego.
 
-W analizie NGS pierwszym krokiem jest zawsze uruchomienie programu takiego jak **FastQC**, aby wygenerować raport jakości odczytów i usunąć te słabe (tzw. *trimming*).
+**Zadanie:** 1. Użyj strony NCBI BLAST, aby znaleźć ortolog mysiego białka *FHIT* u makaka królewskiego (*Macaca mulatta*).
+2. Wykonaj **Reciprocal BLAST** (BLAST zwrotny): weź znalezioną sekwencję makaka i przyrównaj ją z powrotem do bazy myszy.
+3. Jeśli najlepszym wynikiem jest oryginalne mysie białko *FHIT*, prawdopodobnie zidentyfikowałeś prawdziwego **ortologa**.
 
 ---
 
 ## Sprawdź swoją wiedzę!
 
-Na podstawie dzisiejszych informacji, uzupełnij poniższy mini-quiz:
-
-**Pytanie 1:** W jakim formacie zapisuje się odczyty prosto z sekwenatora, zawierające dodatkowe informacje o jakości?
+**Pytanie 1:** W jakim formacie zapisuje się surowe odczyty z sekwenatora wraz z oceną ich jakości?
 `r mcq(c("FASTA", answer = "FASTQ", "BAM", "VCF"))`
 
-**Pytanie 2:** Jeśli chcemy przekazać lekarzowi samą listę zidentyfikowanych mutacji u pacjenta nowotworowego, użyjemy formatu:
-`r mcq(c("FASTA", "FASTQ", "BAM", answer = "VCF"))`
+**Pytanie 2:** Jak nazywamy geny homologiczne występujące u różnych gatunków, które wyewoluowały ze wspólnego genu przodka?
+`r mcq(c(answer = "Ortolodzy", "Paralodzy", "Analodzy"))`
 
-**Pytanie 3:** Jak nazywa się pojedyncza zmiana nukleotydowa (taka jak w naszym ćwiczeniu w R)? Skrót to:
-`r fitb(c("SNP", "snp"))`
+**Pytanie 3:** Jak nazywa się wartość statystyczna, która wskazuje liczbę dopasowań, jakich można się "spodziewać" przez przypadek podczas przeszukiwania bazy danych?
+`r fitb(c("E-value", "e-value", "Expect value"))`

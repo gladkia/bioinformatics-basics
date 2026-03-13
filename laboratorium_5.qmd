@@ -12,22 +12,22 @@ library(webexercises)
 
 ## Od Przyrównania Wielu Sekwencji (MSA) do Ewolucji
 
-W poprzednich laboratoriach uczyliśmy się przyrównywać dwie sekwencje (Pairwise Alignment). Kiedy jednak chcemy zbadać całą rodzinę białek, wykonujemy Multiple Sequence Alignment (MSA). Historycznie używano do tego narzędzi takich jak T-COFFEE czy MUSCLE, a wyniki analizowano w programie Jalview.
+W poprzednich laboratoriach uczyliśmy się przyrównywać dwie sekwencje. Kiedy jednak chcemy zbadać całą rodzinę białek, wykonujemy **Multiple Sequence Alignment (MSA)**. Do jednoczesnego przyrównania wielu sekwencji często używa się narzędzi takich jak **T-COFFEE** czy **MUSCLE**.
 
-MSA pozwala nam na dwie kluczowe rzeczy:
-1. **Zrozumienie ewolucji:** Na podstawie różnic (mutacji) między sekwencjami możemy wyliczyć ich "odległość" genetyczną i narysować drzewo filogenetyczne.
-2. **Znalezienie domen konserwatywnych:** Jeśli dany fragment białka (np. domena wiążąca ATP) nie zmienił się od bakterii po człowieka, znaczy to, że jest krytyczny dla przetrwania. Takie domeny kataloguje baza CDD (Conserved Domain Database).
+MSA pozwala nam na:
 
+1. **Śledzenie Historii Ewolucyjnej:** Wyliczając "odległość" genetyczną między sekwencjami, możemy narysować drzewa filogenetyczne.
+2. **Identyfikację Domen Funkcjonalnych:** Konserwatywne regiony niezmienne u różnych gatunków często reprezentują krytyczne domeny (np. miejsca wiążące ATP). Takie domeny kataloguje baza CDD.
 
+### Interaktywne zadanie 1: Drzewo filogenetyczne w R
 
-### Interaktywne zadanie: Drzewo filogenetyczne w R
+Dawniej używalibyście klikanego interfejsu w programie **Jalview**, aby wyliczyć drzewa metodą "Average Distance" na bazie macierzy **BLOSUM62**. Zróbmy to programistycznie!
 
-Dawniej używalibyście klikanego interfejsu (np. opcji *Calculate Tree/Average Distance* w Jalview), aby zgrupować sekwencje. Zróbmy to teraz programistycznie! Poniżej znajduje się kod, który bierze przykładową macierz odległości między 5 gatunkami i rysuje dla nich drzewo (dendrogram).
-
-**Zadanie:** Uruchom kod. Na podstawie wygenerowanego drzewa odpowiedz sobie na pytanie: ile głównych grup (klastrów) ewolucyjnych można tutaj wyróżnić? Zmień w kodzie nazwę "Gatunek_D" na "Człowiek" i uruchom ponownie!
+**Zadanie:** Uruchom kod, który rysuje dendrogram na podstawie macierzy odległości.
+**Wyzwanie:** Zmień w kodzie nazwę "Gatunek_D" na "Człowiek", a "Gatunek_E" na "Szympans" i zobacz, jak zgrupują się te organizmy!
 
 ```{webr-r}
-# Symulowana macierz odległości (distance matrix) na podstawie MSA
+# Symulowana macierz odległości na podstawie MSA
 odleglosci <- matrix(c(
   0,  2,  8, 10, 11,
   2,  0,  7,  9, 10,
@@ -36,11 +36,11 @@ odleglosci <- matrix(c(
  11, 10,  5,  3,  0
 ), nrow=5, byrow=TRUE)
 
-# Nazwy naszych sekwencji/organizmów
+# Nazwy naszych organizmów
 colnames(odleglosci) <- c("Gatunek_A", "Gatunek_B", "Gatunek_C", "Gatunek_D", "Gatunek_E")
 rownames(odleglosci) <- colnames(odleglosci)
 
-# Zamiana na obiekt dystansu i klastrowanie metodą UPGMA (Average Distance)
+# Klastrowanie metodą UPGMA (Average Distance)
 dist_obj <- as.dist(odleglosci)
 drzewo <- hclust(dist_obj, method = "average")
 
@@ -52,33 +52,29 @@ plot(drzewo, main="Drzewo filogenetyczne na bazie MSA", xlab="Organizmy", ylab="
 
 ## Rewolucja AI: AlphaFold
 
-Przez dziesięciolecia przewidywanie struktury 3D białka na podstawie samej sekwencji aminokwasowej (tzw. modelowanie homologiczne) było niezwykle trudne. Sytuację zmienił **AlphaFold** – algorytm sztucznej inteligencji stworzony przez Google DeepMind, który rozwiązał problem zwijania się białek (protein folding problem).
+Przez dziesięciolecia przewidywanie struktury 3D białka na podstawie samej sekwencji aminokwasowej było jednym z największych wyzwań w biologii. Sytuację zmienił **AlphaFold**, system sztucznej inteligencji przewidujący struktury z niesamowitą dokładnością.
 
+**Jak AlphaFold wykorzystuje MSA?**
+AlphaFold nie działa w próżni. Jego głównym wejściem jest właśnie **MSA**. Algorytm analizuje setki spokrewnionych sekwencji, by zidentyfikować "koewoluujące" reszty aminokwasowe. Jeśli dwie pozycje w białku mutują razem u różnych gatunków, najprawdopodobniej stykają się ze sobą w przestrzeni 3D.
 
+### Ostatnie Zadanie: Przewiduj z ColabFold
 
-**Jak AlphaFold łączy się z dzisiejszymi zajęciami?**
-AlphaFold nie "zgaduje" struktury w ciemno. Jego głównym wejściem (inputem), na którym opiera swoje predykcje, jest właśnie **MSA (Multiple Sequence Alignment)**! Algorytm analizuje setki spokrewnionych ewolucyjnie sekwencji, by wywnioskować, które aminokwasy znajdują się blisko siebie w przestrzeni 3D (koewolucja).
+Użyjemy **ColabFold** – opartej na chmurze wersji AlphaFold, by zobaczyć białko w 3D!
 
-### Ostatnie Zadanie: Twój własny ColabFold
-
-Dzisiaj zlecimy AI przewidzenie struktury! Nie potrzebujesz superkomputera – użyjemy narzędzia ColabFold, które działa w chmurze (Google Colab).
-
-1. Otwórz nowy notatnik Google Colab lub skorzystaj z gotowego środowiska [ColabFold](https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb).
-2. Wklej dowolną, krótką sekwencję białkową, z którą pracowaliście na dzisiejszych zajęciach (np. fragment domeny z bazy CDD).
+1. Otwórz notatnik [ColabFold](https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb).
+2. Wklej sekwencję szczurzej **konwertazy NRD** (Accession: `gi:1352519`) lub zidentyfikowanej wcześniej domeny konserwatywnej.
 3. Uruchom przewidywanie (Run all). 
-4. Po kilku minutach algorytm wygeneruje plik struktury 3D (w formacie `.pdb`), który będziesz mógł obejrzeć w programie takim jak PyMOL lub prosto w przeglądarce!
+4. Pobierz plik `.pdb` i wyświetl go w wybranej przeglądarce struktur!
 
 ---
 
 ## Quiz Podsumowujący
 
-Przetestuj swoją wiedzę z 5. Laboratorium!
+**Pytanie 1:** Co jest najbardziej krytycznym zbiorem danych, który AlphaFold analizuje w celu przewidzenia kształtu 3D białka?
+`r mcq(c("Pojedyncza sekwencja DNA", answer = "Multiple Sequence Alignment (MSA)", "Bibliografia z PubMed", "Plik FASTQ"))`
 
-**Pytanie 1:** Co jest głównym zbiorem danych, który AlphaFold analizuje w celu przewidzenia struktury 3D białka?
-`r mcq(c("Tylko pojedyncza sekwencja", answer = "Multiple Sequence Alignment (MSA)", "Wyłącznie sekwencja DNA", "Baza danych EST"))`
+**Pytanie 2:** Która z baz danych służy do sprawdzenia, czy dany fragment aminokwasowy jest częścią znanej domeny białkowej?
+`r mcq(c(answer = "CDD (Conserved Domain Database)", "UniProt", "GenBank", "PDB"))`
 
-**Pytanie 2:** Która z baz danych służy do identyfikacji konserwatywnych ewolucyjnie domen białkowych?
-`r mcq(c(answer = "CDD (Conserved Domain Database)", "PubMed", "OMIM", "SRA (Sequence Read Archive)"))`
-
-**Pytanie 3:** Jak w plikach nazywa się format, w którym zapisujemy wygenerowaną strukturę 3D białka (zawierający współrzędne X, Y, Z każdego atomu)?
+**Pytanie 3:** Jakie jest rozszerzenie pliku ze strukturą 3D białka, który zawiera współrzędne X, Y, Z każdego atomu?
 `r fitb(c("PDB", "pdb", ".pdb"))`
