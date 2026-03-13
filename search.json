@@ -229,7 +229,7 @@
     "href": "laboratorium_4.html",
     "title": "Laboratorium 4: Wstęp do danych NGS i poszukiwania wariantów",
     "section": "",
-    "text": "W minionych dekadach sekwencjonowanie metodą Sangera pozwalało na odczytanie pojedynczych genów. Dzisiaj technologie NGS (Next-Generation Sequencing) generują miliony krótkich odczytów (ang. reads) w ciągu kilku godzin.\n[cite_start]Tradycyjnie podobieństwo sekwencji badano szukając ortologów i paralogów w bazach danych. Dziś, aby zbadać różnice między organizmami (np. znaleźć mutację nowotworową lub nowy wariant wirusa), mapujemy miliony odczytów NGS pacjenta do tzw. genomu referencyjnego.\n\n\nW bioinformatyce NGS spotkasz się z czterema głównymi formatami plików: 1. FASTA (.fasta, .fa) - Znasz go już doskonale. Zawiera samą sekwencję (np. genom referencyjny). 2. FASTQ (.fastq, .fq) - Format wyjściowy z sekwenatora. Oprócz sekwencji zawiera ocenę jakości (Phred Score) dla każdego nukleotydu. 3. SAM/BAM (.sam, .bam) - Pliki zawierające informacje o tym, jak nasze krótkie odczyty z FASTQ “przykleiły się” (zmapowały) do genomu referencyjnego z FASTA. 4. VCF (.vcf) - Variant Call Format. Lista zidentyfikowanych mutacji (np. SNP, insercje, delecje).",
+    "text": "Przez dziesięciolecia bioinformatycy skupiali się na porównywaniu pojedynczych sekwencji w celu znalezienia ortologów (homologów u różnych gatunków) i paralogów (homologów u tego samego gatunku). Dzisiaj technologie NGS (Next-Generation Sequencing) pozwalają nam na sekwencjonowanie całych genomów poprzez generowanie milionów krótkich odczytów (reads).\nAby nadać sens tym danym, mapujemy te odczyty do genomu referencyjnego. Pozwala to na zidentyfikowanie różnic, takich jak mutacje w komórkach nowotworowych lub nowe warianty wirusa.",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -241,7 +241,7 @@
     "href": "laboratorium_4.html#od-pojedynczego-genu-do-całych-genomów",
     "title": "Laboratorium 4: Wstęp do danych NGS i poszukiwania wariantów",
     "section": "",
-    "text": "W minionych dekadach sekwencjonowanie metodą Sangera pozwalało na odczytanie pojedynczych genów. Dzisiaj technologie NGS (Next-Generation Sequencing) generują miliony krótkich odczytów (ang. reads) w ciągu kilku godzin.\n[cite_start]Tradycyjnie podobieństwo sekwencji badano szukając ortologów i paralogów w bazach danych. Dziś, aby zbadać różnice między organizmami (np. znaleźć mutację nowotworową lub nowy wariant wirusa), mapujemy miliony odczytów NGS pacjenta do tzw. genomu referencyjnego.\n\n\nW bioinformatyce NGS spotkasz się z czterema głównymi formatami plików: 1. FASTA (.fasta, .fa) - Znasz go już doskonale. Zawiera samą sekwencję (np. genom referencyjny). 2. FASTQ (.fastq, .fq) - Format wyjściowy z sekwenatora. Oprócz sekwencji zawiera ocenę jakości (Phred Score) dla każdego nukleotydu. 3. SAM/BAM (.sam, .bam) - Pliki zawierające informacje o tym, jak nasze krótkie odczyty z FASTQ “przykleiły się” (zmapowały) do genomu referencyjnego z FASTA. 4. VCF (.vcf) - Variant Call Format. Lista zidentyfikowanych mutacji (np. SNP, insercje, delecje).",
+    "text": "Przez dziesięciolecia bioinformatycy skupiali się na porównywaniu pojedynczych sekwencji w celu znalezienia ortologów (homologów u różnych gatunków) i paralogów (homologów u tego samego gatunku). Dzisiaj technologie NGS (Next-Generation Sequencing) pozwalają nam na sekwencjonowanie całych genomów poprzez generowanie milionów krótkich odczytów (reads).\nAby nadać sens tym danym, mapujemy te odczyty do genomu referencyjnego. Pozwala to na zidentyfikowanie różnic, takich jak mutacje w komórkach nowotworowych lub nowe warianty wirusa.",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -249,11 +249,11 @@
     ]
   },
   {
-    "objectID": "laboratorium_4.html#część-1-zrozumieć-mapowanie-i-warianty-variant-calling",
-    "href": "laboratorium_4.html#część-1-zrozumieć-mapowanie-i-warianty-variant-calling",
+    "objectID": "laboratorium_4.html#część-1-formaty-danych-ngs",
+    "href": "laboratorium_4.html#część-1-formaty-danych-ngs",
     "title": "Laboratorium 4: Wstęp do danych NGS i poszukiwania wariantów",
-    "section": "Część 1: Zrozumieć Mapowanie i Warianty (Variant Calling)",
-    "text": "Część 1: Zrozumieć Mapowanie i Warianty (Variant Calling)\nW profesjonalnej pracy używa się narzędzi konsolowych takich jak BWA (do mapowania) i GATK (do szukania wariantów). My jednak zasymulujemy ten proces w R, abyś zrozumiał, co dzieje się “pod maską”!\n\nInteraktywne zadanie: Znajdź mutację!\nPoniżej zasymulowaliśmy fragment genomu referencyjnego (np. fragment wirusa) oraz jeden krótki odczyt (read) z próbki pacjenta.\nTwoje zadanie: 1. Uruchom kod, aby zmapować odczyt pacjenta do referencji. 2. Przyjrzyj się wynikowi przyrównania. Czy potrafisz wzrokowo zidentyfikować mutację (SNP)? 3. W jakiej pozycji na odczycie pacjenta nastąpiła zmiana i z jakiego nukleotydu na jaki?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAnaliza wyników: W prawdziwym świecie, jeśli setki odczytów w danym miejscu pokazują “T” zamiast “A” jak w referencji, oprogramowanie zapisze to jako potwierdzony wariant (SNP) w pliku VCF.",
+    "section": "Część 1: Formaty danych NGS",
+    "text": "Część 1: Formaty danych NGS\nW pracy z NGS musisz wyjść poza prosty format FASTA. Spotkasz cztery główne formaty plików:\n\nFASTA (.fasta): Przechowuje sekwencję referencyjną.\nFASTQ (.fastq): Surowy wynik z sekwenatora. Oprócz sekwencji zawiera ocenę jakości (Phred quality score) dla każdego nukleotydu.\nSAM/BAM (.sam, .bam): Pliki zawierające informacje o tym, jak krótkie odczyty z FASTQ “przykleiły się” (zmapowały) do genomu referencyjnego.\nVCF (.vcf): Variant Call Format. Lista wszystkich zidentyfikowanych mutacji (SNP, insercje, delecje).",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -261,11 +261,23 @@
     ]
   },
   {
-    "objectID": "laboratorium_4.html#część-2-kontrola-jakości-qc-i-phred-scores",
-    "href": "laboratorium_4.html#część-2-kontrola-jakości-qc-i-phred-scores",
+    "objectID": "laboratorium_4.html#część-2-zrozumieć-mapowanie-i-variant-calling",
+    "href": "laboratorium_4.html#część-2-zrozumieć-mapowanie-i-variant-calling",
     "title": "Laboratorium 4: Wstęp do danych NGS i poszukiwania wariantów",
-    "section": "Część 2: Kontrola jakości (QC) i Phred Scores",
-    "text": "Część 2: Kontrola jakości (QC) i Phred Scores\nSkąd oprogramowanie wie, czy mutacja jest prawdziwa, czy to tylko błąd maszyny sekwencjonującej? Z pliku FASTQ! W formacie FASTQ litery i znaki specjalne pod sekwencją oznaczają pewność odczytu. Kodowanie ASCII przekłada znaki na wartości liczbowe: * Znak ! to bardzo zła jakość (duża szansa na błąd). * Znak I lub ~ to doskonała jakość.\nW analizie NGS pierwszym krokiem jest zawsze uruchomienie programu takiego jak FastQC, aby wygenerować raport jakości odczytów i usunąć te słabe (tzw. trimming).",
+    "section": "Część 2: Zrozumieć Mapowanie i Variant Calling",
+    "text": "Część 2: Zrozumieć Mapowanie i Variant Calling\nW środowisku profesjonalnym użyłbyś narzędzi konsolowych takich jak BWA czy Bowtie2. My zasymulujemy ten proces w R, abyś zrozumiał, jak fizycznie “znajduje” się wariant.\n\nInteraktywne zadanie: Znajdź mutację!\nPoniżej zasymulowaliśmy fragment genomu referencyjnego oraz jeden krótki odczyt z próbki pacjenta.\nTwoje zadanie: 1. Uruchom kod, aby zmapować odczyt pacjenta. 2. Przyjrzyj się wynikowi przyrównania. Czy potrafisz zidentyfikować mutację SNP (Single Nucleotide Polymorphism)? 3. Na jakiej pozycji pacjent różni się od referencji?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAnaliza wyników: Jeśli setki różnych odczytów pokrywających tę samą pozycję pokażą ‘T’ zamiast referencyjnego ‘A’, oprogramowanie potwierdzi wariant i zapisze go w pliku VCF.",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 4: Analiza danych NGS"
+    ]
+  },
+  {
+    "objectID": "laboratorium_4.html#część-3-ortologia-i-praktyczne-wyszukiwanie",
+    "href": "laboratorium_4.html#część-3-ortologia-i-praktyczne-wyszukiwanie",
+    "title": "Laboratorium 4: Wstęp do danych NGS i poszukiwania wariantów",
+    "section": "Część 3: Ortologia i Praktyczne Wyszukiwanie",
+    "text": "Część 3: Ortologia i Praktyczne Wyszukiwanie\nPrzed erą NGS, badacze często używali BLASTa do znalezienia ortologów w innych organizmach, np. porównując mysie białko FHIT z sekwencjami ludzkimi lub makaka królewskiego.\nZadanie: 1. Użyj strony NCBI BLAST, aby znaleźć ortolog mysiego białka FHIT u makaka królewskiego (Macaca mulatta). 2. Wykonaj Reciprocal BLAST (BLAST zwrotny): weź znalezioną sekwencję makaka i przyrównaj ją z powrotem do bazy myszy. 3. Jeśli najlepszym wynikiem jest oryginalne mysie białko FHIT, prawdopodobnie zidentyfikowałeś prawdziwego ortologa.",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -277,7 +289,7 @@
     "href": "laboratorium_4.html#sprawdź-swoją-wiedzę",
     "title": "Laboratorium 4: Wstęp do danych NGS i poszukiwania wariantów",
     "section": "Sprawdź swoją wiedzę!",
-    "text": "Sprawdź swoją wiedzę!\nNa podstawie dzisiejszych informacji, uzupełnij poniższy mini-quiz:\nPytanie 1: W jakim formacie zapisuje się odczyty prosto z sekwenatora, zawierające dodatkowe informacje o jakości? FASTAFASTQBAMVCF\nPytanie 2: Jeśli chcemy przekazać lekarzowi samą listę zidentyfikowanych mutacji u pacjenta nowotworowego, użyjemy formatu: FASTAFASTQBAMVCF\nPytanie 3: Jak nazywa się pojedyncza zmiana nukleotydowa (taka jak w naszym ćwiczeniu w R)? Skrót to:",
+    "text": "Sprawdź swoją wiedzę!\nPytanie 1: W jakim formacie zapisuje się surowe odczyty z sekwenatora wraz z oceną ich jakości? FASTAFASTQBAMVCF\nPytanie 2: Jak nazywamy geny homologiczne występujące u różnych gatunków, które wyewoluowały ze wspólnego genu przodka? OrtolodzyParalodzyAnalodzy\nPytanie 3: Jak nazywa się wartość statystyczna, która wskazuje liczbę dopasowań, jakich można się “spodziewać” przez przypadek podczas przeszukiwania bazy danych?",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -289,7 +301,7 @@
     "href": "laboratorium_3.html",
     "title": "Laboratorium 3: Profile sekwencyjne, Ewolucja i ukryte wiadomości",
     "section": "",
-    "text": "W 1990 roku Michael Crichton wydał słynną powieść “Park Jurajski”. [cite_start]Na stronie 103 przedstawił sekwencję nukleotydową, która rzekomo miała pochodzić z wyekstrahowanego DNA dinozaura[cite: 246].\nW prawdziwym świecie naukowcy, tacy jak Mark Boguski, szybko zauważyli pewne nieścisłości. [cite_start]Boguski zaproponował własną, poprawioną sekwencję, w której… ukrył wiadomość![cite: 248, 249]. Aby ją odczytać, należy przetłumaczyć sekwencję na białko i przyrównać ją do bazy danych.\n\n\nZanim pobawimy się w detektywów, musimy zrozumieć, jak algorytm BLAST ocenia, czy podobieństwo dwóch sekwencji nie jest dziełem przypadku. [cite_start]Służy do tego parametr E-value (Expect value). * Im E-value jest mniejsze (bliższe zeru), tym wynik jest bardziej wiarygodny. * E-value rzędu \\(10^{-5}\\) (\\(1e-5\\)) uznaje się za granice istotności statystycznej.\n[cite_start]Sprawdź swoją wiedzę: Który z poniższych wyników BLAST jest najbardziej znaczący statystycznie? [cite: 236, 239, 242, 245] E-VALUE: 0.39E-VALUE: 2e-29E-VALUE: 6e-145",
+    "text": "W 1990 roku Michael Crichton wydał słynną powieść “Park Jurajski”. Na stronie 103 przedstawił sekwencję nukleotydową, która rzekomo miała pochodzić z wyekstrahowanego DNA dinozaura.\nW prawdziwym świecie naukowcy, tacy jak Mark Boguski, szybko zauważyli pewne nieścisłości. Boguski zaproponował własną, poprawioną sekwencję, w której… ukrył wiadomość! Aby ją odczytać, należy przetłumaczyć sekwencję na białko i przyrównać ją do bazy danych nr używając odpowiedniego narzędzia BLAST.\n\n\nZanim pobawimy się w detektywów, musimy zrozumieć, jak algorytm BLAST ocenia, czy podobieństwo dwóch sekwencji nie jest dziełem przypadku. Służy do tego parametr E-value (Expect value):\n\nIm E-value jest mniejsze (bliższe zeru), tym wynik jest bardziej wiarygodny.\nPrzykładowo, E-value rzędu \\(6e-145\\) uznaje się za ekstremalnie znaczące, podczas gdy \\(0.39\\) sugeruje, że dopasowanie może być przypadkowe.\n\nSprawdź swoją wiedzę: Który z poniższych wyników BLAST jest najbardziej znaczący statystycznie? E-VALUE: 0.39E-VALUE: 2e-29E-VALUE: 6e-145",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -301,7 +313,7 @@
     "href": "laboratorium_3.html#część-1-blast-e-value-i-dinozaury",
     "title": "Laboratorium 3: Profile sekwencyjne, Ewolucja i ukryte wiadomości",
     "section": "",
-    "text": "W 1990 roku Michael Crichton wydał słynną powieść “Park Jurajski”. [cite_start]Na stronie 103 przedstawił sekwencję nukleotydową, która rzekomo miała pochodzić z wyekstrahowanego DNA dinozaura[cite: 246].\nW prawdziwym świecie naukowcy, tacy jak Mark Boguski, szybko zauważyli pewne nieścisłości. [cite_start]Boguski zaproponował własną, poprawioną sekwencję, w której… ukrył wiadomość![cite: 248, 249]. Aby ją odczytać, należy przetłumaczyć sekwencję na białko i przyrównać ją do bazy danych.\n\n\nZanim pobawimy się w detektywów, musimy zrozumieć, jak algorytm BLAST ocenia, czy podobieństwo dwóch sekwencji nie jest dziełem przypadku. [cite_start]Służy do tego parametr E-value (Expect value). * Im E-value jest mniejsze (bliższe zeru), tym wynik jest bardziej wiarygodny. * E-value rzędu \\(10^{-5}\\) (\\(1e-5\\)) uznaje się za granice istotności statystycznej.\n[cite_start]Sprawdź swoją wiedzę: Który z poniższych wyników BLAST jest najbardziej znaczący statystycznie? [cite: 236, 239, 242, 245] E-VALUE: 0.39E-VALUE: 2e-29E-VALUE: 6e-145",
+    "text": "W 1990 roku Michael Crichton wydał słynną powieść “Park Jurajski”. Na stronie 103 przedstawił sekwencję nukleotydową, która rzekomo miała pochodzić z wyekstrahowanego DNA dinozaura.\nW prawdziwym świecie naukowcy, tacy jak Mark Boguski, szybko zauważyli pewne nieścisłości. Boguski zaproponował własną, poprawioną sekwencję, w której… ukrył wiadomość! Aby ją odczytać, należy przetłumaczyć sekwencję na białko i przyrównać ją do bazy danych nr używając odpowiedniego narzędzia BLAST.\n\n\nZanim pobawimy się w detektywów, musimy zrozumieć, jak algorytm BLAST ocenia, czy podobieństwo dwóch sekwencji nie jest dziełem przypadku. Służy do tego parametr E-value (Expect value):\n\nIm E-value jest mniejsze (bliższe zeru), tym wynik jest bardziej wiarygodny.\nPrzykładowo, E-value rzędu \\(6e-145\\) uznaje się za ekstremalnie znaczące, podczas gdy \\(0.39\\) sugeruje, że dopasowanie może być przypadkowe.\n\nSprawdź swoją wiedzę: Który z poniższych wyników BLAST jest najbardziej znaczący statystycznie? E-VALUE: 0.39E-VALUE: 2e-29E-VALUE: 6e-145",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -313,7 +325,7 @@
     "href": "laboratorium_3.html#część-2-multiple-sequence-alignment-msa-i-weblogo-w-r",
     "title": "Laboratorium 3: Profile sekwencyjne, Ewolucja i ukryte wiadomości",
     "section": "Część 2: Multiple Sequence Alignment (MSA) i WebLogo w R",
-    "text": "Część 2: Multiple Sequence Alignment (MSA) i WebLogo w R\n[cite_start]Kiedy mamy do czynienia z wieloma sekwencjami (np. z tej samej rodziny białek), wykonujemy przyrównanie wielu sekwencji (MSA)[cite: 18]. [cite_start]Dzięki temu możemy znaleźć regiony konserwatywne – takie, które nie zmieniają się w toku ewolucji, co sugeruje ich kluczową funkcję[cite: 32].\n[cite_start]Dawniej użylibyście zewnętrznej strony WebLogo [cite: 37][cite_start], aby wygenerować graficzną reprezentację (tzw. logo) konserwatywnych aminokwasów[cite: 38]. Dzisiaj wygenerujemy taki wykres samodzielnie w R!\n\nInteraktywne zadanie: Stwórz własne Logo!\n[cite_start]Poniżej przygotowaliśmy zestaw krótkich sekwencji peptydowych, które pochodzą z wcześniejszego etapu ewolucyjnego [cite: 74-97]. Użyjemy fantastycznego pakietu ggseqlogo, aby je zwizualizować.\nZadanie: Uruchom poniższy kod. [cite_start]Zwróć uwagę, jak wysokość litery odzwierciedla stopień konserwatywności danego aminokwasu[cite: 39]!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nDo przemyślenia: Patrząc na wygenerowany wykres, odpowiedz na pytanie – na których pozycjach (1-6) aminokwasy ulegają najczęstszym mutacjom, a które pozycje są wysoce konserwatywne?",
+    "text": "Część 2: Multiple Sequence Alignment (MSA) i WebLogo w R\nKiedy mamy do czynienia z wieloma sekwencjami, wykonujemy przyrównanie wielu sekwencji (MSA). Dzięki temu możemy znaleźć regiony konserwatywne – części sekwencji, które nie zmieniają się w toku ewolucji, co sugeruje ich kluczową funkcję.\nGraficzną reprezentacją tej konserwatywności jest Sequence Logo. Wysokość każdej litery odzwierciedla, jak bardzo dany aminokwas jest konserwatywny na określonej pozycji.\n\nInteraktywne zadanie: Stwórz własne Logo w R\nUżyjemy pakietu ggseqlogo, aby zwizualizować zestaw krótkich sekwencji peptydowych.\nZadanie: Uruchom poniższy kod. Zwróć uwagę, na których pozycjach aminokwasy są wysoce konserwatywne, a na których ulegają mutacjom.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -325,7 +337,7 @@
     "href": "laboratorium_3.html#część-3-psi-blast-i-profile-pssm",
     "title": "Laboratorium 3: Profile sekwencyjne, Ewolucja i ukryte wiadomości",
     "section": "Część 3: PSI-BLAST i Profile PSSM",
-    "text": "Część 3: PSI-BLAST i Profile PSSM\n[cite_start]Czasami homologii nie widać na pierwszy rzut oka, ponieważ sekwencje są ze sobą spokrewnione bardzo daleko (tzw. dalecy homolodzy)[cite: 101]. Zwykły BLAST sobie z nimi nie poradzi. [cite_start]Wtedy wkracza PSI-BLAST[cite: 102].\nJak to działa? 1. PSI-BLAST wykonuje zwykłe przeszukiwanie. 2. [cite_start]Z najlepszych wyników buduje profil (macierz PSSM) uwzględniający to, jakie aminokwasy mogą wymieniać się na określonych pozycjach[cite: 106, 107]. 3. Używa tego profilu, by szukać głębiej. [cite_start]Proces ten (iteracje) powtarza się, aż przestaną pojawiać się nowe sekwencje – ten moment nazywamy konwergencją[cite: 104, 105].\nZadanie końcowe (Detektywistyczne): Użyj standardowej, przeglądarkowej wersji PSI-BLAST na stronie NCBI. Przeszukaj bazę nr używając tajemniczej sekwencji z “Parku Jurajskiego” (plik dostępny na dysku sieciowym w naszych materiałach). * [cite_start]Zrób 3 iteracje[cite: 102]. * [cite_start]Zobacz, co ukrył Mark Boguski w swojej zrewidowanej sekwencji (zwróć uwagę na nazwy znalezionych białek i wyniki w przyrównaniu)! [cite: 250, 251]",
+    "text": "Część 3: PSI-BLAST i Profile PSSM\nZwykły BLAST może przeoczyć dalekich homologów. Wtedy wkracza PSI-BLAST (Position-Specific Iterative BLAST). Jak to działa?\n\nWykonuje wstępne przeszukiwanie.\nZ najlepszych wyników buduje profil PSSM (Position-Specific Scoring Matrix).\nUżywa tego profilu, by szukać głębiej, powtarzając proces (iteracje) aż do osiągnięcia konwergencji (gdy przestają pojawiać się nowe sekwencje).\n\nZadanie końcowe (Detektywistyczne): Wykonaj kilka iteracji narzędzia PSI-BLAST na stronie NCBI używając sekwencji Marka Boguskiego (plik dino2.txt).\n\nSprawdź wyniki przyrównania, aby znaleźć ukrytą wiadomość.\nDo jakiej rodziny białek tak naprawdę należy ta sekwencja?",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -337,7 +349,7 @@
     "href": "laboratorium_2.html",
     "title": "Laboratorium 2: Algorytmy przyrównań sekwencji",
     "section": "",
-    "text": "W bioinformatyce często stajemy przed wyborem algorytmu do przyrównania sekwencji. Różnica polega na podejściu: * [cite_start]Algorytm Needleman-Wunsch (globalny): Próbuje dopasować całe sekwencje[cite: 118]. * [cite_start]Algorytm Smith-Waterman (lokalny): Szuka najlepiej dopasowanych fragmentów[cite: 118].\n\n\n[cite_start]Poniżej znajduje się kod wykorzystujący pakiet Biostrings (podobnie jak w środowisku RStudio [cite: 124]). Działanie: 1. Uruchom kod (przycisk Run Code) i zanotuj wartość punktacji. 2. Zmień type = \"global\" na type = \"local\" i uruchom ponownie.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "W bioinformatyce często stajemy przed wyborem algorytmu do przyrównania sekwencji. Różnica polega na podejściu:\n\nAlgorytm Needleman-Wunsch (globalny): Próbuje dopasować całe sekwencje.\nAlgorytm Smith-Waterman (lokalny): Szuka najlepiej dopasowanych fragmentów, ignorując niedopasowane końce.\n\n\n\nPoniżej znajduje się kod wykorzystujący pakiet Biostrings.\nDziałanie: 1. Uruchom kod (przycisk Run Code) i zanotuj wartość punktacji dla globalnego przyrównania. 2. Zmień type = \"global\" na type = \"local\" i uruchom ponownie. 3. Zwróć uwagę, jak zmienia się punktacja oraz wygląd samego przyrównania.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -349,7 +361,7 @@
     "href": "laboratorium_2.html#globalne-vs.-lokalne-dopasowanie-sekwencji",
     "title": "Laboratorium 2: Algorytmy przyrównań sekwencji",
     "section": "",
-    "text": "W bioinformatyce często stajemy przed wyborem algorytmu do przyrównania sekwencji. Różnica polega na podejściu: * [cite_start]Algorytm Needleman-Wunsch (globalny): Próbuje dopasować całe sekwencje[cite: 118]. * [cite_start]Algorytm Smith-Waterman (lokalny): Szuka najlepiej dopasowanych fragmentów[cite: 118].\n\n\n[cite_start]Poniżej znajduje się kod wykorzystujący pakiet Biostrings (podobnie jak w środowisku RStudio [cite: 124]). Działanie: 1. Uruchom kod (przycisk Run Code) i zanotuj wartość punktacji. 2. Zmień type = \"global\" na type = \"local\" i uruchom ponownie.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "W bioinformatyce często stajemy przed wyborem algorytmu do przyrównania sekwencji. Różnica polega na podejściu:\n\nAlgorytm Needleman-Wunsch (globalny): Próbuje dopasować całe sekwencje.\nAlgorytm Smith-Waterman (lokalny): Szuka najlepiej dopasowanych fragmentów, ignorując niedopasowane końce.\n\n\n\nPoniżej znajduje się kod wykorzystujący pakiet Biostrings.\nDziałanie: 1. Uruchom kod (przycisk Run Code) i zanotuj wartość punktacji dla globalnego przyrównania. 2. Zmień type = \"global\" na type = \"local\" i uruchom ponownie. 3. Zwróć uwagę, jak zmienia się punktacja oraz wygląd samego przyrównania.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -361,7 +373,7 @@
     "href": "laboratorium_2.html#kary-za-przerwy-gap-penalties",
     "title": "Laboratorium 2: Algorytmy przyrównań sekwencji",
     "section": "Kary za przerwy (Gap Penalties)",
-    "text": "Kary za przerwy (Gap Penalties)\nProcesy ewolucyjne sprawiają, że w sekwencjach pojawiają się przerwy. [cite_start]Jak wartość kar wpływa na ostateczne dopasowanie sekwencji[cite: 122]? Zazwyczaj otwarcie nowej przerwy kosztuje więcej niż jej przedłużenie.\n\nInteraktywne zadanie 2: Poeksperymentuj z karami!\n[cite_start]Zmień karę za otwarcie przerwy (gapOpening) z -10 na -1[cite: 120]. Zobacz, jak algorytm “chętniej” rozrywa sekwencję!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "Kary za przerwy (Gap Penalties)\nProcesy ewolucyjne sprawiają, że w sekwencjach pojawiają się przerwy. Jak wartość kar wpływa na ostateczne dopasowanie sekwencji? Zazwyczaj otwarcie nowej przerwy (gapOpening) kosztuje znacznie więcej niż jej przedłużenie (gapExtension).\n\nInteraktywne zadanie 2: Poeksperymentuj z karami!\nZmień karę za otwarcie przerwy (gapOpening) z -10 na -1. Zobacz, jak algorytm “chętniej” rozrywa sekwencję, aby znaleźć dopasowania!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -373,7 +385,7 @@
     "href": "laboratorium_2.html#sprawdź-swoją-wiedzę",
     "title": "Laboratorium 2: Algorytmy przyrównań sekwencji",
     "section": "Sprawdź swoją wiedzę!",
-    "text": "Sprawdź swoją wiedzę!\nPytanie 1: Który algorytm lepiej sprawdzi się do znalezienia wspólnej domeny w dwóch zupełnie różnych białkach? Needleman-Wunsch (Globalny)Smith-Waterman (Lokalny)\n[cite_start]Pytanie 2: Jaką macierz substytucji (stosowaną do obliczania wartości “score” dla dopasowania [cite: 283]) zastosowaliśmy w powyższym kodzie? (wpisz nazwę dużymi literami)",
+    "text": "Sprawdź swoją wiedzę!\nPytanie 1: Który algorytm lepiej sprawdzi się do znalezienia wspólnej domeny w dwóch zupełnie różnych, długich białkach? Needleman-Wunsch (Globalny)Smith-Waterman (Lokalny)\nPytanie 2: W modelu afinicznym kar za przerwy, która wartość jest zazwyczaj bardziej restrykcyjna (bardziej ujemna)? Otwarcie przerwy (Gap Opening)Przedłużenie przerwy (Gap Extension)\nPytanie 3: Jaką macierz substytucji (stosowaną do obliczania wartości “score” dla dopasowania aminokwasów) zastosowaliśmy w powyższym kodzie?",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -445,7 +457,7 @@
     "href": "laboratorium_5.html",
     "title": "Laboratorium 5: Ewolucja w 3D – MSA, Drzewa filogenetyczne i AlphaFold",
     "section": "",
-    "text": "W poprzednich laboratoriach uczyliśmy się przyrównywać dwie sekwencje (Pairwise Alignment). Kiedy jednak chcemy zbadać całą rodzinę białek, wykonujemy Multiple Sequence Alignment (MSA). Historycznie używano do tego narzędzi takich jak T-COFFEE czy MUSCLE, a wyniki analizowano w programie Jalview.\nMSA pozwala nam na dwie kluczowe rzeczy: 1. Zrozumienie ewolucji: Na podstawie różnic (mutacji) między sekwencjami możemy wyliczyć ich “odległość” genetyczną i narysować drzewo filogenetyczne. 2. Znalezienie domen konserwatywnych: Jeśli dany fragment białka (np. domena wiążąca ATP) nie zmienił się od bakterii po człowieka, znaczy to, że jest krytyczny dla przetrwania. Takie domeny kataloguje baza CDD (Conserved Domain Database).\n\n\nDawniej używalibyście klikanego interfejsu (np. opcji Calculate Tree/Average Distance w Jalview), aby zgrupować sekwencje. Zróbmy to teraz programistycznie! Poniżej znajduje się kod, który bierze przykładową macierz odległości między 5 gatunkami i rysuje dla nich drzewo (dendrogram).\nZadanie: Uruchom kod. Na podstawie wygenerowanego drzewa odpowiedz sobie na pytanie: ile głównych grup (klastrów) ewolucyjnych można tutaj wyróżnić? Zmień w kodzie nazwę “Gatunek_D” na “Człowiek” i uruchom ponownie!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "W poprzednich laboratoriach uczyliśmy się przyrównywać dwie sekwencje. Kiedy jednak chcemy zbadać całą rodzinę białek, wykonujemy Multiple Sequence Alignment (MSA). Do jednoczesnego przyrównania wielu sekwencji często używa się narzędzi takich jak T-COFFEE czy MUSCLE.\nMSA pozwala nam na:\n\nŚledzenie Historii Ewolucyjnej: Wyliczając “odległość” genetyczną między sekwencjami, możemy narysować drzewa filogenetyczne.\nIdentyfikację Domen Funkcjonalnych: Konserwatywne regiony niezmienne u różnych gatunków często reprezentują krytyczne domeny (np. miejsca wiążące ATP). Takie domeny kataloguje baza CDD.\n\n\n\nDawniej używalibyście klikanego interfejsu w programie Jalview, aby wyliczyć drzewa metodą “Average Distance” na bazie macierzy BLOSUM62. Zróbmy to programistycznie!\nZadanie: Uruchom kod, który rysuje dendrogram na podstawie macierzy odległości. Wyzwanie: Zmień w kodzie nazwę “Gatunek_D” na “Człowiek”, a “Gatunek_E” na “Szympans” i zobacz, jak zgrupują się te organizmy!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -457,7 +469,7 @@
     "href": "laboratorium_5.html#od-przyrównania-wielu-sekwencji-msa-do-ewolucji",
     "title": "Laboratorium 5: Ewolucja w 3D – MSA, Drzewa filogenetyczne i AlphaFold",
     "section": "",
-    "text": "W poprzednich laboratoriach uczyliśmy się przyrównywać dwie sekwencje (Pairwise Alignment). Kiedy jednak chcemy zbadać całą rodzinę białek, wykonujemy Multiple Sequence Alignment (MSA). Historycznie używano do tego narzędzi takich jak T-COFFEE czy MUSCLE, a wyniki analizowano w programie Jalview.\nMSA pozwala nam na dwie kluczowe rzeczy: 1. Zrozumienie ewolucji: Na podstawie różnic (mutacji) między sekwencjami możemy wyliczyć ich “odległość” genetyczną i narysować drzewo filogenetyczne. 2. Znalezienie domen konserwatywnych: Jeśli dany fragment białka (np. domena wiążąca ATP) nie zmienił się od bakterii po człowieka, znaczy to, że jest krytyczny dla przetrwania. Takie domeny kataloguje baza CDD (Conserved Domain Database).\n\n\nDawniej używalibyście klikanego interfejsu (np. opcji Calculate Tree/Average Distance w Jalview), aby zgrupować sekwencje. Zróbmy to teraz programistycznie! Poniżej znajduje się kod, który bierze przykładową macierz odległości między 5 gatunkami i rysuje dla nich drzewo (dendrogram).\nZadanie: Uruchom kod. Na podstawie wygenerowanego drzewa odpowiedz sobie na pytanie: ile głównych grup (klastrów) ewolucyjnych można tutaj wyróżnić? Zmień w kodzie nazwę “Gatunek_D” na “Człowiek” i uruchom ponownie!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "W poprzednich laboratoriach uczyliśmy się przyrównywać dwie sekwencje. Kiedy jednak chcemy zbadać całą rodzinę białek, wykonujemy Multiple Sequence Alignment (MSA). Do jednoczesnego przyrównania wielu sekwencji często używa się narzędzi takich jak T-COFFEE czy MUSCLE.\nMSA pozwala nam na:\n\nŚledzenie Historii Ewolucyjnej: Wyliczając “odległość” genetyczną między sekwencjami, możemy narysować drzewa filogenetyczne.\nIdentyfikację Domen Funkcjonalnych: Konserwatywne regiony niezmienne u różnych gatunków często reprezentują krytyczne domeny (np. miejsca wiążące ATP). Takie domeny kataloguje baza CDD.\n\n\n\nDawniej używalibyście klikanego interfejsu w programie Jalview, aby wyliczyć drzewa metodą “Average Distance” na bazie macierzy BLOSUM62. Zróbmy to programistycznie!\nZadanie: Uruchom kod, który rysuje dendrogram na podstawie macierzy odległości. Wyzwanie: Zmień w kodzie nazwę “Gatunek_D” na “Człowiek”, a “Gatunek_E” na “Szympans” i zobacz, jak zgrupują się te organizmy!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -469,7 +481,7 @@
     "href": "laboratorium_5.html#rewolucja-ai-alphafold",
     "title": "Laboratorium 5: Ewolucja w 3D – MSA, Drzewa filogenetyczne i AlphaFold",
     "section": "Rewolucja AI: AlphaFold",
-    "text": "Rewolucja AI: AlphaFold\nPrzez dziesięciolecia przewidywanie struktury 3D białka na podstawie samej sekwencji aminokwasowej (tzw. modelowanie homologiczne) było niezwykle trudne. Sytuację zmienił AlphaFold – algorytm sztucznej inteligencji stworzony przez Google DeepMind, który rozwiązał problem zwijania się białek (protein folding problem).\nJak AlphaFold łączy się z dzisiejszymi zajęciami? AlphaFold nie “zgaduje” struktury w ciemno. Jego głównym wejściem (inputem), na którym opiera swoje predykcje, jest właśnie MSA (Multiple Sequence Alignment)! Algorytm analizuje setki spokrewnionych ewolucyjnie sekwencji, by wywnioskować, które aminokwasy znajdują się blisko siebie w przestrzeni 3D (koewolucja).\n\nOstatnie Zadanie: Twój własny ColabFold\nDzisiaj zlecimy AI przewidzenie struktury! Nie potrzebujesz superkomputera – użyjemy narzędzia ColabFold, które działa w chmurze (Google Colab).\n\nOtwórz nowy notatnik Google Colab lub skorzystaj z gotowego środowiska ColabFold.\nWklej dowolną, krótką sekwencję białkową, z którą pracowaliście na dzisiejszych zajęciach (np. fragment domeny z bazy CDD).\nUruchom przewidywanie (Run all).\nPo kilku minutach algorytm wygeneruje plik struktury 3D (w formacie .pdb), który będziesz mógł obejrzeć w programie takim jak PyMOL lub prosto w przeglądarce!",
+    "text": "Rewolucja AI: AlphaFold\nPrzez dziesięciolecia przewidywanie struktury 3D białka na podstawie samej sekwencji aminokwasowej było jednym z największych wyzwań w biologii. Sytuację zmienił AlphaFold, system sztucznej inteligencji przewidujący struktury z niesamowitą dokładnością.\nJak AlphaFold wykorzystuje MSA? AlphaFold nie działa w próżni. Jego głównym wejściem jest właśnie MSA. Algorytm analizuje setki spokrewnionych sekwencji, by zidentyfikować “koewoluujące” reszty aminokwasowe. Jeśli dwie pozycje w białku mutują razem u różnych gatunków, najprawdopodobniej stykają się ze sobą w przestrzeni 3D.\n\nOstatnie Zadanie: Przewiduj z ColabFold\nUżyjemy ColabFold – opartej na chmurze wersji AlphaFold, by zobaczyć białko w 3D!\n\nOtwórz notatnik ColabFold.\nWklej sekwencję szczurzej konwertazy NRD (Accession: gi:1352519) lub zidentyfikowanej wcześniej domeny konserwatywnej.\nUruchom przewidywanie (Run all).\nPobierz plik .pdb i wyświetl go w wybranej przeglądarce struktur!",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -481,7 +493,7 @@
     "href": "laboratorium_5.html#quiz-podsumowujący",
     "title": "Laboratorium 5: Ewolucja w 3D – MSA, Drzewa filogenetyczne i AlphaFold",
     "section": "Quiz Podsumowujący",
-    "text": "Quiz Podsumowujący\nPrzetestuj swoją wiedzę z 5. Laboratorium!\nPytanie 1: Co jest głównym zbiorem danych, który AlphaFold analizuje w celu przewidzenia struktury 3D białka? Tylko pojedyncza sekwencjaMultiple Sequence Alignment (MSA)Wyłącznie sekwencja DNABaza danych EST\nPytanie 2: Która z baz danych służy do identyfikacji konserwatywnych ewolucyjnie domen białkowych? CDD (Conserved Domain Database)PubMedOMIMSRA (Sequence Read Archive)\nPytanie 3: Jak w plikach nazywa się format, w którym zapisujemy wygenerowaną strukturę 3D białka (zawierający współrzędne X, Y, Z każdego atomu)?",
+    "text": "Quiz Podsumowujący\nPytanie 1: Co jest najbardziej krytycznym zbiorem danych, który AlphaFold analizuje w celu przewidzenia kształtu 3D białka? Pojedyncza sekwencja DNAMultiple Sequence Alignment (MSA)Bibliografia z PubMedPlik FASTQ\nPytanie 2: Która z baz danych służy do sprawdzenia, czy dany fragment aminokwasowy jest częścią znanej domeny białkowej? CDD (Conserved Domain Database)UniProtGenBankPDB\nPytanie 3: Jakie jest rozszerzenie pliku ze strukturą 3D białka, który zawiera współrzędne X, Y, Z każdego atomu?",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
