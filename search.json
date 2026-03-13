@@ -193,7 +193,7 @@
     "href": "index.html#opis-przedmiotu",
     "title": "Podstawy Bioinformatyki",
     "section": "🧬 Opis przedmiotu",
-    "text": "🧬 Opis przedmiotu\nBioinformatyka jest stosunkowo młodą, dynamicznie rozwijającą się, interdyscyplinarną dziedziną nauki, której celem jest rozwiązywanie problemów biologicznych przy użyciu nowoczesnych technik informatycznych.\nNa zajęciach zaprezentowane zostaną metody i strategie efektywnego przeszukiwania biologicznych baz danych dostępnych w sieci. W trakcie kursu: * Zapoznasz się z narzędziami służącymi do przyrównania sekwencji oraz wyszukiwania ich homologów. * Zrozumiesz pojęcia takie jak: przyrównanie lokalne i globalne, ukryte modele Markova (HMM), macierz substytucji, macierz PSSM oraz wartości statystyczne (E-value, score, identyczność). * Nauczysz się identyfikować elementy funkcjonalne i regulatorowe genomu (m.in. otwarte ramki odczytu - ORF). * Poznasz serwisy gromadzące informacje dotyczące genomów, genów i szlaków metabolicznych (np. bazy KEGG i COG). * Przejdziemy przez ewolucję metod przewidywania struktury przestrzennej białek – od klasycznego modelowania homologicznego po najnowsze algorytmy oparte o uczenie maszynowe (AlphaFold).",
+    "text": "🧬 Opis przedmiotu\nBioinformatyka jest stosunkowo młodą, dynamicznie rozwijającą się, interdyscyplinarną dziedziną nauki, której celem jest rozwiązywanie problemów biologicznych przy użyciu nowoczesnych technik informatycznych.\nNa zajęciach zaprezentowane zostaną metody i strategie efektywnego przeszukiwania biologicznych baz danych dostępnych w sieci. W trakcie kursu:\n\nZapoznasz się z narzędziami służącymi do przyrównania sekwencji oraz wyszukiwania ich homologów.\nZrozumiesz pojęcia takie jak: przyrównanie lokalne i globalne, ukryte modele Markova (HMM), macierz substytucji, macierz PSSM oraz wartości statystyczne (E-value, score, identyczność).\nNauczysz się identyfikować elementy funkcjonalne i regulatorowe genomu (m.in. otwarte ramki odczytu - ORF).\nPoznasz serwisy gromadzące informacje dotyczące genomów, genów i szlaków metabolicznych (np. bazy KEGG i COG).\nPrzejdziemy przez ewolucję metod przewidywania struktury przestrzennej białek – od klasycznego modelowania homologicznego po najnowsze algorytmy oparte o uczenie maszynowe (AlphaFold).",
     "crumbs": [
       "Home",
       "Informacje organizacyjne",
@@ -205,7 +205,7 @@
     "href": "index.html#zaliczenie-przedmiotu",
     "title": "Podstawy Bioinformatyki",
     "section": "🎓 Zaliczenie przedmiotu",
-    "text": "🎓 Zaliczenie przedmiotu\nWarunki uzyskania zaliczenia są następujące: 1. Obecność: Obecność na zajęciach laboratoryjnych jest jednym z warunków zaliczenia ćwiczeń. 2. Kolokwium końcowe: Podstawą oceny jest pozytywna ocena z kolokwium końcowego. * Egzamin odbywa się na platformie Moodle i trwa 100 minut. * Forma: kilkadziesiąt pytań jednokrotnego wyboru oraz 2-3 pytania opisowe.",
+    "text": "🎓 Zaliczenie przedmiotu\nWarunki uzyskania zaliczenia są następujące:\n\nObecność: Obecność na zajęciach laboratoryjnych jest jednym z warunków zaliczenia ćwiczeń.\nKolokwium końcowe: Podstawą oceny jest pozytywna ocena z kolokwium końcowego.\n\nEgzamin odbywa się na platformie Moodle i trwa 100 minut.\nForma: kilkadziesiąt pytań jednokrotnego wyboru oraz 2-3 pytania opisowe.",
     "crumbs": [
       "Home",
       "Informacje organizacyjne",
@@ -217,7 +217,7 @@
     "href": "index.html#materiały-dodatkowe-i-ciekawostki",
     "title": "Podstawy Bioinformatyki",
     "section": "📚 Materiały dodatkowe i Ciekawostki",
-    "text": "📚 Materiały dodatkowe i Ciekawostki\nAby poszerzyć swoją wiedzę poza zajęciami, zachęcam do zapoznania się z poniższymi materiałami: * Książka online (za darmo): The Art of R Programming (Norman Matloff). * Środowisko pracy w chmurze (25h darmowych obliczeń w miesiącu): RStudio Cloud / Posit Cloud. * Ciekawostka genetyczna: Publikacja z 2022 roku dotycząca pełnego zsekwencjonowania ludzkiego genomu metodą T2T. * Polecany kurs dla pasjonatów AI: Machine Learning via Python Notebooks by Andrew Ng.",
+    "text": "📚 Materiały dodatkowe i Ciekawostki\nAby poszerzyć swoją wiedzę poza zajęciami, zachęcam do zapoznania się z poniższymi materiałami:\n\nKsiążka online (za darmo): The Art of R Programming (Norman Matloff).\nŚrodowisko pracy w chmurze (25h darmowych obliczeń w miesiącu): RStudio Cloud / Posit Cloud.\nCiekawostka genetyczna: Publikacja z 2022 roku dotycząca pełnego zsekwencjonowania ludzkiego genomu metodą T2T.\nPolecany kurs dla pasjonatów AI: Machine Learning via Python Notebooks by Andrew Ng.",
     "crumbs": [
       "Home",
       "Informacje organizacyjne",
