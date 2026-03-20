@@ -1,0 +1,128 @@
+---
+title: "Bioinformatics Basics"
+subtitle: "Lecture 1: Introduction to Bioinformatics in the Big Data Era"
+author: "Arkadiusz Gładki"
+format: 
+  revealjs:
+    theme: white
+    slide-number: true
+    transition: fade
+    chalkboard: true
+---
+
+## What is Bioinformatics?
+
+Bioinformatics is an interdisciplinary field that develops and applies **computational**, **mathematical**, and **statistical** methods to solve biological problems.
+
+::: {.notes}
+These are the speaker notes! Students won't see them if you launch the presenter mode (press 'S' during the slideshow). Mention how rapidly this field is evolving.
+:::
+
+## From Biology to Systems
+
+Molecular biology studies single genes and proteins. Modern science looks at entire systems:
+
+- **Genomics:** The complete set of genes (Genome).
+- **Transcriptomics:** The complete set of mRNA molecules.
+- **Proteomics:** All proteins synthesized in a cell.
+- **Metabolomics:** The complete set of small-molecule metabolites.
+
+## Bioinformatics = Biology + Data Science
+
+Biology is no longer just a laboratory science – it has become a data science (Big Data).
+
+* Sequence databases are growing at an exponential rate.
+* Companies like *23andMe* have amassed millions of genetic profiles, linking them with health data.
+* This creates immense opportunities for personalized medicine, but also massive computational challenges.
+
+## Model Organisms
+
+To understand human biology, we often study simpler organisms that share key biological mechanisms with us:
+
+- *Escherichia coli* (bacterium)
+- *Caenorhabditis elegans* (nematode)
+- *Mus musculus* (house mouse)
+- *Arabidopsis thaliana* (thale cress)
+
+... and **the hero of this year!**
+
+## The Year of the Fruit Fly 🪰
+
+*Drosophila melanogaster* is a genetics classic (T.H. Morgan's research). Why is it making headlines again in 2026?
+
+**We have the first digital brain!**
+
+* The Eon Systems team integrated a digital connectome (125,000 neurons, 50 million synapses) with a virtual body.
+* The virtual fly started walking without any training data or artificial intelligence (AI).
+* It is a pure *in silico* biological simulation!
+
+## The Evolution of Sequencing
+
+How do we read these systems?
+
+1. **1st Generation (Sanger):** The golden standard, but slow. Sequencing the human genome took over a decade.
+2. **2nd Generation (NGS - e.g., Illumina):** Short reads. Massive throughput, low cost. The foundation of modern oncology.
+3. **3rd Generation (Long Reads):** Oxford Nanopore and PacBio. Sequencing of single, very long DNA molecules. Pocket-sized sequencers!
+
+## Data Formats: FASTA and FASTQ
+
+When we get data from the machine, we receive text files:
+
+**FASTA** - stores only the sequence.
+```text
+>gi|12345| My example sequence
+ATGCGTACGTAGCTAGCTAGCTGATCG
+```
+
+**FASTQ** - NGS format (sequence + quality score for each base).
+```text
+@SEQ_ID
+GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTAAATCCATTTGTTCAACTCACAGTTT
++
+!''*((((***+))%%%++)(%%%%).1***-+*''))**55CCF>>>>>>CCCCCCC65
+```
+
+## The Database Ecosystem
+
+Where do we store this gigantic amount of data?
+
+- **NCBI (GenBank):** The main repository for nucleotide sequences.
+- **UniProt:** A comprehensive database for protein sequences and functions.
+- **PDB (Protein Data Bank):** A database of 3D structures of macromolecules (proteins and nucleic acids).
+
+## The End of the "Clicking" Era
+
+Manually searching for genes in a browser and copying sequences to a notepad is a thing of the past. It is tedious, slow, and prone to errors.
+
+**How do we interact with databases today?**
+
+By using programming languages (R, Python) to communicate with databases directly.
+
+## Enter the API!
+
+An **A**pplication **P**rogramming **I**nterface is a set of rules that allows our scripts to talk directly to database servers.
+
+```{r, echo=TRUE, eval=FALSE}
+# Example of using an API in R:
+library(rentrez)
+sequence <- entrez_fetch(db="nuccore", id="NM_000041", rettype="fasta")
+print(sequence)
+```
+*This code can download thousands of sequences in seconds. We will do this today in the lab!*
+
+## A Glimpse into the Future: AI & AlphaFold
+
+From evolution to 3D structure – a revolution unfolding before our eyes.
+
+* For decades, predicting protein shapes from sequences (protein folding) was one of science's grand challenges.
+* **Enter AI: AlphaFold (DeepMind)**.
+* The system predicts 3D protein structures with incredible accuracy in minutes.
+* *You will test this yourselves in Lab 5!*
+
+## Time to Code!
+
+Thank you for your attention. 
+
+Please turn on your laptops, open your browsers, and go to the course website. 
+
+**Let's start Lab 1!**

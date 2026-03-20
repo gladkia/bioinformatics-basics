@@ -1,0 +1,69 @@
+---
+title: "Laboratorium 6: Analiza ekspresji genów (RNA-Seq)"
+format: html
+engine: knitr
+filters:
+  - webr
+---
+
+```{r, echo = FALSE, results='asis'}
+library(webexercises)
+```
+
+## Od DNA do RNA: Co robi komórka?
+
+W Laboratorium 4 szukaliśmy mutacji w sekwencji DNA. Jednak sam fakt posiadania genu nie oznacza, że jest on aktywny! Komórka nerwowa w mózgu muszki owocówki i komórka w jej skrzydle mają dokładnie to samo DNA, ale wyglądają i działają zupełnie inaczej.
+
+Dlaczego? Ponieważ ulegają w nich ekspresji (przepisywaniu na RNA) zupełnie inne geny.  Technologia **RNA-Seq** pozwala nam policzyć, ile cząsteczek mRNA każdego genu znajduje się aktualnie w komórce. 
+
+## Macierz Zliczeń (Count Matrix)
+
+Wynikiem eksperymentu RNA-Seq nie jest jedna sekwencja, lecz gigantyczna tabela. W wierszach mamy nazwy genów, w kolumnach próbki (np. "Zdrowe" i "Chore"), a w komórkach – liczby określające, ile razy sekwenator odczytał dany gen.
+
+Najważniejszym parametrem, który chcemy policzyć, jest **Log2 Fold Change (log2FC)**. Mówi nam on, jak bardzo zmieniła się ekspresja genu:
+* **log2FC > 0**: Gen jest nadekspresjonowany (włączony) w chorobie.
+* **log2FC < 0**: Gen jest wyciszony.
+
+### Interaktywne zadanie: Tworzymy Volcano Plot!
+
+W profesjonalnej analizie użylibyśmy zaawansowanych pakietów takich jak `DESeq2` lub `edgeR`. My zasymulujemy te wyniki i stworzymy najważniejszy wykres w transkryptomice – **Volcano Plot** (Wykres Wulkaniczny).
+
+**Zadanie:** Uruchom poniższy kod. Znajdź na wykresie najbardziej "świecący" na czerwono punkt. To nasz gen celowy! Zmień w kodzie próg p-value (z `0.05` na `0.001`), aby zobaczyć, jak ostre kryteria stosują bioinformatycy.
+
+```{webr-r}
+webr::install("ggplot2")
+library(ggplot2)
+
+# Symulujemy dane z eksperymentu RNA-Seq dla 5 genów
+geny <- c("Gen_A", "Gen_B", "Gen_C", "Gen_D", "Gen_E")
+log2FC <- c(0.1, -2.5, 3.8, -0.2, 1.5)
+p_value <- c(0.8, 0.01, 0.0001, 0.5, 0.04)
+
+dane_rnaseq <- data.frame(Gen = geny, Log2FC = log2FC, PValue = p_value)
+
+# Obliczamy -log10 z P-value (im mniejsze p-value, tym punkt będzie wyżej)
+dane_rnaseq$MinusLog10P <- -log10(dane_rnaseq$PValue)
+
+# Oznaczamy geny istotne statystycznie (np. p-value < 0.05 i mocna zmiana)
+dane_rnaseq$Istotny <- dane_rnaseq$PValue < 0.05 & abs(dane_rnaseq$Log2FC) > 1
+
+# Rysujemy Volcano Plot
+ggplot(dane_rnaseq, aes(x = Log2FC, y = MinusLog10P, color = Istotny)) +
+  geom_point(size = 4) +
+  geom_text(aes(label=Gen), vjust=-1) +
+  scale_color_manual(values = c("black", "red")) +
+  theme_minimal() +
+  labs(title = "Volcano Plot: Analiza Ekspresji",
+       x = "Log2 Fold Change (Zmiana ekspresji)",
+       y = "-log10(P-value) (Wiarygodność)")
+```
+
+---
+
+## Quiz Podsumowujący
+
+**Pytanie 1:** Co bada technologia RNA-Seq?
+`r mcq(c("Kolejność nukleotydów w chromosomach", answer = "Poziom ekspresji (aktywności) genów", "Trójwymiarową strukturę białek"))`
+
+**Pytanie 2:** Jeśli gen ma wartość **Log2FC = 2**, to znaczy, że jego ekspresja względem grupy kontrolnej:
+`r mcq(c("Spadła dwukrotnie", "Nie zmieniła się", answer = "Wzrosła czterokrotnie (2^2)"))`

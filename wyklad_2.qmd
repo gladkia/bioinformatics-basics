@@ -1,0 +1,119 @@
+---
+title: "Podstawy Bioinformatyki"
+subtitle: "Wykład 2: Bioinformatyka Strukturalna i Przewidywanie Struktur Białek"
+author: "Arkadiusz Gładki"
+format: 
+  revealjs:
+    theme: white 
+    slide-number: true
+    transition: fade
+    chalkboard: true
+---
+
+## Bioinformatyka Strukturalna
+
+Sekwencja to nie wszystko! Funkcja białka w komórce zależy przede wszystkim od jego unikalnego kształtu trójwymiarowego.
+
+Bioinformatyka strukturalna zajmuje się:
+- Analizą, wizualizacją i porównywaniem struktur 3D.
+- Przewidywaniem struktur na podstawie samej sekwencji aminokwasowej.
+- Symulacjami interakcji (np. wirtualne dokowanie nowych leków).
+
+## Poziomy organizacji białek
+
+* **Struktura I-rzędowa:** Sekwencja aminokwasów (kolejność aa w łańcuchu).
+* **Struktura II-rzędowa:** Przestrzenne zwinięcie łańcucha (alfa-helisy i beta-kartki) stabilizowane wiązaniami wodorowymi.
+* **Struktura III-rzędowa:** Pełne ułożenie trójwymiarowe pojedynczego łańcucha białkowego.
+* **Struktura IV-rzędowa:** Kompleks złożony z kilku podjednostek (osobnych łańcuchów).
+
+## Skąd bierzemy struktury? (Metody eksperymentalne)
+
+Wyznaczenie struktury w laboratorium jest trudne i kosztowne. Główne techniki:
+
+1. **Krystalografia rentgenowska (~90% struktur)** – wymaga wyhodowania kryształu białka i analizy siatki dyfrakcyjnej pod wpływem promieni X.
+2. **Jądrowy rezonans magnetyczny (NMR, ~9% struktur)** – pozwala na badanie białek w roztworze (bliżej naturalnych warunków).
+3. **Kriomikroskopia elektronowa (Cryo-EM)** – rewolucja ostatnich lat, umożliwia badanie olbrzymich kompleksów białkowych bez ich krystalizacji.
+
+## Protein Data Bank (PDB)
+
+Główne na świecie repozytorium struktur przestrzennych makrocząsteczek!
+
+- Znajdują się tu struktury białek, kwasów nukleinowych i ich kompleksów.
+- Mimo imponującej liczby wpisów (ponad 200 tysięcy), to wciąż ułamek w porównaniu do setek milionów znanych sekwencji w bazie UniProt.
+- Każda struktura otrzymuje swój unikalny identyfikator (np. `1YE3`).
+
+## Format PDB: Jak zapisana jest struktura?
+
+Plik struktury to nie obrazek – to plik tekstowy zawierający trójwymiarowe koordynaty!
+
+Kluczowe sekcje:
+- **ATOM:** Koordynaty $x, y, z$ głównych atomów budujących aminokwasy białka.
+- **HETATM:** Atomy niestandardowych "reszt", np. cząsteczek wody, inhibitorów, czy grup prostetycznych.
+- **B-factor:** Czynnik temperaturowy – mówi nam o ruchliwości termicznej danego atomu i jakości eksperymentu w tym rejonie.
+
+## Narzędzia do wizualizacji
+
+Aby ze współrzędnych $x,y,z$ uzyskać piękny, trójwymiarowy obraz modelu na ekranie komputera, używamy specjalistycznego oprogramowania:
+
+- UCSF Chimera / ChimeraX
+- PyMOL
+- VMD
+- Rasmol
+
+## Hierarchiczna klasyfikacja pofałdowań
+
+Podobnie jak kategoryzujemy żywe organizmy, możemy kategoryzować kształty domen białkowych w ewolucyjne drzewa. Dwa główne systemy to:
+
+* **CATH:** (Class, Architecture, Topology, Homologous superfamily)
+* **SCOP:** (Class, Fold, Superfamily, Family, Domain)
+
+Główny podział opiera się na tym, z jakich elementów (alfa-helisy czy beta-kartki) zbudowane jest białko.
+
+## Przewidywanie struktur: Kiedy eksperyment zawodzi
+
+Skoro znamy sekwencję genetyczną białka z NGS, jak poznać jego strukturę, nie idąc do laboratorium?
+
+Główne podejścia informatyczne:
+1. **Ab initio (de novo)**
+2. **Rozpoznanie pofałdowania (Threading)**
+3. **Modelowanie homologiczne**
+
+## Metody klasyczne: Ab initio i Threading
+
+* **Ab initio:** Modelowanie na podstawie praw fizyki i oddziaływań międzyatomowych. Teoretycznie idealne, w praktyce limitowane mocą obliczeniową (tylko dla najmniejszych białek).
+* **Threading (Rozpoznawanie pofałdowania):** Bierzemy naszą sekwencję i algorytmicznie "nawlekamy" ją na wszystkie znane kształty przestrzenne z PDB, sprawdzając z którym "szkieletem" jest jej najlepiej.
+
+## Modelowanie Homologiczne
+
+Złoty standard przez wiele dekad przed pojawieniem się AI.
+**Kluczowe założenie:** W toku ewolucji struktura przestrzenna białka jest znacznie bardziej zakonserwowana (niezmienna) niż jego sekwencja aminokwasowa.
+
+Kroki:
+1. Znalezienie homologicznego białka ze znaną strukturą (matryca/template).
+2. Wykonanie przyrównania sekwencji (alignment).
+3. Konstrukcja modelu 3D nałożonego na matrycę.
+4. Ocena modelu.
+
+## Jak ocenić jakość modelu? (Walidacja)
+
+Jak sprawdzić, czy wygenerowana przez komputer struktura w ogóle ma sens chemiczny?
+
+Z pomocą przychodzą **kąty torsyjne ($\Phi$, $\Psi$, $\omega$)** wiązań peptydowych. Ograniczenia steryczne ("zawady przestrzenne") sprawiają, że aminokwasy mogą zginać się tylko pod pewnymi kątami.
+
+Do sprawdzania tych poprawności służy słynny **Wykres Ramachandrana**! Jeśli atomy na siebie "wchodzą", zobaczymy to na wykresie. Inny popularny parametr to **RMSD** (średni dystans między modelami).
+
+## Rewolucja: AlphaFold 
+
+To, co przez dziesięciolecia zajmowało miesiące obliczeń i dawało niepewne rezultaty modelowania homologicznego, w 2020 roku zostało rozwiązane przez DeepMind (Google).
+
+- System przewiduje struktury trójwymiarowe na poziomie niemalże jakości metod eksperymentalnych.
+- Opiera się o Sieci Neuronowe i uwzględnia koewolucję aminokwasów z przyrównania wielu sekwencji (MSA).
+- Dziś większość biologii wspiera się wirtualnymi strukturami wyliczonymi przez to AI!
+
+## Czas na kodowanie!
+
+Dziękuję za uwagę.
+
+Na dzisiejszych laboratoriach zrobimy krok wstecz do fundamentów: przyjrzymy się temu, w jaki sposób algorytmy punktują dopasowanie dwóch sekwencji ewolucyjnie, co jest pierwszym krokiem do znalezienia homologów!
+
+Zapraszam na stronę kursu. **Rozpoczynamy Laboratorium 2!**

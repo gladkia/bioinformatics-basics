@@ -1,0 +1,69 @@
+---
+title: "Lab 6: Gene Expression Analysis (RNA-Seq)"
+format: html
+engine: knitr
+filters:
+  - webr
+---
+
+```{r, echo = FALSE, results='asis'}
+library(webexercises)
+```
+
+## From DNA to RNA: What is the cell doing?
+
+In Lab 4, we looked for mutations in the DNA sequence. However, just having a gene doesn't mean it's active! A neuron in a fruit fly's brain and a cell in its wing have exactly the same DNA, but they look and function completely differently.
+
+Why? Because different genes are being expressed (transcribed into RNA) in them.  **RNA-Seq** technology allows us to count how many mRNA molecules of each gene are currently present in a cell.
+
+## The Count Matrix
+
+The result of an RNA-Seq experiment is not a single sequence, but a giant table. In the rows, we have gene names, in the columns, we have samples (e.g., "Healthy" and "Diseased"), and the cells contain numbers indicating how many times the sequencer read a given gene.
+
+The most important parameter we want to calculate is the **Log2 Fold Change (log2FC)**. It tells us how much the gene expression has changed:
+* **log2FC > 0**: The gene is overexpressed (upregulated) in the disease.
+* **log2FC < 0**: The gene is silenced (downregulated).
+
+### Interactive Task: Creating a Volcano Plot!
+
+In professional analysis, we would use advanced packages like `DESeq2` or `edgeR`. Here, we will simulate these results and create the most important plot in transcriptomics – the **Volcano Plot**.
+
+**Task:** Run the code below. Find the most "glowing" red point on the plot. That's our target gene! Change the p-value threshold in the code (from `0.05` to `0.001`) to see how strict the criteria applied by bioinformaticians can be.
+
+```{webr-r}
+webr::install("ggplot2")
+library(ggplot2)
+
+# Simulating RNA-Seq experiment data for 5 genes
+genes <- c("Gene_A", "Gene_B", "Gene_C", "Gene_D", "Gene_E")
+log2FC <- c(0.1, -2.5, 3.8, -0.2, 1.5)
+p_value <- c(0.8, 0.01, 0.0001, 0.5, 0.04)
+
+rnaseq_data <- data.frame(Gene = genes, Log2FC = log2FC, PValue = p_value)
+
+# Calculating -log10 of P-value (the smaller the p-value, the higher the point)
+rnaseq_data$MinusLog10P <- -log10(rnaseq_data$PValue)
+
+# Marking statistically significant genes (e.g., p-value < 0.05 and strong fold change)
+rnaseq_data$Significant <- rnaseq_data$PValue < 0.05 & abs(rnaseq_data$Log2FC) > 1
+
+# Drawing the Volcano Plot
+ggplot(rnaseq_data, aes(x = Log2FC, y = MinusLog10P, color = Significant)) +
+  geom_point(size = 4) +
+  geom_text(aes(label=Gene), vjust=-1) +
+  scale_color_manual(values = c("black", "red")) +
+  theme_minimal() +
+  labs(title = "Volcano Plot: Expression Analysis",
+       x = "Log2 Fold Change",
+       y = "-log10(P-value)")
+```
+
+---
+
+## Knowledge Check
+
+**Question 1:** What does RNA-Seq technology measure?
+`r mcq(c("The order of nucleotides in chromosomes", answer = "Gene expression (activity) levels", "The three-dimensional structure of proteins"))`
+
+**Question 2:** If a gene has a **Log2FC = 2**, it means its expression relative to the control group has:
+`r mcq(c("Decreased twofold", "Remained unchanged", answer = "Increased fourfold (2^2)"))`

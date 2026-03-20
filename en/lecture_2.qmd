@@ -1,0 +1,119 @@
+---
+title: "Bioinformatics Basics"
+subtitle: "Lecture 2: Structural Bioinformatics and Protein Structure Prediction"
+author: "Arkadiusz Gładki"
+format: 
+  revealjs:
+    theme: white
+    slide-number: true
+    transition: fade
+    chalkboard: true
+---
+
+## Structural Bioinformatics
+
+Sequence is not everything! The function of a protein in a cell depends primarily on its unique three-dimensional shape.
+
+Structural bioinformatics deals with:
+- Analysis, visualization, and comparison of 3D structures.
+- Predicting structures based solely on the amino acid sequence.
+- Simulating interactions (e.g., virtual docking of new drugs).
+
+## Levels of Protein Organization
+
+* **Primary Structure:** The amino acid sequence (the order of aa in the chain).
+* **Secondary Structure:** Local spatial folding of the chain (alpha-helices and beta-sheets) stabilized by hydrogen bonds.
+* **Tertiary Structure:** The complete three-dimensional folding of a single protein chain.
+* **Quaternary Structure:** A complex made up of several subunits (separate chains).
+
+## Where do structures come from? (Experimental Methods)
+
+Determining a structure in a laboratory is difficult and expensive. Main techniques:
+
+1. **X-ray Crystallography (~90% of structures)** – requires growing a protein crystal and analyzing the diffraction pattern under X-rays.
+2. **Nuclear Magnetic Resonance (NMR, ~9% of structures)** – allows studying proteins in solution (closer to natural conditions).
+3. **Cryo-Electron Microscopy (Cryo-EM)** – the revolution of recent years, enabling the study of massive protein complexes without crystallization.
+
+## Protein Data Bank (PDB)
+
+The world's main repository for 3D structures of macromolecules!
+
+- It contains structures of proteins, nucleic acids, and their complexes.
+- Despite an impressive number of entries (over 200,000), it's still a fraction compared to the hundreds of millions of known sequences in UniProt.
+- Each structure receives its unique identifier (e.g., `1YE3`).
+
+## PDB Format: How is a structure saved?
+
+A structure file is not an image – it's a text file containing 3D coordinates!
+
+Key sections:
+- **ATOM:** The $x, y, z$ coordinates of the main atoms building the protein's amino acids.
+- **HETATM:** Atoms of non-standard "residues", e.g., water molecules, inhibitors, or prosthetic groups.
+- **B-factor:** Temperature factor – tells us about the thermal mobility of a given atom and the quality of the experiment in that region.
+
+## Visualization Tools
+
+To turn the $x,y,z$ coordinates into a beautiful, three-dimensional image on a computer screen, we use specialized software:
+
+- UCSF Chimera / ChimeraX
+- PyMOL
+- VMD
+- Rasmol
+
+## Hierarchical Classification of Folds
+
+Just as we categorize living organisms, we can categorize the shapes of protein domains into evolutionary trees. Two main systems are:
+
+* **CATH:** (Class, Architecture, Topology, Homologous superfamily)
+* **SCOP:** (Class, Fold, Superfamily, Family, Domain)
+
+The main division is based on the elements (alpha-helices or beta-sheets) the protein is built of.
+
+## Structure Prediction: When experiment fails
+
+Since we know the genetic sequence of a protein from NGS, how can we know its structure without going to the lab?
+
+Main computational approaches:
+1. **Ab initio (de novo)**
+2. **Fold Recognition (Threading)**
+3. **Homology Modeling**
+
+## Classical Methods: Ab initio and Threading
+
+* **Ab initio:** Modeling based on the laws of physics and interatomic interactions. Theoretically ideal, practically limited by computational power (only for the smallest proteins).
+* **Threading (Fold Recognition):** We take our sequence and algorithmically "thread" it onto all known spatial shapes from the PDB, checking which "skeleton" fits it best.
+
+## Homology Modeling
+
+The gold standard for decades before AI arrived.
+**Key assumption:** During evolution, the spatial structure of a protein is much more conserved (unchanging) than its amino acid sequence.
+
+Steps:
+1. Finding a homologous protein with a known structure (template).
+2. Performing sequence alignment.
+3. Building a 3D model superimposed on the template.
+4. Model evaluation.
+
+## How to assess model quality? (Validation)
+
+How to check if the computer-generated structure makes chemical sense at all?
+
+This is where the **torsion angles ($\Phi$, $\Psi$, $\omega$)** of peptide bonds come in. Steric hindrances ("spatial clashes") mean that amino acids can only bend at certain angles.
+
+The famous **Ramachandran Plot** is used to check this correctness! If atoms "overlap", we will see it on the plot. Another popular parameter is **RMSD** (Root-Mean-Square Deviation).
+
+## The Revolution: AlphaFold 
+
+What took months of calculations and yielded uncertain results from homology modeling for decades was solved in 2020 by DeepMind (Google).
+
+- The system predicts 3D structures with accuracy approaching experimental methods.
+- It is based on Neural Networks and incorporates the co-evolution of amino acids from Multiple Sequence Alignment (MSA).
+- Today, most of biology relies on virtual structures calculated by this AI!
+
+## Time to Code!
+
+Thank you for your attention.
+
+In today's lab, we will take a step back to the fundamentals: we will look at how algorithms score the evolutionary match of two sequences, which is the first step to finding homologs!
+
+Please go to the course website. **Let's start Lab 2!**

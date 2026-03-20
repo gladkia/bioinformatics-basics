@@ -1,0 +1,65 @@
+---
+title: "Lab 7: Drug Design (Molecular Docking)"
+format: html
+engine: knitr
+filters:
+  - webr
+---
+
+```{r, echo = FALSE, results='asis'}
+library(webexercises)
+```
+
+## From Structure to Medicine
+
+Having the predicted 3D structure of a protein (thanks to AlphaFold from Lab 5), we can move on to **Rational Drug Design**. Instead of testing millions of chemical compounds "blindly" in the laboratory, we use computer simulations.
+
+The most popular method is **Molecular Docking**.  It's like fitting a key (a drug molecule, called a ligand) into a lock (the binding pocket in our receptor protein).
+
+The docking algorithm evaluates the **Binding Affinity**. The more negative the score (e.g., -9.0 kcal/mol), the stronger the drug binds to the protein!
+
+### Interactive Task: Binding Pocket Geometry
+
+Before we dock the drug, the algorithm must locate the center of the protein "pocket" in 3D space. In PDB files, these are simply the X, Y, Z coordinates of selected amino acids.
+
+**Task:** Below are the coordinates of three amino acids forming the active site of an enzyme. Run the code so the algorithm can calculate the **Center of Mass** of the pocket – this is where we will target our virtual drug!
+
+```{webr-r}
+# X, Y, Z coordinates of key amino acids in the active site (from a PDB file)
+x_coords <- c(12.5, 14.1, 10.8)
+y_coords <- c(-5.2, -6.0, -4.5)
+z_coords <- c(22.1, 20.5, 21.0)
+
+# Calculating the center of the binding pocket (mean of coordinates)
+center_x <- mean(x_coords)
+center_y <- mean(y_coords)
+center_z <- mean(z_coords)
+
+cat("The Binding Pocket Center (Box Center) for the docking algorithm is:\n")
+cat("X:", round(center_x, 2), "\n")
+cat("Y:", round(center_y, 2), "\n")
+cat("Z:", round(center_z, 2), "\n")
+```
+
+---
+
+## The Finale: Real Docking in the Cloud
+
+To perform physical docking (searching for drug conformations in space), we need more powerful tools, such as **AutoDock Vina**.
+
+Just like with AlphaFold, we will do this in a free cloud computing environment!
+
+1. Go to the PDB database and download the structure of your protein of interest.
+2. Go to the **PubChem** database and download the structure of any drug (e.g., Aspirin or Ibuprofen) in SDF format.
+3. Open the prepared [Google Colab for AutoDock Vina](https://colab.research.google.com/).
+4. Upload the files and run the simulation. Record the result (binding affinity)!
+
+---
+
+## Knowledge Check
+
+**Question 1:** What do we call the small molecule (e.g., a drug) that we try to fit into a large protein?
+`r mcq(c("Receptor", answer = "Ligand", "Reference sequence"))`
+
+**Question 2:** When evaluating docking results (Binding Affinity), which score suggests a **stronger** and more stable bond between the drug and the protein?
+`r mcq(c("-2.5 kcal/mol", answer = "-9.8 kcal/mol", "+1.2 kcal/mol"))`

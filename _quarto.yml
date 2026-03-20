@@ -31,6 +31,12 @@ website:
           contents:
             - text: "Sylabus i zaliczenie"
               file: index.qmd
+        - section: "Wykłady"
+          contents:
+            - text: "Wykład 1: Wstęp"
+              file: wyklad_1.qmd
+            - text: "Wykład 2: Bioinformatyka strukturalna"
+              file: wyklad_2.qmd
         - section: "Materiały ćwiczeniowe"
           contents:
             - text: "Lab 1: Bazy danych i API"
@@ -43,6 +49,10 @@ website:
               file: laboratorium_4.qmd
             - text: "Lab 5: Struktury białek (AI)"
               file: laboratorium_5.qmd
+            - text: "Lab 6: RNA-Seq (Ekspresja)"
+              file: laboratorium_6.qmd
+            - text: "Lab 7: Dokowanie leków"
+              file: laboratorium_7.qmd
         - section: "Ważne linki"
           contents:
             - text: "Wyniki (Google Docs)"
@@ -61,6 +71,12 @@ website:
           contents:
             - text: "Syllabus & Grading"
               file: en/index.qmd
+        - section: "Lectures"
+          contents:
+            - text: "Lecture 1: Intro"
+              file: en/lecture_1.qmd
+            - text: "Lecture 2: Structures"
+              file: en/lecture_2.qmd
         - section: "Laboratory Classes"
           contents:
             - text: "Lab 1: Databases & APIs"

@@ -7,22 +7,76 @@ filters:
 ---
 
 ```{r, echo = FALSE, results='asis'}
-# Ładujemy pakiet do interaktywnych quizów (jeśli zdecydujesz się go użyć)
-# library(webexercises)
+library(webexercises)
 ```
 
 ## Wprowadzenie
 
-[cite_start]W biologicznych bazach danych powszechnie korzysta się z systemu taksonomicznego stworzonego przez NCBI[cite: 296]. Ręczne wyszukiwanie i kopiowanie sekwencji z przeglądarki jest jednak żmudne. Dzisiaj nauczymy się pobierać dane bezpośrednio do naszych skryptów w R oraz Pythonie, wykorzystując API (Application Programming Interface).
+W biologicznych bazach danych powszechnie korzysta się z systemu taksonomicznego stworzonego przez NCBI. Ręczne wyszukiwanie i kopiowanie sekwencji z przeglądarki jest jednak żmudne. Dzisiaj nauczymy się łączyć eksplorację manualną z pobieraniem danych bezpośrednio do naszych skryptów w R oraz Pythonie, wykorzystując API (Application Programming Interface).
 
+---
 
+## Część 1: NCBI i formaty tekstowe (Manualnie)
 
-## Część 1: Rozgrzewka w R – Zamiast przeglądarki używamy API
+Zanim zmusimy komputer do pracy, musimy zrozumieć, co on widzi. Najważniejszym portalem jest **NCBI**.
 
-[cite_start]W klasycznym podejściu wyszukiwalibyśmy rekord dotyczący genu APOE pod numerem `NM_000041.4`. Teraz zrobimy to za pomocą kodu w języku R.
+**Zadanie 1.1: Przeglądarka GenBank**
 
-**Zadanie 1:**
-Uruchom poniższy kod, aby pobrać sekwencję genu APOE za pomocą pakietu `rentrez`.
+1. Wejdź na [NCBI Gene](https://www.ncbi.nlm.nih.gov/gene/) i wyszukaj gen `APOE`.
+2. Znajdź sekcję **NCBI Reference Sequences (RefSeq)** i kliknij w link `NM_000041.4`.
+3. Wybierz widok **GenBank**. Zwróć uwagę na pole `FEATURES` i `CDS`. 
+   * *Pytanie:* Czy widzisz, które fragmenty sekwencji odpowiadają za kodowanie białka?
+
+---
+
+## Część 2: UniProt – Encyklopedia Białek (Manualnie)
+
+UniProt (Universal Protein Resource) to najważniejsza baza danych o białkach. W przeciwieństwie do GenBanku, który jest bazą sekwencji, UniProt to baza **wiedzy**.
+
+**Zadanie 2.1: Zostań detektywem UniProt**
+
+1. Wejdź na [UniProt.org](https://www.uniprot.org/).
+2. Wyszukaj białko po numerze akcesyjnym: `P02649` (to ludzkie białko APOE).
+3. **Analiza sekcji:** Przejdź przez lewy panel nawigacyjny i odpowiedz na pytania:
+
+   * **Function:** Jaką główną rolę pełni to białko?
+   * **Subcellular location:** Gdzie w komórce (lub poza nią) znajdziemy to białko? (Szukaj frazy *Secreted* lub *Extracellular*).
+   * **Disease & Variants:** Z jakimi chorobami powiązane są mutacje w tym genie? Czy widzisz wzmiankę o chorobie Alzheimera?
+   * **Structure:** Przewiń do sekcji struktury. Czy widzisz model **AlphaFold**? Spróbuj nim obrócić w przeglądarce!
+
+**Zadanie 2.2: Swiss-Prot vs TrEMBL**
+
+Zwróć uwagę na kolor ikony przy nazwie białka. 
+
+* 🌟 **Złota (Swiss-Prot):** Rekord sprawdzony ręcznie przez kuratora (wysoka wiarygodność).
+* 🔘 **Szara (TrEMBL):** Rekord wygenerowany automatycznie (może zawierać błędy).
+* *Pytanie:* Którą wersję APOE właśnie przeglądasz?
+
+---
+
+## Część 3: Automatyzacja w R (API)
+
+W klasycznym podejściu wyszukiwalibyśmy rekord dotyczący genu APOE pod numerem `NM_000041.4`. Teraz zrobimy to za pomocą kodu w języku R.
+
+### Zadanie 3.1: Pobieranie sekwencji z UniProt przez URL
+W R możemy pobrać dane z UniProt, generując odpowiedni link.
+
+```{webr-r}
+# Definiujemy ID białka
+protein_id <- "P02649"
+
+# Tworzymy URL do pobrania sekwencji w formacie FASTA
+url <- paste0("https://rest.uniprot.org/uniprotkb/", protein_id, ".fasta")
+
+# Pobieramy treść
+sekwencja <- readLines(url)
+
+# Wyświetlamy
+cat(sekwencja, sep = "\n")
+```
+
+### Zadanie 3.2: Odpytywanie NCBI przez rentrez
+Pobierzmy dane o genomie, które wcześniej widziałeś na stronie WWW.
 
 ```{webr-r}
 # Ładowanie pakietów (w WebR są one preinstalowane lub pobierane w locie)
@@ -31,26 +85,25 @@ webr::install("seqinr")
 library(rentrez)
 library(seqinr)
 
-# Pobieranie sekwencji APOE (Nuccore) w formacie FASTA
-apoe_fasta <- entrez_fetch(db="nuccore", id="NM_000041.4", rettype="fasta")
+# Pobieranie sekwencji APOE (Nuccore) w formacie GenBank (uproszczony tekst)
+apoe_record <- entrez_fetch(db="nuccore", id="NM_000041.4", rettype="gb", retmode="text")
 
-# Wyświetlamy wynik
-cat(apoe_fasta)
+# Wyświetlamy początek pliku
+cat(substr(apoe_record, 1, 500))
 ```
 
 **Do dyskusji:**
+
 * Zmień w kodzie bazę z `"nuccore"` na `"protein"` i spróbuj pobrać sekwencję białkową kodowaną przez ten gen (musisz znaleźć jej *protein_id*).
 * Użyj funkcji z pakietu `seqinr`, aby sprawdzić częstotliwość występowania poszczególnych nukleotydów.
 
 ---
 
-## Część 2: Nowy Gracz – Wprowadzenie do Pythona i Biopython
+## Część 4: Nowy Gracz – Wprowadzenie do Pythona i Biopython
 
-W bioinformatyce równie ważny jest dzisiaj Python. [cite_start]Zamiast ręcznie przeszukiwać bazę PubMed, by znaleźć publikacje Piotra Zielenkiewicza, użyjemy biblioteki Biopython.
+W bioinformatyce równie ważny jest dzisiaj Python. Zamiast ręcznie przeszukiwać bazę PubMed, by znaleźć publikacje Piotra Zielenkiewicza, użyjemy biblioteki Biopython.
 
-
-
-**Zadanie 2:**
+**Zadanie 4.1:**
 (Uwaga: Ten fragment wykonaj w Google Colab, ponieważ WebR obsługuje na razie natywnie tylko język R).
 
 ```python
@@ -68,11 +121,23 @@ print(f"Liczba publikacji autora to: {record['Count']}")
 print(f"ID najnowszych publikacji (PMID): {record['IdList']}")
 ```
 
-**Do zrobienia:** Zmodyfikuj zmienną `term`, aby znaleźć artykuły Watsona i Cricka z 1953 roku opublikowane w Nature[cite: 346].
+**Do zrobienia:** Zmodyfikuj zmienną `term`, aby znaleźć artykuły związane z wirusem Ebola.
 
 ---
 
-## Część 3: Mini-projekt integracyjny – Wirus Ebola
+## Sprawdź co zapamiętałeś!
 
-W bazie NCBI odnajdź dostępne sekwencje wirusa Ebola. 
-Napisz krótki skrypt w R (używając powyższego edytora WebR), który pobierze pełny genom wirusa (np. wariant Zaire), a następnie oblicz zawartość par G-C (GC-content).
+**Pytanie 1:** Która sekcja w UniProt powie Ci, czy białko znajduje się w jądrze komórkowym czy poza komórką?
+`r mcq(c("Function", answer = "Subcellular location", "Sequence", "Structure"))`
+
+**Pytanie 2:** Jak nazywa się "ręcznie sprawdzona" i najbardziej wiarygodna część bazy UniProtKB?
+`r mcq(c("TrEMBL", answer = "Swiss-Prot", "RefSeq", "GenBank"))`
+
+**Pytanie 3:** Jaki format danych z UniProt pobrałeś w Zadaniu 3.1 (ten zaczynający się od znaku `>`)?
+`r fitb(c("FASTA", "fasta"))`
+
+---
+
+## Część 5: Mini-projekt integracyjny – Wirus Ebola
+
+W bazie NCBI odnajdź dostępne sekwencje wirusa Ebola. Napisz krótki skrypt w R lub Pythonie, który pobierze pełny genom wirusa (np. wariant Zaire), a następnie oblicz zawartość par G-C (GC-content).

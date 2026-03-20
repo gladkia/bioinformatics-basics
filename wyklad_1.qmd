@@ -1,0 +1,128 @@
+---
+title: "Podstawy Bioinformatyki"
+subtitle: "Wykład 1: Wstęp do Bioinformatyki w erze Big Data"
+author: "Arkadiusz Gładki"
+format: 
+  revealjs:
+    theme: white
+    slide-number: true
+    transition: fade
+    chalkboard: true
+---
+
+## Czym jest Bioinformatyka?
+
+Bioinformatyka to dziedzina interdyscyplinarna, wykorzystująca metody **informatyczne**, **matematyczne** i **statystyczne** do rozwiązywania problemów z zakresu nauk biologicznych.
+
+::: {.notes}
+To są notatki prelegenta! Studenci ich nie widzą, jeśli uruchomisz tryb prezentera (klawisz 'S' podczas pokazu). Powiedz tu o tym, jak szybko rozwija się ta dziedzina.
+:::
+
+## Od Biologii do Systemów
+
+Biologia molekularna bada pojedyncze geny i białka. Dzisiejsza nauka patrzy na systemy:
+
+- **Genomika:** Pula wszystkich genów organizmu (Genom).
+- **Transkryptomika:** Pula wszystkich cząsteczek mRNA.
+- **Proteomika:** Wszystkie białka syntetyzowane w komórce.
+- **Metabolomika:** Zestaw wszystkich drobnocząsteczkowych metabolitów.
+
+## Bioinformatyka = Biologia + Data Science
+
+Biologia przestała być nauką wyłącznie laboratoryjną – stała się nauką o danych (Big Data).
+
+* Bazy sekwencji rosną w tempie eksponencjalnym.
+* Firmy takie jak *23andMe* zgromadziły miliony profili genetycznych, łącząc je z danymi o zdrowiu pacjentów.
+* Rodzi to ogromne możliwości dla medycyny spersonalizowanej, ale i wyzwania obliczeniowe.
+
+## Organizmy Modelowe
+
+Aby zrozumieć biologię człowieka, często badamy organizmy o prostszej budowie, ale dzielące z nami kluczowe mechanizmy:
+
+- *Escherichia coli* (bakteria)
+- *Caenorhabditis elegans* (nicień)
+- *Mus musculus* (mysz domowa)
+- *Arabidopsis thaliana* (rzodkiewnik pospolity)
+
+... oraz **bohater tego roku!**
+
+## Rok Muszki Owocówki 🪰
+
+*Drosophila melanogaster* to klasyka genetyki (badania T. Hunta Morgana). Dlaczego w 2026 roku znów jest na ustach wszystkich?
+
+**Mamy pierwszy cyfrowy mózg!**
+
+* Zespół Eon Systems zintegrował cyfrowy konektom (125 000 neuronów, 50 mln synaps) z wirtualnym ciałem.
+* Wirtualna muszka zaczęła chodzić bez żadnych danych treningowych i bez sztucznej inteligencji (AI).
+* To czysta symulacja biologii *in silico*!
+
+## Ewolucja Sekwencjonowania
+
+Jak odczytujemy te systemy?
+
+1. **I Generacja (Sanger):** Złoty standard, ale powolny. Odczytanie genomu ludzkiego trwało kilkanaście lat.
+2. **II Generacja (NGS - np. Illumina):** Krótkie odczyty (Short reads). Gigantyczna przepustowość, niska cena. Podstawa dzisiejszej onkologii.
+3. **III Generacja (Long Reads):** Oxford Nanopore i PacBio. Odczyty pojedynczych, bardzo długich cząsteczek DNA. Kieszonkowe sekwenatory!
+
+## Formaty Danych: FASTA i FASTQ
+
+Kiedy zejdziemy z maszyny, dostajemy pliki tekstowe:
+
+**FASTA** - przechowuje tylko sekwencję.
+```text
+>gi|12345| Moja przykładowa sekwencja
+ATGCGTACGTAGCTAGCTAGCTGATCG
+```
+
+**FASTQ** - format NGS (sekwencja + ocena jakości każdego znaku).
+```text
+@SEQ_ID
+GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTAAATCCATTTGTTCAACTCACAGTTT
++
+!''*((((***+))%%%++)(%%%%).1***-+*''))**55CCF>>>>>>CCCCCCC65
+```
+
+## Ekosystem Baz Danych
+
+Gdzie przechowujemy tę gigantyczną ilość danych?
+
+- **NCBI (GenBank):** Główne repozytorium sekwencji nukleotydowych.
+- **UniProt:** Kompleksowa baza danych o białkach (sekwencje i funkcje).
+- **PDB (Protein Data Bank):** Baza struktur trójwymiarowych makrocząsteczek (białek i kwasów nukleinowych).
+
+## Koniec ery "klikania"
+
+Ręczne szukanie genów w przeglądarce i kopiowanie sekwencji do notatnika to przeszłość. Jest to żmudne, powolne i prowadzi do błędów.
+
+**Jak dziś pracujemy z bazami?**
+
+Używając języków programowania (R, Python) i komunikując się z bazami bezpośrednio.
+
+## Wkracza API!
+
+**A**pplication **P**rogramming **I**nterface to zestaw reguł, który pozwala naszym skryptom na bezpośrednią rozmowę z serwerami baz danych.
+
+```{r, echo=TRUE, eval=FALSE}
+# Przykład użycia API w języku R:
+library(rentrez)
+sekwencja <- entrez_fetch(db="nuccore", id="NM_000041", rettype="fasta")
+print(sekwencja)
+```
+*Taki kod pobierze tysiące sekwencji w kilka sekund. Zrobimy to dzisiaj na laboratoriach!*
+
+## Zwiastun przyszłości: AI i AlphaFold
+
+Od ewolucji do struktury – rewolucja na naszych oczach.
+
+* Przez dekady przewidywanie kształtu białka z sekwencji (zwijanie białek) było jednym z największych wyzwań nauki.
+* **Wkracza AI: AlphaFold (DeepMind)**.
+* System przewiduje struktury 3D białek z niesamowitą dokładnością w kilka minut.
+* *Przetestujecie to na własne oczy na Laboratorium 5!*
+
+## Czas na kodowanie!
+
+Dziękuję za uwagę. 
+
+Proszę włączyć laptopy, odpalić przeglądarki i wejść na stronę naszego kursu. 
+
+**Rozpoczynamy Laboratorium 1!**

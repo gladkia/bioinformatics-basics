@@ -1,0 +1,65 @@
+---
+title: "Laboratorium 7: Projektowanie leków (Molecular Docking)"
+format: html
+engine: knitr
+filters:
+  - webr
+---
+
+```{r, echo = FALSE, results='asis'}
+library(webexercises)
+```
+
+## Od Struktury do Lekarstwa
+
+Mając przewidzianą strukturę 3D białka (dzięki AlphaFold z Lab 5), możemy przejść do **Rational Drug Design** (racjonalnego projektowania leków). Zamiast testować w laboratorium miliony związków chemicznych "w ciemno", wykorzystujemy symulacje komputerowe.
+
+Najpopularniejszą metodą jest **Molecular Docking (wirtualne dokowanie)**. Przypomina to dopasowywanie klucza (cząsteczki leku, tzw. liganda) do zamka (kieszeni wiążącej w naszym białku receptorowym). 
+
+Algorytm dokujący ocenia "energię wiązania" (Binding Affinity). Im wynik jest bardziej ujemny (np. -9.0 kcal/mol), tym lek mocniej trzyma się białka!
+
+### Interaktywne zadanie: Geometria kieszeni wiążącej
+
+Zanim zadokujemy lek, algorytm musi zlokalizować środek "kieszeni" białkowej w trójwymiarowej przestrzeni. W plikach PDB są to po prostu koordynaty X, Y, Z wybranych aminokwasów.
+
+**Zadanie:** Poniżej mamy współrzędne trzech aminokwasów tworzących miejsce aktywne enzymu. Uruchom kod, aby algorytm wyliczył tzw. **Center of Mass** (środek masy) kieszeni – to tam skierujemy nasz wirtualny lek!
+
+```{webr-r}
+# Współrzędne X, Y, Z kluczowych aminokwasów w miejscu aktywnym (z pliku PDB)
+x_coords <- c(12.5, 14.1, 10.8)
+y_coords <- c(-5.2, -6.0, -4.5)
+z_coords <- c(22.1, 20.5, 21.0)
+
+# Obliczamy środek kieszeni wiążącej (średnia ze współrzędnych)
+center_x <- mean(x_coords)
+center_y <- mean(y_coords)
+center_z <- mean(z_coords)
+
+cat("Środek kieszeni wiążącej (Box Center) dla algorytmu dokującego to:\n")
+cat("X:", round(center_x, 2), "\n")
+cat("Y:", round(center_y, 2), "\n")
+cat("Z:", round(center_z, 2), "\n")
+```
+
+---
+
+## Finał: Prawdziwe dokowanie w chmurze
+
+Aby wykonać fizyczne dokowanie (przeszukiwanie konformacji leku w przestrzeni), potrzebujemy potężniejszych narzędzi, takich jak **AutoDock Vina**.
+
+Podobnie jak z AlphaFold, wykonamy to w darmowej chmurze obliczeniowej!
+
+1. Wejdź do bazy PDB i pobierz strukturę interesującego Cię białka.
+2. Wejdź do bazy **PubChem** i pobierz strukturę dowolnego leku (np. Aspiryny lub Ibuprofenu) w formacie SDF.
+3. Otwórz przygotowany notatnik [Google Colab dla AutoDock Vina](https://colab.research.google.com/).
+4. Wgraj pliki i uruchom symulację. Zapisz wynik (energię wiązania)!
+
+---
+
+## Quiz Podsumowujący
+
+**Pytanie 1:** Jak nazywa się mała cząsteczka (np. lek), którą próbujemy dopasować do dużego białka?
+`r mcq(c("Receptor", answer = "Ligand", "Sekwencja referencyjna"))`
+
+**Pytanie 2:** Przy ocenie wyników dokowania (Binding Affinity), który wynik sugeruje **silniejsze** i bardziej stabilne wiązanie leku z białkiem?
+`r mcq(c("-2.5 kcal/mol", answer = "-9.8 kcal/mol", "+1.2 kcal/mol"))`
