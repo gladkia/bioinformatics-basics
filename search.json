@@ -787,7 +787,7 @@
     "href": "laboratorium_1.html",
     "title": "Laboratorium 1: Od klikania do kodowania – eksploracja baz danych przez API",
     "section": "",
-    "text": "[cite_start]W biologicznych bazach danych powszechnie korzysta się z systemu taksonomicznego stworzonego przez NCBI[cite: 296]. Ręczne wyszukiwanie i kopiowanie sekwencji z przeglądarki jest jednak żmudne. Dzisiaj nauczymy się pobierać dane bezpośrednio do naszych skryptów w R oraz Pythonie, wykorzystując API (Application Programming Interface).",
+    "text": "W biologicznych bazach danych powszechnie korzysta się z systemu taksonomicznego stworzonego przez NCBI. Ręczne wyszukiwanie i kopiowanie sekwencji z przeglądarki jest jednak żmudne. Dzisiaj nauczymy się łączyć eksplorację manualną z pobieraniem danych bezpośrednio do naszych skryptów w R oraz Pythonie, wykorzystując API (Application Programming Interface).",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -799,7 +799,7 @@
     "href": "laboratorium_1.html#wprowadzenie",
     "title": "Laboratorium 1: Od klikania do kodowania – eksploracja baz danych przez API",
     "section": "",
-    "text": "[cite_start]W biologicznych bazach danych powszechnie korzysta się z systemu taksonomicznego stworzonego przez NCBI[cite: 296]. Ręczne wyszukiwanie i kopiowanie sekwencji z przeglądarki jest jednak żmudne. Dzisiaj nauczymy się pobierać dane bezpośrednio do naszych skryptów w R oraz Pythonie, wykorzystując API (Application Programming Interface).",
+    "text": "W biologicznych bazach danych powszechnie korzysta się z systemu taksonomicznego stworzonego przez NCBI. Ręczne wyszukiwanie i kopiowanie sekwencji z przeglądarki jest jednak żmudne. Dzisiaj nauczymy się łączyć eksplorację manualną z pobieraniem danych bezpośrednio do naszych skryptów w R oraz Pythonie, wykorzystując API (Application Programming Interface).",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -807,11 +807,11 @@
     ]
   },
   {
-    "objectID": "laboratorium_1.html#część-1-rozgrzewka-w-r-zamiast-przeglądarki-używamy-api",
-    "href": "laboratorium_1.html#część-1-rozgrzewka-w-r-zamiast-przeglądarki-używamy-api",
+    "objectID": "laboratorium_1.html#część-1-ncbi-i-formaty-tekstowe-manualnie",
+    "href": "laboratorium_1.html#część-1-ncbi-i-formaty-tekstowe-manualnie",
     "title": "Laboratorium 1: Od klikania do kodowania – eksploracja baz danych przez API",
-    "section": "Część 1: Rozgrzewka w R – Zamiast przeglądarki używamy API",
-    "text": "Część 1: Rozgrzewka w R – Zamiast przeglądarki używamy API\n[cite_start]W klasycznym podejściu wyszukiwalibyśmy rekord dotyczący genu APOE pod numerem NM_000041.4. Teraz zrobimy to za pomocą kodu w języku R.\nZadanie 1: Uruchom poniższy kod, aby pobrać sekwencję genu APOE za pomocą pakietu rentrez.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nDo dyskusji: * Zmień w kodzie bazę z \"nuccore\" na \"protein\" i spróbuj pobrać sekwencję białkową kodowaną przez ten gen (musisz znaleźć jej protein_id). * Użyj funkcji z pakietu seqinr, aby sprawdzić częstotliwość występowania poszczególnych nukleotydów.",
+    "section": "Część 1: NCBI i formaty tekstowe (Manualnie)",
+    "text": "Część 1: NCBI i formaty tekstowe (Manualnie)\nZanim zmusimy komputer do pracy, musimy zrozumieć, co on widzi. Najważniejszym portalem jest NCBI.\nZadanie 1.1: Przeglądarka GenBank 1. Wejdź na NCBI Gene i wyszukaj gen APOE. 2. Znajdź sekcję NCBI Reference Sequences (RefSeq) i kliknij w link NM_000041.4. 3. Wybierz widok GenBank. Zwróć uwagę na pole FEATURES i CDS. * Pytanie: Czy widzisz, które fragmenty sekwencji odpowiadają za kodowanie białka?",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -819,11 +819,11 @@
     ]
   },
   {
-    "objectID": "laboratorium_1.html#część-2-nowy-gracz-wprowadzenie-do-pythona-i-biopython",
-    "href": "laboratorium_1.html#część-2-nowy-gracz-wprowadzenie-do-pythona-i-biopython",
+    "objectID": "laboratorium_1.html#część-2-uniprot-encyklopedia-białek-manualnie",
+    "href": "laboratorium_1.html#część-2-uniprot-encyklopedia-białek-manualnie",
     "title": "Laboratorium 1: Od klikania do kodowania – eksploracja baz danych przez API",
-    "section": "Część 2: Nowy Gracz – Wprowadzenie do Pythona i Biopython",
-    "text": "Część 2: Nowy Gracz – Wprowadzenie do Pythona i Biopython\nW bioinformatyce równie ważny jest dzisiaj Python. [cite_start]Zamiast ręcznie przeszukiwać bazę PubMed, by znaleźć publikacje Piotra Zielenkiewicza, użyjemy biblioteki Biopython.\nZadanie 2: (Uwaga: Ten fragment wykonaj w Google Colab, ponieważ WebR obsługuje na razie natywnie tylko język R).\n!pip install biopython\nfrom Bio import Entrez\n\n# Etykieta dobrych praktyk NCBI - zawsze podawaj swój email!\nEntrez.email = \"twoj_adres@student.pw.edu.pl\"\n\n# Przeszukujemy bazę PubMed\nhandle = Entrez.esearch(db=\"pubmed\", term=\"Zielenkiewicz P[Author]\")\nrecord = Entrez.read(handle)\n\nprint(f\"Liczba publikacji autora to: {record['Count']}\")\nprint(f\"ID najnowszych publikacji (PMID): {record['IdList']}\")\nDo zrobienia: Zmodyfikuj zmienną term, aby znaleźć artykuły Watsona i Cricka z 1953 roku opublikowane w Nature[cite: 346].",
+    "section": "Część 2: UniProt – Encyklopedia Białek (Manualnie)",
+    "text": "Część 2: UniProt – Encyklopedia Białek (Manualnie)\nUniProt (Universal Protein Resource) to najważniejsza baza danych o białkach. W przeciwieństwie do GenBanku, który jest bazą sekwencji, UniProt to baza wiedzy.\nZadanie 2.1: Zostań detektywem UniProt 1. Wejdź na UniProt.org. 2. Wyszukaj białko po numerze akcesyjnym: P02649 (to ludzkie białko APOE). 3. Analiza sekcji: Przejdź przez lewy panel nawigacyjny i odpowiedz na pytania: * Function: Jaką główną rolę pełni to białko? * Subcellular location: Gdzie w komórce (lub poza nią) znajdziemy to białko? (Szukaj frazy Secreted lub Extracellular). * Disease & Variants: Z jakimi chorobami powiązane są mutacje w tym genie? Czy widzisz wzmiankę o chorobie Alzheimera? * Structure: Przewiń do sekcji struktury. Czy widzisz model AlphaFold? Spróbuj nim obrócić w przeglądarce!\nZadanie 2.2: Swiss-Prot vs TrEMBL Zwróć uwagę na kolor ikony przy nazwie białka. * 🌟 Złota (Swiss-Prot): Rekord sprawdzony ręcznie przez kuratora (wysoka wiarygodność). * 🔘 Szara (TrEMBL): Rekord wygenerowany automatycznie (może zawierać błędy). * Pytanie: Którą wersję APOE właśnie przeglądasz?",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -831,11 +831,47 @@
     ]
   },
   {
-    "objectID": "laboratorium_1.html#część-3-mini-projekt-integracyjny-wirus-ebola",
-    "href": "laboratorium_1.html#część-3-mini-projekt-integracyjny-wirus-ebola",
+    "objectID": "laboratorium_1.html#część-3-automatyzacja-w-r-api",
+    "href": "laboratorium_1.html#część-3-automatyzacja-w-r-api",
     "title": "Laboratorium 1: Od klikania do kodowania – eksploracja baz danych przez API",
-    "section": "Część 3: Mini-projekt integracyjny – Wirus Ebola",
-    "text": "Część 3: Mini-projekt integracyjny – Wirus Ebola\nW bazie NCBI odnajdź dostępne sekwencje wirusa Ebola. Napisz krótki skrypt w R (używając powyższego edytora WebR), który pobierze pełny genom wirusa (np. wariant Zaire), a następnie oblicz zawartość par G-C (GC-content).",
+    "section": "Część 3: Automatyzacja w R (API)",
+    "text": "Część 3: Automatyzacja w R (API)\nW klasycznym podejściu wyszukiwalibyśmy rekord dotyczący genu APOE pod numerem NM_000041.4. Teraz zrobimy to za pomocą kodu w języku R.\n\nZadanie 3.1: Pobieranie sekwencji z UniProt przez URL\nW R możemy pobrać dane z UniProt, generując odpowiedni link.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nZadanie 3.2: Odpytywanie NCBI przez rentrez\nPobierzmy dane o genomie, które wcześniej widziałeś na stronie WWW.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nDo dyskusji: * Zmień w kodzie bazę z \"nuccore\" na \"protein\" i spróbuj pobrać sekwencję białkową kodowaną przez ten gen (musisz znaleźć jej protein_id). * Użyj funkcji z pakietu seqinr, aby sprawdzić częstotliwość występowania poszczególnych nukleotydów.",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 1: Bazy danych i API"
+    ]
+  },
+  {
+    "objectID": "laboratorium_1.html#część-4-nowy-gracz-wprowadzenie-do-pythona-i-biopython",
+    "href": "laboratorium_1.html#część-4-nowy-gracz-wprowadzenie-do-pythona-i-biopython",
+    "title": "Laboratorium 1: Od klikania do kodowania – eksploracja baz danych przez API",
+    "section": "Część 4: Nowy Gracz – Wprowadzenie do Pythona i Biopython",
+    "text": "Część 4: Nowy Gracz – Wprowadzenie do Pythona i Biopython\nW bioinformatyce równie ważny jest dzisiaj Python. Zamiast ręcznie przeszukiwać bazę PubMed, by znaleźć publikacje Piotra Zielenkiewicza, użyjemy biblioteki Biopython.\nZadanie 4.1: (Uwaga: Ten fragment wykonaj w Google Colab, ponieważ WebR obsługuje na razie natywnie tylko język R).\n!pip install biopython\nfrom Bio import Entrez\n\n# Etykieta dobrych praktyk NCBI - zawsze podawaj swój email!\nEntrez.email = \"twoj_adres@student.pw.edu.pl\"\n\n# Przeszukujemy bazę PubMed\nhandle = Entrez.esearch(db=\"pubmed\", term=\"Zielenkiewicz P[Author]\")\nrecord = Entrez.read(handle)\n\nprint(f\"Liczba publikacji autora to: {record['Count']}\")\nprint(f\"ID najnowszych publikacji (PMID): {record['IdList']}\")\nDo zrobienia: Zmodyfikuj zmienną term, aby znaleźć artykuły związane z wirusem Ebola.",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 1: Bazy danych i API"
+    ]
+  },
+  {
+    "objectID": "laboratorium_1.html#sprawdź-co-zapamiętałeś",
+    "href": "laboratorium_1.html#sprawdź-co-zapamiętałeś",
+    "title": "Laboratorium 1: Od klikania do kodowania – eksploracja baz danych przez API",
+    "section": "Sprawdź co zapamiętałeś!",
+    "text": "Sprawdź co zapamiętałeś!\nPytanie 1: Która sekcja w UniProt powie Ci, czy białko znajduje się w jądrze komórkowym czy poza komórką? FunctionSubcellular locationSequenceStructure\nPytanie 2: Jak nazywa się “ręcznie sprawdzona” i najbardziej wiarygodna część bazy UniProtKB? TrEMBLSwiss-ProtRefSeqGenBank\nPytanie 3: Jaki format danych z UniProt pobrałeś w Zadaniu 3.1 (ten zaczynający się od znaku &gt;)?",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 1: Bazy danych i API"
+    ]
+  },
+  {
+    "objectID": "laboratorium_1.html#część-5-mini-projekt-integracyjny-wirus-ebola",
+    "href": "laboratorium_1.html#część-5-mini-projekt-integracyjny-wirus-ebola",
+    "title": "Laboratorium 1: Od klikania do kodowania – eksploracja baz danych przez API",
+    "section": "Część 5: Mini-projekt integracyjny – Wirus Ebola",
+    "text": "Część 5: Mini-projekt integracyjny – Wirus Ebola\nW bazie NCBI odnajdź dostępne sekwencje wirusa Ebola. Napisz krótki skrypt w R lub Pythonie, który pobierze pełny genom wirusa (np. wariant Zaire), a następnie oblicz zawartość par G-C (GC-content).",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
