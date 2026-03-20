@@ -188,6 +188,34 @@
     ]
   },
   {
+    "objectID": "en/lab_6.html",
+    "href": "en/lab_6.html",
+    "title": "Lab 6: Gene Expression Analysis (RNA-Seq)",
+    "section": "",
+    "text": "In Lab 4, we looked for mutations in the DNA sequence. However, just having a gene doesn’t mean it’s active! A neuron in a fruit fly’s brain and a cell in its wing have exactly the same DNA, but they look and function completely differently.\nWhy? Because different genes are being expressed (transcribed into RNA) in them. RNA-Seq technology allows us to count how many mRNA molecules of each gene are currently present in a cell."
+  },
+  {
+    "objectID": "en/lab_6.html#from-dna-to-rna-what-is-the-cell-doing",
+    "href": "en/lab_6.html#from-dna-to-rna-what-is-the-cell-doing",
+    "title": "Lab 6: Gene Expression Analysis (RNA-Seq)",
+    "section": "",
+    "text": "In Lab 4, we looked for mutations in the DNA sequence. However, just having a gene doesn’t mean it’s active! A neuron in a fruit fly’s brain and a cell in its wing have exactly the same DNA, but they look and function completely differently.\nWhy? Because different genes are being expressed (transcribed into RNA) in them. RNA-Seq technology allows us to count how many mRNA molecules of each gene are currently present in a cell."
+  },
+  {
+    "objectID": "en/lab_6.html#the-count-matrix",
+    "href": "en/lab_6.html#the-count-matrix",
+    "title": "Lab 6: Gene Expression Analysis (RNA-Seq)",
+    "section": "The Count Matrix",
+    "text": "The Count Matrix\nThe result of an RNA-Seq experiment is not a single sequence, but a giant table. In the rows, we have gene names, in the columns, we have samples (e.g., “Healthy” and “Diseased”), and the cells contain numbers indicating how many times the sequencer read a given gene.\nThe most important parameter we want to calculate is the Log2 Fold Change (log2FC). It tells us how much the gene expression has changed: * log2FC &gt; 0: The gene is overexpressed (upregulated) in the disease. * log2FC &lt; 0: The gene is silenced (downregulated).\n\nInteractive Task: Creating a Volcano Plot!\nIn professional analysis, we would use advanced packages like DESeq2 or edgeR. Here, we will simulate these results and create the most important plot in transcriptomics – the Volcano Plot.\nTask: Run the code below. Find the most “glowing” red point on the plot. That’s our target gene! Change the p-value threshold in the code (from 0.05 to 0.001) to see how strict the criteria applied by bioinformaticians can be.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "en/lab_6.html#knowledge-check",
+    "href": "en/lab_6.html#knowledge-check",
+    "title": "Lab 6: Gene Expression Analysis (RNA-Seq)",
+    "section": "Knowledge Check",
+    "text": "Knowledge Check\nQuestion 1: What does RNA-Seq technology measure? The order of nucleotides in chromosomesGene expression (activity) levelsThe three-dimensional structure of proteins\nQuestion 2: If a gene has a Log2FC = 2, it means its expression relative to the control group has: Decreased twofoldRemained unchangedIncreased fourfold (2^2)"
+  },
+  {
     "objectID": "en/lab_3.html",
     "href": "en/lab_3.html",
     "title": "Lab 3: Sequence Profiles, Evolution, and Hidden Messages",
@@ -811,7 +839,7 @@
     "href": "laboratorium_1.html#część-1-ncbi-i-formaty-tekstowe-manualnie",
     "title": "Laboratorium 1: Od klikania do kodowania – eksploracja baz danych przez API",
     "section": "Część 1: NCBI i formaty tekstowe (Manualnie)",
-    "text": "Część 1: NCBI i formaty tekstowe (Manualnie)\nZanim zmusimy komputer do pracy, musimy zrozumieć, co on widzi. Najważniejszym portalem jest NCBI.\nZadanie 1.1: Przeglądarka GenBank 1. Wejdź na NCBI Gene i wyszukaj gen APOE. 2. Znajdź sekcję NCBI Reference Sequences (RefSeq) i kliknij w link NM_000041.4. 3. Wybierz widok GenBank. Zwróć uwagę na pole FEATURES i CDS. * Pytanie: Czy widzisz, które fragmenty sekwencji odpowiadają za kodowanie białka?",
+    "text": "Część 1: NCBI i formaty tekstowe (Manualnie)\nZanim zmusimy komputer do pracy, musimy zrozumieć, co on widzi. Najważniejszym portalem jest NCBI.\nZadanie 1.1: Przeglądarka GenBank\n\nWejdź na NCBI Gene i wyszukaj gen APOE.\nZnajdź sekcję NCBI Reference Sequences (RefSeq) i kliknij w link NM_000041.4.\nWybierz widok GenBank. Zwróć uwagę na pole FEATURES i CDS.\n\nPytanie: Czy widzisz, które fragmenty sekwencji odpowiadają za kodowanie białka?",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -823,7 +851,7 @@
     "href": "laboratorium_1.html#część-2-uniprot-encyklopedia-białek-manualnie",
     "title": "Laboratorium 1: Od klikania do kodowania – eksploracja baz danych przez API",
     "section": "Część 2: UniProt – Encyklopedia Białek (Manualnie)",
-    "text": "Część 2: UniProt – Encyklopedia Białek (Manualnie)\nUniProt (Universal Protein Resource) to najważniejsza baza danych o białkach. W przeciwieństwie do GenBanku, który jest bazą sekwencji, UniProt to baza wiedzy.\nZadanie 2.1: Zostań detektywem UniProt 1. Wejdź na UniProt.org. 2. Wyszukaj białko po numerze akcesyjnym: P02649 (to ludzkie białko APOE). 3. Analiza sekcji: Przejdź przez lewy panel nawigacyjny i odpowiedz na pytania: * Function: Jaką główną rolę pełni to białko? * Subcellular location: Gdzie w komórce (lub poza nią) znajdziemy to białko? (Szukaj frazy Secreted lub Extracellular). * Disease & Variants: Z jakimi chorobami powiązane są mutacje w tym genie? Czy widzisz wzmiankę o chorobie Alzheimera? * Structure: Przewiń do sekcji struktury. Czy widzisz model AlphaFold? Spróbuj nim obrócić w przeglądarce!\nZadanie 2.2: Swiss-Prot vs TrEMBL Zwróć uwagę na kolor ikony przy nazwie białka. * 🌟 Złota (Swiss-Prot): Rekord sprawdzony ręcznie przez kuratora (wysoka wiarygodność). * 🔘 Szara (TrEMBL): Rekord wygenerowany automatycznie (może zawierać błędy). * Pytanie: Którą wersję APOE właśnie przeglądasz?",
+    "text": "Część 2: UniProt – Encyklopedia Białek (Manualnie)\nUniProt (Universal Protein Resource) to najważniejsza baza danych o białkach. W przeciwieństwie do GenBanku, który jest bazą sekwencji, UniProt to baza wiedzy.\nZadanie 2.1: Zostań detektywem UniProt\n\nWejdź na UniProt.org.\nWyszukaj białko po numerze akcesyjnym: P02649 (to ludzkie białko APOE).\nAnaliza sekcji: Przejdź przez lewy panel nawigacyjny i odpowiedz na pytania:\n\nFunction: Jaką główną rolę pełni to białko?\nSubcellular location: Gdzie w komórce (lub poza nią) znajdziemy to białko? (Szukaj frazy Secreted lub Extracellular).\nDisease & Variants: Z jakimi chorobami powiązane są mutacje w tym genie? Czy widzisz wzmiankę o chorobie Alzheimera?\nStructure: Przewiń do sekcji struktury. Czy widzisz model AlphaFold? Spróbuj nim obrócić w przeglądarce!\n\n\nZadanie 2.2: Swiss-Prot vs TrEMBL\nZwróć uwagę na kolor ikony przy nazwie białka.\n\n🌟 Złota (Swiss-Prot): Rekord sprawdzony ręcznie przez kuratora (wysoka wiarygodność).\n🔘 Szara (TrEMBL): Rekord wygenerowany automatycznie (może zawierać błędy).\nPytanie: Którą wersję APOE właśnie przeglądasz?",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -835,7 +863,7 @@
     "href": "laboratorium_1.html#część-3-automatyzacja-w-r-api",
     "title": "Laboratorium 1: Od klikania do kodowania – eksploracja baz danych przez API",
     "section": "Część 3: Automatyzacja w R (API)",
-    "text": "Część 3: Automatyzacja w R (API)\nW klasycznym podejściu wyszukiwalibyśmy rekord dotyczący genu APOE pod numerem NM_000041.4. Teraz zrobimy to za pomocą kodu w języku R.\n\nZadanie 3.1: Pobieranie sekwencji z UniProt przez URL\nW R możemy pobrać dane z UniProt, generując odpowiedni link.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nZadanie 3.2: Odpytywanie NCBI przez rentrez\nPobierzmy dane o genomie, które wcześniej widziałeś na stronie WWW.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nDo dyskusji: * Zmień w kodzie bazę z \"nuccore\" na \"protein\" i spróbuj pobrać sekwencję białkową kodowaną przez ten gen (musisz znaleźć jej protein_id). * Użyj funkcji z pakietu seqinr, aby sprawdzić częstotliwość występowania poszczególnych nukleotydów.",
+    "text": "Część 3: Automatyzacja w R (API)\nW klasycznym podejściu wyszukiwalibyśmy rekord dotyczący genu APOE pod numerem NM_000041.4. Teraz zrobimy to za pomocą kodu w języku R.\n\nZadanie 3.1: Pobieranie sekwencji z UniProt przez URL\nW R możemy pobrać dane z UniProt, generując odpowiedni link.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nZadanie 3.2: Odpytywanie NCBI przez rentrez\nPobierzmy dane o genomie, które wcześniej widziałeś na stronie WWW.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nDo dyskusji:\n\nZmień w kodzie bazę z \"nuccore\" na \"protein\" i spróbuj pobrać sekwencję białkową kodowaną przez ten gen (musisz znaleźć jej protein_id).\nUżyj funkcji z pakietu seqinr, aby sprawdzić częstotliwość występowania poszczególnych nukleotydów.",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -1283,6 +1311,34 @@
       "Laboratory Classes",
       "Lab 2: Sequence Alignment"
     ]
+  },
+  {
+    "objectID": "en/lab_7.html",
+    "href": "en/lab_7.html",
+    "title": "Lab 7: Drug Design (Molecular Docking)",
+    "section": "",
+    "text": "Having the predicted 3D structure of a protein (thanks to AlphaFold from Lab 5), we can move on to Rational Drug Design. Instead of testing millions of chemical compounds “blindly” in the laboratory, we use computer simulations.\nThe most popular method is Molecular Docking. It’s like fitting a key (a drug molecule, called a ligand) into a lock (the binding pocket in our receptor protein).\nThe docking algorithm evaluates the Binding Affinity. The more negative the score (e.g., -9.0 kcal/mol), the stronger the drug binds to the protein!\n\n\nBefore we dock the drug, the algorithm must locate the center of the protein “pocket” in 3D space. In PDB files, these are simply the X, Y, Z coordinates of selected amino acids.\nTask: Below are the coordinates of three amino acids forming the active site of an enzyme. Run the code so the algorithm can calculate the Center of Mass of the pocket – this is where we will target our virtual drug!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "en/lab_7.html#from-structure-to-medicine",
+    "href": "en/lab_7.html#from-structure-to-medicine",
+    "title": "Lab 7: Drug Design (Molecular Docking)",
+    "section": "",
+    "text": "Having the predicted 3D structure of a protein (thanks to AlphaFold from Lab 5), we can move on to Rational Drug Design. Instead of testing millions of chemical compounds “blindly” in the laboratory, we use computer simulations.\nThe most popular method is Molecular Docking. It’s like fitting a key (a drug molecule, called a ligand) into a lock (the binding pocket in our receptor protein).\nThe docking algorithm evaluates the Binding Affinity. The more negative the score (e.g., -9.0 kcal/mol), the stronger the drug binds to the protein!\n\n\nBefore we dock the drug, the algorithm must locate the center of the protein “pocket” in 3D space. In PDB files, these are simply the X, Y, Z coordinates of selected amino acids.\nTask: Below are the coordinates of three amino acids forming the active site of an enzyme. Run the code so the algorithm can calculate the Center of Mass of the pocket – this is where we will target our virtual drug!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "en/lab_7.html#the-finale-real-docking-in-the-cloud",
+    "href": "en/lab_7.html#the-finale-real-docking-in-the-cloud",
+    "title": "Lab 7: Drug Design (Molecular Docking)",
+    "section": "The Finale: Real Docking in the Cloud",
+    "text": "The Finale: Real Docking in the Cloud\nTo perform physical docking (searching for drug conformations in space), we need more powerful tools, such as AutoDock Vina.\nJust like with AlphaFold, we will do this in a free cloud computing environment!\n\nGo to the PDB database and download the structure of your protein of interest.\nGo to the PubChem database and download the structure of any drug (e.g., Aspirin or Ibuprofen) in SDF format.\nOpen the prepared Google Colab for AutoDock Vina.\nUpload the files and run the simulation. Record the result (binding affinity)!"
+  },
+  {
+    "objectID": "en/lab_7.html#knowledge-check",
+    "href": "en/lab_7.html#knowledge-check",
+    "title": "Lab 7: Drug Design (Molecular Docking)",
+    "section": "Knowledge Check",
+    "text": "Knowledge Check\nQuestion 1: What do we call the small molecule (e.g., a drug) that we try to fit into a large protein? ReceptorLigandReference sequence\nQuestion 2: When evaluating docking results (Binding Affinity), which score suggests a stronger and more stable bond between the drug and the protein? -2.5 kcal/mol-9.8 kcal/mol+1.2 kcal/mol"
   },
   {
     "objectID": "en/lab_4.html",
