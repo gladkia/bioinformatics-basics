@@ -56,6 +56,8 @@ Zwróć uwagę na kolor ikony przy nazwie białka.
 
 ## Część 3: Automatyzacja w R (API)
 
+Zanim zaczniemy pisać kod w R, upewnijmy się, że mamy odpowiednie środowisko pracy. Do pracy z językiem R w chmurze rekomendujemy [Posit Cloud](https://posit.cloud/). Po zalogowaniu możesz utworzyć nowy projekt RStudio, który posłuży jako Twoje środowisko do kodowania. Podstawy języka R opanujemy, korzystając ze szkolenia dostępnego pod adresem: [https://carpentries-incubator.github.io/bioc-intro/23-starting-with-r.html](https://carpentries-incubator.github.io/bioc-intro/23-starting-with-r.html).
+
 W klasycznym podejściu wyszukiwalibyśmy rekord dotyczący genu APOE pod numerem `NM_000041.4`. Teraz zrobimy to za pomocą kodu w języku R.
 
 ### Zadanie 3.1: Pobieranie sekwencji z UniProt przez URL
