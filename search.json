@@ -192,28 +192,44 @@
     "href": "en/lab_6.html",
     "title": "Lab 6: Gene Expression Analysis (RNA-Seq)",
     "section": "",
-    "text": "In Lab 4, we looked for mutations in the DNA sequence. However, just having a gene doesn’t mean it’s active! A neuron in a fruit fly’s brain and a cell in its wing have exactly the same DNA, but they look and function completely differently.\nWhy? Because different genes are being expressed (transcribed into RNA) in them. RNA-Seq technology allows us to count how many mRNA molecules of each gene are currently present in a cell."
+    "text": "In Lab 4, we looked for mutations in the DNA sequence. However, just having a gene doesn’t mean it’s active! A neuron in a fruit fly’s brain and a cell in its wing have exactly the same DNA, but they look and function completely differently.\nWhy? Because different genes are being expressed (transcribed into RNA) in them. RNA-Seq technology allows us to count how many mRNA molecules of each gene are currently present in a cell.",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 6: RNA-Seq (Expression)"
+    ]
   },
   {
     "objectID": "en/lab_6.html#from-dna-to-rna-what-is-the-cell-doing",
     "href": "en/lab_6.html#from-dna-to-rna-what-is-the-cell-doing",
     "title": "Lab 6: Gene Expression Analysis (RNA-Seq)",
     "section": "",
-    "text": "In Lab 4, we looked for mutations in the DNA sequence. However, just having a gene doesn’t mean it’s active! A neuron in a fruit fly’s brain and a cell in its wing have exactly the same DNA, but they look and function completely differently.\nWhy? Because different genes are being expressed (transcribed into RNA) in them. RNA-Seq technology allows us to count how many mRNA molecules of each gene are currently present in a cell."
+    "text": "In Lab 4, we looked for mutations in the DNA sequence. However, just having a gene doesn’t mean it’s active! A neuron in a fruit fly’s brain and a cell in its wing have exactly the same DNA, but they look and function completely differently.\nWhy? Because different genes are being expressed (transcribed into RNA) in them. RNA-Seq technology allows us to count how many mRNA molecules of each gene are currently present in a cell.",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 6: RNA-Seq (Expression)"
+    ]
   },
   {
     "objectID": "en/lab_6.html#the-count-matrix",
     "href": "en/lab_6.html#the-count-matrix",
     "title": "Lab 6: Gene Expression Analysis (RNA-Seq)",
     "section": "The Count Matrix",
-    "text": "The Count Matrix\nThe result of an RNA-Seq experiment is not a single sequence, but a giant table. In the rows, we have gene names, in the columns, we have samples (e.g., “Healthy” and “Diseased”), and the cells contain numbers indicating how many times the sequencer read a given gene.\nThe most important parameter we want to calculate is the Log2 Fold Change (log2FC). It tells us how much the gene expression has changed: * log2FC &gt; 0: The gene is overexpressed (upregulated) in the disease. * log2FC &lt; 0: The gene is silenced (downregulated).\n\nInteractive Task: Creating a Volcano Plot!\nIn professional analysis, we would use advanced packages like DESeq2 or edgeR. Here, we will simulate these results and create the most important plot in transcriptomics – the Volcano Plot.\nTask: Run the code below. Find the most “glowing” red point on the plot. That’s our target gene! Change the p-value threshold in the code (from 0.05 to 0.001) to see how strict the criteria applied by bioinformaticians can be.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "text": "The Count Matrix\nThe result of an RNA-Seq experiment is not a single sequence, but a giant table. In the rows, we have gene names, in the columns, we have samples (e.g., “Healthy” and “Diseased”), and the cells contain numbers indicating how many times the sequencer read a given gene.\nThe most important parameter we want to calculate is the Log2 Fold Change (log2FC). It tells us how much the gene expression has changed: * log2FC &gt; 0: The gene is overexpressed (upregulated) in the disease. * log2FC &lt; 0: The gene is silenced (downregulated).\n\nInteractive Task: Creating a Volcano Plot!\nIn professional analysis, we would use advanced packages like DESeq2 or edgeR. Here, we will simulate these results and create the most important plot in transcriptomics – the Volcano Plot.\nTask: Run the code below. Find the most “glowing” red point on the plot. That’s our target gene! Change the p-value threshold in the code (from 0.05 to 0.001) to see how strict the criteria applied by bioinformaticians can be.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 6: RNA-Seq (Expression)"
+    ]
   },
   {
     "objectID": "en/lab_6.html#knowledge-check",
     "href": "en/lab_6.html#knowledge-check",
     "title": "Lab 6: Gene Expression Analysis (RNA-Seq)",
     "section": "Knowledge Check",
-    "text": "Knowledge Check\nQuestion 1: What does RNA-Seq technology measure? The order of nucleotides in chromosomesGene expression (activity) levelsThe three-dimensional structure of proteins\nQuestion 2: If a gene has a Log2FC = 2, it means its expression relative to the control group has: Decreased twofoldRemained unchangedIncreased fourfold (2^2)"
+    "text": "Knowledge Check\nQuestion 1: What does RNA-Seq technology measure? The order of nucleotides in chromosomesGene expression (activity) levelsThe three-dimensional structure of proteins\nQuestion 2: If a gene has a Log2FC = 2, it means its expression relative to the control group has: Decreased twofoldRemained unchangedIncreased fourfold (2^2)",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 6: RNA-Seq (Expression)"
+    ]
   },
   {
     "objectID": "en/lab_3.html",
@@ -599,14 +615,14 @@
     "href": "context.html",
     "title": "Project Context: Bioinformatics Basics",
     "section": "",
-    "text": "This document provides a summary of the key information about the “Bioinformatics Basics” project repository.\n\n\n\nProject Type: A bilingual educational website.\nPurpose: To host and deliver course materials for the “Bioinformatics Basics” course at the Warsaw University of Technology. This includes the syllabus, lecture notes, and laboratory exercises.\nLanguages: The website is available in two languages:\n\nPolish (Primary): The main content is in Polish.\nEnglish (Secondary): A full English translation is provided.\n\n\n\n\n\n\nQuarto: The project is built using Quarto, a modern, open-source scientific and technical publishing system.\nR & Python: The course materials teach scripting and data analysis using both R and Python.\nQuarto webr Extension: The project utilizes the webr extension, which allows for embedding interactive R code cells that can be executed directly in the web browser, providing a hands-on learning experience.\n\n\n\n\n\n_quarto.yml: The main configuration file for the Quarto project. It defines the website’s structure, navigation, sidebars, and language settings.\n.qmd Files: The source content is written in Quarto Markdown (.qmd) files.\n\nFiles in the root directory (e.g., index.qmd, wyklad_1.qmd) contain the Polish version of the content.\nFiles in the en/ subdirectory (e.g., en/index.qmd, en/lecture_1.qmd) contain the English translation.\n\n_site/: This directory contains the generated HTML output of the website. It is not tracked by Git.\n_extensions/: This directory houses the webr Quarto extension used for interactive R code blocks.\n\n\n\n\nThe website is generated by rendering the .qmd files using Quarto. The _quarto.yml file orchestrates this process, creating a bilingual website with separate sidebars and navigation for each language. The final output is a static HTML site located in the _site/ directory."
+    "text": "This document provides a summary of the key information about the “Bioinformatics Basics” project repository.\n\n\n\nProject Type: A bilingual educational website.\nPurpose: To host and deliver course materials for the “Bioinformatics Basics” course at the Warsaw University of Technology (PW), primarily for biotechnology students. Materials are also intended to be useful for a broader audience.\nAuthor: Arkadiusz Gładki (lecturer at WUT)\nLanguages: The website is available in two languages:\n\nPolish (Primary): The main content is in Polish.\nEnglish (Secondary): A full English translation is provided.\n\nSite URL: https://gladkia.github.io/bioinformatics-basics/\nGitHub: https://github.com/gladkia/bioinformatics-basics\n\n\n\n\n\nQuarto: The project is built using Quarto, a modern, open-source scientific and technical publishing system.\nR & Python: The course materials teach scripting and data analysis using both R and Python.\nQuarto webr Extension: The project utilizes the webr extension, which allows for embedding interactive R code cells that can be executed directly in the web browser, providing a hands-on learning experience.\n\n\n\n\n\n_quarto.yml: The main configuration file for the Quarto project. It defines the website’s structure, navigation, sidebars, and language settings.\n.qmd Files: The source content is written in Quarto Markdown (.qmd) files.\n\nFiles in the root directory contain the Polish version of the content:\n\nindex.qmd — syllabus and grading info\nwyklad_1.qmd, wyklad_2.qmd — lecture notes (2 lectures)\nlaboratorium_1.qmd … laboratorium_7.qmd — lab exercises (7 labs)\n\nFiles in the en/ subdirectory contain the English translation:\n\nen/index.qmd — syllabus and grading info\nen/lecture_1.qmd, en/lecture_2.qmd — lecture notes (2 lectures)\nen/lab_1.qmd … en/lab_7.qmd — lab exercises (7 labs)\nNote: en/lab_6.qmd and en/lab_7.qmd exist as files but are currently not listed in the EN sidebar in _quarto.yml (EN sidebar shows only lab 1–5). This may be intentional (WIP) or a gap to address.\n\n\n_site/: This directory contains the generated HTML output of the website. It is not tracked by Git.\n_extensions/: This directory houses the webr Quarto extension used for interactive R code blocks.\n\n\n\n\n\n2 wykłady: Wstęp, Bioinformatyka strukturalna\n7 laboratoriów: Bazy danych i API, Algorytmy przyrównań, Profile i Ewolucja, Analiza danych NGS, Struktury białek (AI), RNA-Seq (Ekspresja), Dokowanie leków\n\n\n\n\nThe website is generated by rendering the .qmd files using Quarto. The _quarto.yml file orchestrates this process, creating a bilingual website with separate sidebars and navigation for each language. The final output is a static HTML site located in the _site/ directory."
   },
   {
     "objectID": "context.html#project-overview",
     "href": "context.html#project-overview",
     "title": "Project Context: Bioinformatics Basics",
     "section": "",
-    "text": "Project Type: A bilingual educational website.\nPurpose: To host and deliver course materials for the “Bioinformatics Basics” course at the Warsaw University of Technology. This includes the syllabus, lecture notes, and laboratory exercises.\nLanguages: The website is available in two languages:\n\nPolish (Primary): The main content is in Polish.\nEnglish (Secondary): A full English translation is provided."
+    "text": "Project Type: A bilingual educational website.\nPurpose: To host and deliver course materials for the “Bioinformatics Basics” course at the Warsaw University of Technology (PW), primarily for biotechnology students. Materials are also intended to be useful for a broader audience.\nAuthor: Arkadiusz Gładki (lecturer at WUT)\nLanguages: The website is available in two languages:\n\nPolish (Primary): The main content is in Polish.\nEnglish (Secondary): A full English translation is provided.\n\nSite URL: https://gladkia.github.io/bioinformatics-basics/\nGitHub: https://github.com/gladkia/bioinformatics-basics"
   },
   {
     "objectID": "context.html#key-technologies",
@@ -620,7 +636,14 @@
     "href": "context.html#repository-structure-key-files",
     "title": "Project Context: Bioinformatics Basics",
     "section": "",
-    "text": "_quarto.yml: The main configuration file for the Quarto project. It defines the website’s structure, navigation, sidebars, and language settings.\n.qmd Files: The source content is written in Quarto Markdown (.qmd) files.\n\nFiles in the root directory (e.g., index.qmd, wyklad_1.qmd) contain the Polish version of the content.\nFiles in the en/ subdirectory (e.g., en/index.qmd, en/lecture_1.qmd) contain the English translation.\n\n_site/: This directory contains the generated HTML output of the website. It is not tracked by Git.\n_extensions/: This directory houses the webr Quarto extension used for interactive R code blocks."
+    "text": "_quarto.yml: The main configuration file for the Quarto project. It defines the website’s structure, navigation, sidebars, and language settings.\n.qmd Files: The source content is written in Quarto Markdown (.qmd) files.\n\nFiles in the root directory contain the Polish version of the content:\n\nindex.qmd — syllabus and grading info\nwyklad_1.qmd, wyklad_2.qmd — lecture notes (2 lectures)\nlaboratorium_1.qmd … laboratorium_7.qmd — lab exercises (7 labs)\n\nFiles in the en/ subdirectory contain the English translation:\n\nen/index.qmd — syllabus and grading info\nen/lecture_1.qmd, en/lecture_2.qmd — lecture notes (2 lectures)\nen/lab_1.qmd … en/lab_7.qmd — lab exercises (7 labs)\nNote: en/lab_6.qmd and en/lab_7.qmd exist as files but are currently not listed in the EN sidebar in _quarto.yml (EN sidebar shows only lab 1–5). This may be intentional (WIP) or a gap to address.\n\n\n_site/: This directory contains the generated HTML output of the website. It is not tracked by Git.\n_extensions/: This directory houses the webr Quarto extension used for interactive R code blocks."
+  },
+  {
+    "objectID": "context.html#course-content-pl-sidebar",
+    "href": "context.html#course-content-pl-sidebar",
+    "title": "Project Context: Bioinformatics Basics",
+    "section": "",
+    "text": "2 wykłady: Wstęp, Bioinformatyka strukturalna\n7 laboratoriów: Bazy danych i API, Algorytmy przyrównań, Profile i Ewolucja, Analiza danych NGS, Struktury białek (AI), RNA-Seq (Ekspresja), Dokowanie leków"
   },
   {
     "objectID": "context.html#build-process",
@@ -1352,28 +1375,44 @@
     "href": "en/lab_7.html",
     "title": "Lab 7: Drug Design (Molecular Docking)",
     "section": "",
-    "text": "Having the predicted 3D structure of a protein (thanks to AlphaFold from Lab 5), we can move on to Rational Drug Design. Instead of testing millions of chemical compounds “blindly” in the laboratory, we use computer simulations.\nThe most popular method is Molecular Docking. It’s like fitting a key (a drug molecule, called a ligand) into a lock (the binding pocket in our receptor protein).\nThe docking algorithm evaluates the Binding Affinity. The more negative the score (e.g., -9.0 kcal/mol), the stronger the drug binds to the protein!\n\n\nBefore we dock the drug, the algorithm must locate the center of the protein “pocket” in 3D space. In PDB files, these are simply the X, Y, Z coordinates of selected amino acids.\nTask: Below are the coordinates of three amino acids forming the active site of an enzyme. Run the code so the algorithm can calculate the Center of Mass of the pocket – this is where we will target our virtual drug!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "text": "Having the predicted 3D structure of a protein (thanks to AlphaFold from Lab 5), we can move on to Rational Drug Design. Instead of testing millions of chemical compounds “blindly” in the laboratory, we use computer simulations.\nThe most popular method is Molecular Docking. It’s like fitting a key (a drug molecule, called a ligand) into a lock (the binding pocket in our receptor protein).\nThe docking algorithm evaluates the Binding Affinity. The more negative the score (e.g., -9.0 kcal/mol), the stronger the drug binds to the protein!\n\n\nBefore we dock the drug, the algorithm must locate the center of the protein “pocket” in 3D space. In PDB files, these are simply the X, Y, Z coordinates of selected amino acids.\nTask: Below are the coordinates of three amino acids forming the active site of an enzyme. Run the code so the algorithm can calculate the Center of Mass of the pocket – this is where we will target our virtual drug!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 7: Drug Docking"
+    ]
   },
   {
     "objectID": "en/lab_7.html#from-structure-to-medicine",
     "href": "en/lab_7.html#from-structure-to-medicine",
     "title": "Lab 7: Drug Design (Molecular Docking)",
     "section": "",
-    "text": "Having the predicted 3D structure of a protein (thanks to AlphaFold from Lab 5), we can move on to Rational Drug Design. Instead of testing millions of chemical compounds “blindly” in the laboratory, we use computer simulations.\nThe most popular method is Molecular Docking. It’s like fitting a key (a drug molecule, called a ligand) into a lock (the binding pocket in our receptor protein).\nThe docking algorithm evaluates the Binding Affinity. The more negative the score (e.g., -9.0 kcal/mol), the stronger the drug binds to the protein!\n\n\nBefore we dock the drug, the algorithm must locate the center of the protein “pocket” in 3D space. In PDB files, these are simply the X, Y, Z coordinates of selected amino acids.\nTask: Below are the coordinates of three amino acids forming the active site of an enzyme. Run the code so the algorithm can calculate the Center of Mass of the pocket – this is where we will target our virtual drug!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "text": "Having the predicted 3D structure of a protein (thanks to AlphaFold from Lab 5), we can move on to Rational Drug Design. Instead of testing millions of chemical compounds “blindly” in the laboratory, we use computer simulations.\nThe most popular method is Molecular Docking. It’s like fitting a key (a drug molecule, called a ligand) into a lock (the binding pocket in our receptor protein).\nThe docking algorithm evaluates the Binding Affinity. The more negative the score (e.g., -9.0 kcal/mol), the stronger the drug binds to the protein!\n\n\nBefore we dock the drug, the algorithm must locate the center of the protein “pocket” in 3D space. In PDB files, these are simply the X, Y, Z coordinates of selected amino acids.\nTask: Below are the coordinates of three amino acids forming the active site of an enzyme. Run the code so the algorithm can calculate the Center of Mass of the pocket – this is where we will target our virtual drug!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 7: Drug Docking"
+    ]
   },
   {
     "objectID": "en/lab_7.html#the-finale-real-docking-in-the-cloud",
     "href": "en/lab_7.html#the-finale-real-docking-in-the-cloud",
     "title": "Lab 7: Drug Design (Molecular Docking)",
     "section": "The Finale: Real Docking in the Cloud",
-    "text": "The Finale: Real Docking in the Cloud\nTo perform physical docking (searching for drug conformations in space), we need more powerful tools, such as AutoDock Vina.\nJust like with AlphaFold, we will do this in a free cloud computing environment!\n\nGo to the PDB database and download the structure of your protein of interest.\nGo to the PubChem database and download the structure of any drug (e.g., Aspirin or Ibuprofen) in SDF format.\nOpen the prepared Google Colab for AutoDock Vina.\nUpload the files and run the simulation. Record the result (binding affinity)!"
+    "text": "The Finale: Real Docking in the Cloud\nTo perform physical docking (searching for drug conformations in space), we need more powerful tools, such as AutoDock Vina.\nJust like with AlphaFold, we will do this in a free cloud computing environment!\n\nGo to the PDB database and download the structure of your protein of interest.\nGo to the PubChem database and download the structure of any drug (e.g., Aspirin or Ibuprofen) in SDF format.\nOpen the prepared Google Colab for AutoDock Vina.\nUpload the files and run the simulation. Record the result (binding affinity)!",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 7: Drug Docking"
+    ]
   },
   {
     "objectID": "en/lab_7.html#knowledge-check",
     "href": "en/lab_7.html#knowledge-check",
     "title": "Lab 7: Drug Design (Molecular Docking)",
     "section": "Knowledge Check",
-    "text": "Knowledge Check\nQuestion 1: What do we call the small molecule (e.g., a drug) that we try to fit into a large protein? ReceptorLigandReference sequence\nQuestion 2: When evaluating docking results (Binding Affinity), which score suggests a stronger and more stable bond between the drug and the protein? -2.5 kcal/mol-9.8 kcal/mol+1.2 kcal/mol"
+    "text": "Knowledge Check\nQuestion 1: What do we call the small molecule (e.g., a drug) that we try to fit into a large protein? ReceptorLigandReference sequence\nQuestion 2: When evaluating docking results (Binding Affinity), which score suggests a stronger and more stable bond between the drug and the protein? -2.5 kcal/mol-9.8 kcal/mol+1.2 kcal/mol",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 7: Drug Docking"
+    ]
   },
   {
     "objectID": "en/lab_4.html",

@@ -4229,6 +4229,7 @@ vertical-align: -.125em;
   <li><a href="#project-overview" id="toc-project-overview" class="nav-link" data-scroll-target="#project-overview">Project Overview</a></li>
   <li><a href="#key-technologies" id="toc-key-technologies" class="nav-link" data-scroll-target="#key-technologies">Key Technologies</a></li>
   <li><a href="#repository-structure-key-files" id="toc-repository-structure-key-files" class="nav-link" data-scroll-target="#repository-structure-key-files">Repository Structure &amp; Key Files</a></li>
+  <li><a href="#course-content-pl-sidebar" id="toc-course-content-pl-sidebar" class="nav-link" data-scroll-target="#course-content-pl-sidebar">Course Content (PL Sidebar)</a></li>
   <li><a href="#build-process" id="toc-build-process" class="nav-link" data-scroll-target="#build-process">Build Process</a></li>
   </ul></li>
   </ul>
@@ -4248,12 +4249,15 @@ vertical-align: -.125em;
 <h2 class="anchored" data-anchor-id="project-overview">Project Overview</h2>
 <ul>
 <li><strong>Project Type</strong>: A bilingual educational website.</li>
-<li><strong>Purpose</strong>: To host and deliver course materials for the “Bioinformatics Basics” course at the Warsaw University of Technology. This includes the syllabus, lecture notes, and laboratory exercises.</li>
+<li><strong>Purpose</strong>: To host and deliver course materials for the “Bioinformatics Basics” course at the Warsaw University of Technology (PW), primarily for biotechnology students. Materials are also intended to be useful for a broader audience.</li>
+<li><strong>Author</strong>: Arkadiusz Gładki (lecturer at WUT)</li>
 <li><strong>Languages</strong>: The website is available in two languages:
 <ul>
 <li><strong>Polish (Primary)</strong>: The main content is in Polish.</li>
 <li><strong>English (Secondary)</strong>: A full English translation is provided.</li>
 </ul></li>
+<li><strong>Site URL</strong>: https://gladkia.github.io/bioinformatics-basics/</li>
+<li><strong>GitHub</strong>: https://github.com/gladkia/bioinformatics-basics</li>
 </ul>
 </section>
 <section id="key-technologies" class="level2">
@@ -4270,11 +4274,29 @@ vertical-align: -.125em;
 <li><strong><code>_quarto.yml</code></strong>: The main configuration file for the Quarto project. It defines the website’s structure, navigation, sidebars, and language settings.</li>
 <li><strong><code>.qmd</code> Files</strong>: The source content is written in Quarto Markdown (<code>.qmd</code>) files.
 <ul>
-<li>Files in the root directory (e.g., <code>index.qmd</code>, <code>wyklad_1.qmd</code>) contain the Polish version of the content.</li>
-<li>Files in the <code>en/</code> subdirectory (e.g., <code>en/index.qmd</code>, <code>en/lecture_1.qmd</code>) contain the English translation.</li>
+<li>Files in the root directory contain the Polish version of the content:
+<ul>
+<li><code>index.qmd</code> — syllabus and grading info</li>
+<li><code>wyklad_1.qmd</code>, <code>wyklad_2.qmd</code> — lecture notes (2 lectures)</li>
+<li><code>laboratorium_1.qmd</code> … <code>laboratorium_7.qmd</code> — lab exercises (7 labs)</li>
+</ul></li>
+<li>Files in the <code>en/</code> subdirectory contain the English translation:
+<ul>
+<li><code>en/index.qmd</code> — syllabus and grading info</li>
+<li><code>en/lecture_1.qmd</code>, <code>en/lecture_2.qmd</code> — lecture notes (2 lectures)</li>
+<li><code>en/lab_1.qmd</code> … <code>en/lab_7.qmd</code> — lab exercises (7 labs)</li>
+<li><strong>Note</strong>: <code>en/lab_6.qmd</code> and <code>en/lab_7.qmd</code> exist as files but are currently not listed in the EN sidebar in <code>_quarto.yml</code> (EN sidebar shows only lab 1–5). This may be intentional (WIP) or a gap to address.</li>
+</ul></li>
 </ul></li>
 <li><strong><code>_site/</code></strong>: This directory contains the generated HTML output of the website. It is not tracked by Git.</li>
 <li><strong><code>_extensions/</code></strong>: This directory houses the <code>webr</code> Quarto extension used for interactive R code blocks.</li>
+</ul>
+</section>
+<section id="course-content-pl-sidebar" class="level2">
+<h2 class="anchored" data-anchor-id="course-content-pl-sidebar">Course Content (PL Sidebar)</h2>
+<ul>
+<li>2 wykłady: Wstęp, Bioinformatyka strukturalna</li>
+<li>7 laboratoriów: Bazy danych i API, Algorytmy przyrównań, Profile i Ewolucja, Analiza danych NGS, Struktury białek (AI), RNA-Seq (Ekspresja), Dokowanie leków</li>
 </ul>
 </section>
 <section id="build-process" class="level2">
