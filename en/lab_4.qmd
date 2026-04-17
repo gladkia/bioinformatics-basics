@@ -87,3 +87,63 @@ print(mapping)
 
 [cite_start]**Question 3:** What is the name of the statistical value that indicates the number of hits one can "expect" to see by chance when searching a database? [cite: 236, 379]
 `r fitb(c("E-value", "e-value", "Expect value"))`
+
+---
+
+## Clinical Context – Somatic Variants in Osteosarcoma
+
+The [osteosarc.com](https://osteosarc.com/) project provides WES (whole exome sequencing) data from an osteosarcoma patient. The result of analysing such data is a **VCF file** containing somatic mutations — changes present in tumour cells but absent from healthy tissue.
+
+Below is a simplified VCF with **real TP53 mutation hotspots** observed in osteosarcoma. The VCF format contains:
+
+| Column | Meaning |
+|--------|---------|
+| `CHROM` | Chromosome |
+| `POS` | Genomic position (hg38) |
+| `REF` | Reference nucleotide |
+| `ALT` | Mutant nucleotide |
+| `INFO` | Additional annotations |
+
+### Task 4.1: Parsing a VCF file in R
+
+```{webr-r}
+# Simulated VCF with known somatic TP53/RB1 hotspot mutations from osteosarcoma
+# Coordinates: GRCh38/hg38
+vcf_data <- data.frame(
+  CHROM = c("chr17", "chr17", "chr17", "chr13"),
+  POS   = c(7674220, 7673802, 7675088, 48941648),
+  ID    = c(".", ".", ".", "."),
+  REF   = c("C", "G", "G", "C"),
+  ALT   = c("T", "A", "A", "T"),
+  QUAL  = c(85, 92, 78, 88),
+  FILTER= c("PASS", "PASS", "PASS", "PASS"),
+  INFO  = c("GENE=TP53;AA=R248W", "GENE=TP53;AA=R273H",
+            "GENE=TP53;AA=R175H", "GENE=RB1;AA=R455C"),
+  stringsAsFactors = FALSE
+)
+
+print(vcf_data)
+```
+
+### Task 4.2: Filtering and analysing variants
+
+```{webr-r}
+# Filter only TP53 variants
+tp53_variants <- vcf_data[grepl("TP53", vcf_data$INFO), ]
+cat("TP53 variants found:", nrow(tp53_variants), "\n\n")
+
+# Extract amino acid changes
+aa_changes <- gsub(".*AA=", "", tp53_variants$INFO)
+cat("Amino acid changes:\n")
+print(data.frame(
+  Position  = tp53_variants$POS,
+  Change    = paste0(tp53_variants$REF, ">", tp53_variants$ALT),
+  AA_change = aa_changes
+))
+```
+
+**Discussion:**
+
+* The **R248W** mutation (C→T) is one of the most common somatic mutations across all cancer types. Why is arginine (R) replaced by tryptophan (W) at this position?
+* How would you check in ClinVar whether the variants found are classified as *Pathogenic*? Go to [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) and search for `TP53 R248W`.
+* The osteosarc.com project provides real VCF files. What bioinformatics tools would be needed to work with a full WES VCF file (tens of thousands of variants)?
