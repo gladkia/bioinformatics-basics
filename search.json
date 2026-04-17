@@ -1024,6 +1024,18 @@
     ]
   },
   {
+    "objectID": "laboratorium_4.html#kontekst-kliniczny-warianty-somatyczne-w-osteosarcoma",
+    "href": "laboratorium_4.html#kontekst-kliniczny-warianty-somatyczne-w-osteosarcoma",
+    "title": "Laboratorium 4: Wstęp do danych NGS i poszukiwania wariantów",
+    "section": "Kontekst kliniczny – Warianty somatyczne w osteosarcoma",
+    "text": "Kontekst kliniczny – Warianty somatyczne w osteosarcoma\nProjekt osteosarc.com udostępnia dane WES (whole exome sequencing) pacjenta z kostniakomięsakiem. Wynikiem analizy takich danych jest plik VCF zawierający mutacje somatyczne — zmiany obecne w komórkach nowotworowych, ale nieobecne w zdrowych tkankach.\nPoniżej przedstawiamy uproszczony plik VCF z rzeczywistymi hotspotami mutacyjnymi TP53 obserwowanymi w osteosarcoma. Format VCF zawiera:\n\n\n\nKolumna\nZnaczenie\n\n\n\n\nCHROM\nChromosom\n\n\nPOS\nPozycja w genomie (hg38)\n\n\nREF\nNukleotyd referencyjny\n\n\nALT\nZmutowany nukleotyd\n\n\nINFO\nDodatkowe informacje\n\n\n\n\nZadanie 4.1: Parsowanie pliku VCF w R\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nZadanie 4.2: Filtrowanie i analiza wariantów\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nDo dyskusji:\n\nMutacja R248W (C→T) to jedna z najczęstszych mutacji somatycznych we wszystkich nowotworach. Dlaczego akurat argininę (R) zastępuje tryptofan (W)?\nJak sprawdziłbyś w ClinVar, czy znalezione warianty są oznaczone jako Pathogenic? Wejdź na ClinVar i wyszukaj TP53 R248W.\nProjekt osteosarc.com udostępnia prawdziwe pliki VCF. Jakie narzędzia bioinformatyczne byłyby potrzebne do pracy z pełnym plikiem VCF z WES (kilkadziesiąt tysięcy wariantów)?",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 4: Analiza danych NGS"
+    ]
+  },
+  {
     "objectID": "laboratorium_7.html",
     "href": "laboratorium_7.html",
     "title": "Laboratorium 7: Projektowanie leków (Molecular Docking)",
@@ -1567,6 +1579,17 @@
     "title": "Lab 4: Introduction to NGS Data and Variant Calling",
     "section": "Knowledge Check",
     "text": "Knowledge Check\nQuestion 1: Which file format is used to store raw sequencing reads along with their quality scores? FASTAFASTQBAMVCF\n[cite_start]Question 2: What is the term for homologous genes found in different species that evolved from a common ancestral gene? [cite: 56] OrthologsParalogsAnalogs\n[cite_start]Question 3: What is the name of the statistical value that indicates the number of hits one can “expect” to see by chance when searching a database? [cite: 236, 379]",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 4: Intro to NGS"
+    ]
+  },
+  {
+    "objectID": "en/lab_4.html#clinical-context-somatic-variants-in-osteosarcoma",
+    "href": "en/lab_4.html#clinical-context-somatic-variants-in-osteosarcoma",
+    "title": "Lab 4: Introduction to NGS Data and Variant Calling",
+    "section": "Clinical Context – Somatic Variants in Osteosarcoma",
+    "text": "Clinical Context – Somatic Variants in Osteosarcoma\nThe osteosarc.com project provides WES (whole exome sequencing) data from an osteosarcoma patient. The result of analysing such data is a VCF file containing somatic mutations — changes present in tumour cells but absent from healthy tissue.\nBelow is a simplified VCF with real TP53 mutation hotspots observed in osteosarcoma. The VCF format contains:\n\n\n\nColumn\nMeaning\n\n\n\n\nCHROM\nChromosome\n\n\nPOS\nGenomic position (hg38)\n\n\nREF\nReference nucleotide\n\n\nALT\nMutant nucleotide\n\n\nINFO\nAdditional annotations\n\n\n\n\nTask 4.1: Parsing a VCF file in R\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nTask 4.2: Filtering and analysing variants\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nDiscussion:\n\nThe R248W mutation (C→T) is one of the most common somatic mutations across all cancer types. Why is arginine (R) replaced by tryptophan (W) at this position?\nHow would you check in ClinVar whether the variants found are classified as Pathogenic? Go to ClinVar and search for TP53 R248W.\nThe osteosarc.com project provides real VCF files. What bioinformatics tools would be needed to work with a full WES VCF file (tens of thousands of variants)?",
     "crumbs": [
       "Laboratory Classes",
       "Lab 4: Intro to NGS"
