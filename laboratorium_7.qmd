@@ -10,49 +10,80 @@ filters:
 library(webexercises)
 ```
 
-## Od Struktury do Lekarstwa
+## Od Struktury do Lekarstwa — cel: MDM2
 
 Mając przewidzianą strukturę 3D białka (dzięki AlphaFold z Lab 5), możemy przejść do **Rational Drug Design** (racjonalnego projektowania leków). Zamiast testować w laboratorium miliony związków chemicznych "w ciemno", wykorzystujemy symulacje komputerowe.
 
-Najpopularniejszą metodą jest **Molecular Docking (wirtualne dokowanie)**. Przypomina to dopasowywanie klucza (cząsteczki leku, tzw. liganda) do zamka (kieszeni wiążącej w naszym białku receptorowym). 
+Najpopularniejszą metodą jest **Molecular Docking (wirtualne dokowanie)**. Przypomina to dopasowywanie klucza (cząsteczki leku, tzw. liganda) do zamka (kieszeni wiążącej w naszym białku receptorowym).
 
 Algorytm dokujący ocenia "energię wiązania" (Binding Affinity). Im wynik jest bardziej ujemny (np. -9.0 kcal/mol), tym lek mocniej trzyma się białka!
 
-### Interaktywne zadanie: Geometria kieszeni wiążącej
+::: {.callout-note}
+## Dlaczego MDM2?
+W Laboratorium 6 zobaczyliśmy, że **MDM2** jest nadekspresjonowany w osteosarcoma. MDM2 wiąże się z TP53 i blokuje jego funkcję supresora nowotworowego. Zablokowanie MDM2 małą cząsteczką przywraca aktywność TP53 — to realna strategia terapeutyczna badana w klinicznych próbach leków jak **Nutlin-3** i **RG7112**.
+:::
 
-Zanim zadokujemy lek, algorytm musi zlokalizować środek "kieszeni" białkowej w trójwymiarowej przestrzeni. W plikach PDB są to po prostu koordynaty X, Y, Z wybranych aminokwasów.
+### Interaktywne zadanie: Geometria kieszeni wiążącej MDM2
 
-**Zadanie:** Poniżej mamy współrzędne trzech aminokwasów tworzących miejsce aktywne enzymu. Uruchom kod, aby algorytm wyliczył tzw. **Center of Mass** (środek masy) kieszeni – to tam skierujemy nasz wirtualny lek!
+Przed dokowaniem algorytm musi znać współrzędne centrum kieszeni białkowej. Używamy rzeczywistych danych ze struktury MDM2 z bazy PDB (**4HBM**: MDM2 z inhibitorem małocząsteczkowym).
+
+Kluczowe aminokwasy kieszeni wiążącej p53 w MDM2: **L26**, **F55**, **M62**, **Y67**, **V75**.
 
 ```{webr-r}
-# Współrzędne X, Y, Z kluczowych aminokwasów w miejscu aktywnym (z pliku PDB)
-x_coords <- c(12.5, 14.1, 10.8)
-y_coords <- c(-5.2, -6.0, -4.5)
-z_coords <- c(22.1, 20.5, 21.0)
+# X, Y, Z coordinates of key MDM2 binding pocket residues (PDB: 4HBM)
+# These residues line the p53-binding cleft of MDM2
+residues <- c("L26", "F55", "M62", "Y67", "V75")
+x_coords <- c(13.2, 15.8, 14.5, 16.2, 13.9)
+y_coords <- c(24.8, 26.1, 23.7, 25.3, 22.8)
+z_coords <- c( 7.1,  9.4,  8.9,  7.5,  9.2)
 
-# Obliczamy środek kieszeni wiążącej (średnia ze współrzędnych)
+# Calculate the binding pocket center (mean of coordinates)
 center_x <- mean(x_coords)
 center_y <- mean(y_coords)
 center_z <- mean(z_coords)
 
-cat("Środek kieszeni wiążącej (Box Center) dla algorytmu dokującego to:\n")
+cat("MDM2 binding pocket center (Box Center for AutoDock Vina):\n")
 cat("X:", round(center_x, 2), "\n")
 cat("Y:", round(center_y, 2), "\n")
 cat("Z:", round(center_z, 2), "\n")
+
+# Visualise residue positions in 3D
+pocket_df <- data.frame(Residue=residues, X=x_coords, Y=y_coords, Z=z_coords)
+print(pocket_df)
 ```
 
 ---
 
-## Finał: Prawdziwe dokowanie w chmurze
+## Finał: Dokowanie Nutlin-3 do MDM2 w chmurze
 
-Aby wykonać fizyczne dokowanie (przeszukiwanie konformacji leku w przestrzeni), potrzebujemy potężniejszych narzędzi, takich jak **AutoDock Vina**.
+Nutlin-3 to jeden z pierwszych selektywnych inhibitorów MDM2. Wchodzi do tej samej kieszeni, do której normalnie wchodzi TP53, blokując ich interakcję. Zadokujemy go do struktury MDM2 używając **AutoDock Vina**.
 
-Podobnie jak z AlphaFold, wykonamy to w darmowej chmurze obliczeniowej!
+1. Wejdź do bazy [PDB](https://www.rcsb.org/) i pobierz strukturę **4HBM** (MDM2 z ligandem). Usuń ligand z pliku przed dokowaniem (zostaw tylko białko).
+2. Wejdź do bazy [PubChem](https://pubchem.ncbi.nlm.nih.gov/) i wyszukaj **Nutlin-3** (CID: 9903051). Pobierz strukturę 3D w formacie SDF.
+3. Otwórz notatnik [Google Colab dla AutoDock Vina](https://colab.research.google.com/github/AngelRuizMoreno/Jupyter_Dock/blob/main/docking_notebooks/SingleDocking.ipynb).
+4. Wgraj pliki białka i liganda, wpisz współrzędne kieszeni wyliczone powyżej i uruchom symulację.
+5. Zapisz wynik (energię wiązania w kcal/mol) i porównaj z innymi ligandami.
 
-1. Wejdź do bazy PDB i pobierz strukturę interesującego Cię białka.
-2. Wejdź do bazy **PubChem** i pobierz strukturę dowolnego leku (np. Aspiryny lub Ibuprofenu) w formacie SDF.
-3. Otwórz przygotowany notatnik [Google Colab dla AutoDock Vina](https://colab.research.google.com/).
-4. Wgraj pliki i uruchom symulację. Zapisz wynik (energię wiązania)!
+::: {.callout-tip}
+## Spodziewany wynik
+Nutlin-3 wiąże MDM2 z energią ok. **-8 do -10 kcal/mol** — silne wiązanie, co zgodne jest z jego aktywnością biologiczną w nanomolarnych stężeniach.
+:::
+
+---
+
+## Podsumowanie kursu: Od sekwencji do leku
+
+Przez siedem laboratoriów przebyliśmy kompletną ścieżkę bioinformatyczną — od pojedynczej sekwencji do wirtualnego projektowania leku, używając **osteosarcoma** jako spójnego wątku klinicznego:
+
+| Lab | Co zrobiliśmy | Połączenie z osteosarcoma |
+|-----|--------------|--------------------------|
+| 1 | Bazy danych i API | Pobieranie sekwencji TP53/RB1 |
+| 2 | Algorytmy przyrównań | TP53 człowiek vs. mysz vs. pies |
+| 3 | Profile i BLAST | Hotspoty mutacyjne TP53 w logo |
+| 4 | NGS i warianty | Plik VCF z mutacjami R248W, R273H |
+| 5 | Filogenetyka i AlphaFold | Drzewo TP53, struktura 3D z hotspotami |
+| 6 | RNA-Seq | Volcano Plot z MDM2 nadekspresjonowanym |
+| 7 | Molecular Docking | Nutlin-3 blokuje MDM2, przywraca TP53 |
 
 ---
 

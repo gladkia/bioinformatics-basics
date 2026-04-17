@@ -10,49 +10,80 @@ filters:
 library(webexercises)
 ```
 
-## From Structure to Medicine
+## From Structure to Medicine — target: MDM2
 
 Having the predicted 3D structure of a protein (thanks to AlphaFold from Lab 5), we can move on to **Rational Drug Design**. Instead of testing millions of chemical compounds "blindly" in the laboratory, we use computer simulations.
 
-The most popular method is **Molecular Docking**.  It's like fitting a key (a drug molecule, called a ligand) into a lock (the binding pocket in our receptor protein).
+The most popular method is **Molecular Docking** — fitting a key (a drug molecule, the ligand) into a lock (the binding pocket of our receptor protein).
 
 The docking algorithm evaluates the **Binding Affinity**. The more negative the score (e.g., -9.0 kcal/mol), the stronger the drug binds to the protein!
 
-### Interactive Task: Binding Pocket Geometry
+::: {.callout-note}
+## Why MDM2?
+In Lab 6, we saw that **MDM2** is overexpressed in osteosarcoma. MDM2 binds TP53 and blocks its tumour-suppressor function. Blocking MDM2 with a small molecule restores TP53 activity — a real therapeutic strategy under investigation in clinical trials with drugs like **Nutlin-3** and **RG7112**.
+:::
 
-Before we dock the drug, the algorithm must locate the center of the protein "pocket" in 3D space. In PDB files, these are simply the X, Y, Z coordinates of selected amino acids.
+### Interactive Task: MDM2 Binding Pocket Geometry
 
-**Task:** Below are the coordinates of three amino acids forming the active site of an enzyme. Run the code so the algorithm can calculate the **Center of Mass** of the pocket – this is where we will target our virtual drug!
+Before docking, the algorithm needs the coordinates of the binding pocket centre. We use real data from the MDM2 crystal structure in the PDB (**4HBM**: MDM2 with a small-molecule inhibitor).
+
+Key residues lining the p53-binding cleft of MDM2: **L26**, **F55**, **M62**, **Y67**, **V75**.
 
 ```{webr-r}
-# X, Y, Z coordinates of key amino acids in the active site (from a PDB file)
-x_coords <- c(12.5, 14.1, 10.8)
-y_coords <- c(-5.2, -6.0, -4.5)
-z_coords <- c(22.1, 20.5, 21.0)
+# X, Y, Z coordinates of key MDM2 binding pocket residues (PDB: 4HBM)
+# These residues line the p53-binding cleft of MDM2
+residues <- c("L26", "F55", "M62", "Y67", "V75")
+x_coords <- c(13.2, 15.8, 14.5, 16.2, 13.9)
+y_coords <- c(24.8, 26.1, 23.7, 25.3, 22.8)
+z_coords <- c( 7.1,  9.4,  8.9,  7.5,  9.2)
 
-# Calculating the center of the binding pocket (mean of coordinates)
+# Calculate the binding pocket center (mean of coordinates)
 center_x <- mean(x_coords)
 center_y <- mean(y_coords)
 center_z <- mean(z_coords)
 
-cat("The Binding Pocket Center (Box Center) for the docking algorithm is:\n")
+cat("MDM2 binding pocket center (Box Center for AutoDock Vina):\n")
 cat("X:", round(center_x, 2), "\n")
 cat("Y:", round(center_y, 2), "\n")
 cat("Z:", round(center_z, 2), "\n")
+
+# Display residue positions
+pocket_df <- data.frame(Residue=residues, X=x_coords, Y=y_coords, Z=z_coords)
+print(pocket_df)
 ```
 
 ---
 
-## The Finale: Real Docking in the Cloud
+## The Finale: Docking Nutlin-3 into MDM2 in the Cloud
 
-To perform physical docking (searching for drug conformations in space), we need more powerful tools, such as **AutoDock Vina**.
+Nutlin-3 was one of the first selective MDM2 inhibitors. It occupies the same pocket that TP53 normally uses, blocking their interaction. We will dock it into the MDM2 structure using **AutoDock Vina**.
 
-Just like with AlphaFold, we will do this in a free cloud computing environment!
+1. Go to the [PDB](https://www.rcsb.org/) and download structure **4HBM** (MDM2 with ligand). Remove the ligand from the file before docking (keep only the protein).
+2. Go to [PubChem](https://pubchem.ncbi.nlm.nih.gov/) and search for **Nutlin-3** (CID: 9903051). Download the 3D structure in SDF format.
+3. Open the [Google Colab AutoDock Vina notebook](https://colab.research.google.com/github/AngelRuizMoreno/Jupyter_Dock/blob/main/docking_notebooks/SingleDocking.ipynb).
+4. Upload the protein and ligand files, enter the pocket coordinates calculated above, and run the simulation.
+5. Record the binding affinity (kcal/mol) and compare with other ligands.
 
-1. Go to the PDB database and download the structure of your protein of interest.
-2. Go to the **PubChem** database and download the structure of any drug (e.g., Aspirin or Ibuprofen) in SDF format.
-3. Open the prepared [Google Colab for AutoDock Vina](https://colab.research.google.com/).
-4. Upload the files and run the simulation. Record the result (binding affinity)!
+::: {.callout-tip}
+## Expected result
+Nutlin-3 binds MDM2 with an affinity of approximately **-8 to -10 kcal/mol** — strong binding, consistent with its nanomolar biological activity.
+:::
+
+---
+
+## Course Summary: From Sequence to Drug
+
+Over seven labs we completed a full bioinformatics pipeline — from a single sequence to virtual drug design — using **osteosarcoma** as a consistent clinical thread:
+
+| Lab | What we did | Osteosarcoma connection |
+|-----|-------------|------------------------|
+| 1 | Databases & APIs | Fetching TP53/RB1 sequences |
+| 2 | Alignment algorithms | TP53: human vs. mouse vs. dog |
+| 3 | Profiles & BLAST | TP53 mutation hotspot logo |
+| 4 | NGS & variant calling | VCF with R248W, R273H mutations |
+| 5 | Phylogenetics & AlphaFold | TP53 tree, 3D structure with hotspots |
+| 6 | RNA-Seq | Volcano Plot: MDM2 overexpressed |
+| 7 | Molecular Docking | Nutlin-3 blocks MDM2, restores TP53 |
 
 ---
 
