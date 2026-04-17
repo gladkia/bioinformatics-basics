@@ -62,6 +62,7 @@ Przez cały kurs będziemy korzystać z publicznie dostępnego zbioru danych pro
 Aby poszerzyć swoją wiedzę poza zajęciami, zachęcam do zapoznania się z poniższymi materiałami:
 
 * Rekomendowany kurs R (bioinformatyka): [Bioconductor R Intro – Carpentries Incubator](https://carpentries-incubator.github.io/bioc-intro/).
+* Dane kliniczne używane w laboratoriach: [osteosarc.com](https://osteosarc.com/) — publiczny, wielopoziomowy zbiór danych omicznych z osteosarcoma.
 * Książka online (za darmo): [The Art of R Programming (Norman Matloff)](https://diytranscriptomics.com/Reading/files/The%20Art%20of%20R%20Programming.pdf).
 * Środowisko pracy w chmurze (25h darmowych obliczeń w miesiącu): [RStudio Cloud / Posit Cloud](https://rstudio.cloud/).
 * Ciekawostka genetyczna: Publikacja z 2022 roku dotycząca pełnego zsekwencjonowania ludzkiego genomu [metodą T2T](https://www.science.org/doi/10.1126/science.abp8653).
