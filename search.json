@@ -265,6 +265,17 @@
     ]
   },
   {
+    "objectID": "en/lab_3.html#clinical-context-tp53-mutation-hotspots-in-osteosarcoma",
+    "href": "en/lab_3.html#clinical-context-tp53-mutation-hotspots-in-osteosarcoma",
+    "title": "Lab 3: Sequence Profiles, Evolution, and Hidden Messages",
+    "section": "Clinical Context – TP53 Mutation Hotspots in Osteosarcoma",
+    "text": "Clinical Context – TP53 Mutation Hotspots in Osteosarcoma\nThe TP53 protein has well-known mutation hotspots — positions where mutations recur across many cancer types, including osteosarcoma. These include R175, G245, R248, R249, R273, and R282.\nA Sequence Logo is the perfect tool for visualising how conserved — and therefore how functionally critical — each position is. Below we use a fragment of the TP53 DNA-binding domain from several mammals to see which positions are evolutionarily invariant.\n\nTask: TP53 DNA-binding domain logo\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nDiscussion:\n\nWhich positions are fully conserved (tall letters in the logo)? Do they overlap with known hotspots (R248, R273)?\nWhy might evolution protect these specific amino acids from change?\nModify one amino acid in the human sequence (e.g. replace R with W at the position corresponding to R248) and re-run. What happens to the logo?",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 3: Profiles & Evolution"
+    ]
+  },
+  {
     "objectID": "en/lab_3.html#part-3-psi-blast-and-pssm-profiles",
     "href": "en/lab_3.html#part-3-psi-blast-and-pssm-profiles",
     "title": "Lab 3: Sequence Profiles, Evolution, and Hidden Messages",
@@ -917,6 +928,18 @@
     ]
   },
   {
+    "objectID": "laboratorium_3.html#kontekst-kliniczny-hotspoty-mutacyjne-tp53-w-osteosarcoma",
+    "href": "laboratorium_3.html#kontekst-kliniczny-hotspoty-mutacyjne-tp53-w-osteosarcoma",
+    "title": "Laboratorium 3: Profile sekwencyjne, Ewolucja i ukryte wiadomości",
+    "section": "Kontekst kliniczny – Hotspoty mutacyjne TP53 w osteosarcoma",
+    "text": "Kontekst kliniczny – Hotspoty mutacyjne TP53 w osteosarcoma\nBiałko TP53 posiada dobrze znane hotspoty mutacyjne — pozycje, w których mutacje pojawiają się wielokrotnie w różnych nowotworach, w tym w osteosarcoma. Należą do nich m.in. R175, G245, R248, R249, R273 i R282.\nSekwencja Logo to idealne narzędzie do wizualizacji tego, jak bardzo dana pozycja jest konserwatywna — a tym samym jak krytyczna funkcjonalnie. Poniżej użyjemy fragmentu domeny wiążącej DNA TP53 pobranego z sekwencji kilku ssaków, aby zobaczyć, które pozycje są niezmienne ewolucyjnie.\n\nZadanie: Logo domeny wiążącej DNA TP53\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nDo dyskusji:\n\nKtóre pozycje są w pełni konserwatywne (wysoka litera w logo)? Czy pokrywają się z opisanymi hotspotami mutacyjnymi (R248, R273)?\nJak myślisz, dlaczego ewolucja chroni te konkretne aminokwasy przed zmianami?\nZmień w kodzie jeden aminokwas w sekwencji człowieka (np. zastąp R przez W w pozycji odpowiadającej R248) i uruchom ponownie. Co się stało z logo?",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 3: Profile i Ewolucja"
+    ]
+  },
+  {
     "objectID": "laboratorium_3.html#część-3-psi-blast-i-profile-pssm",
     "href": "laboratorium_3.html#część-3-psi-blast-i-profile-pssm",
     "title": "Laboratorium 3: Profile sekwencyjne, Ewolucja i ukryte wiadomości",
@@ -1423,6 +1446,17 @@
     "title": "Lab 2: Sequence Alignment Algorithms",
     "section": "Knowledge Check",
     "text": "Knowledge Check\n[cite_start]Question 1: Which algorithm is better suited for finding a shared domain within two very different, long proteins? Needleman-Wunsch (Global)Smith-Waterman (Local)\n[cite_start]Question 2: In the affine gap penalty model, which value is typically more restrictive (more negative)? [cite: 122, 175-177] Gap OpeningGap Extension\n[cite_start]Question 3: Which substitution matrix was used in the code above to score amino acid matches? [cite: 173, 210]",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 2: Sequence Alignment"
+    ]
+  },
+  {
+    "objectID": "en/lab_2.html#clinical-context-aligning-tp53-across-species",
+    "href": "en/lab_2.html#clinical-context-aligning-tp53-across-species",
+    "title": "Lab 2: Sequence Alignment Algorithms",
+    "section": "Clinical Context – Aligning TP53 Across Species",
+    "text": "Clinical Context – Aligning TP53 Across Species\nIn osteosarcoma research, animal models are essential. The domestic dog (Canis lupus familiaris) develops osteosarcoma spontaneously and is considered a better model than the mouse — largely because its proteins are more similar to human ones.\nLet’s verify this by aligning a fragment of the TP53 N-terminal domain across three species. This is the region where most cancer-associated mutations are found.\n\nTask 3: Human vs. Mouse vs. Dog\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nDiscussion:\n\nWhich species aligns more closely to human TP53 — mouse or dog?\nWhy might higher sequence similarity in TP53 make the dog a better animal model for osteosarcoma research?\nSwitch type = \"global\" to type = \"local\" and check if the score changes. How do you interpret the difference?",
     "crumbs": [
       "Laboratory Classes",
       "Lab 2: Sequence Alignment"
