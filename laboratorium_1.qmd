@@ -178,3 +178,54 @@ print(f"Pierwsze 50 aa: {sekwencja.seq[:50]}")
 ## Część 5: Mini-projekt integracyjny – Wirus Ebola
 
 W bazie NCBI odnajdź dostępne sekwencje wirusa Ebola. Napisz krótki skrypt w R lub Pythonie, który pobierze pełny genom wirusa (np. wariant Zaire), a następnie oblicz zawartość par G-C (GC-content).
+
+---
+
+## Część 6: Kontekst kliniczny – Kostniakomięsak (osteosarcoma)
+
+Przez cały kurs będziemy wracać do danych z projektu [osteosarc.com](https://osteosarc.com/) — publicznie dostępnego, wielopoziomowego zbioru danych omicznych pacjenta z **kostniakomięsakiem** (osteosarcoma). To rzadki, ale agresywny nowotwór kości, dotykający najczęściej dzieci i młodych dorosłych.
+
+Dwa geny odgrywają kluczową rolę w jego powstawaniu:
+
+* **TP53** (`P04637`) — "strażnik genomu", supresor nowotworowy. Mutacje w TP53 obecne są w ponad 50% przypadków osteosarcoma.
+* **RB1** (`P06400`) — pierwotnie odkryty właśnie w siatkówczaku (*retinoblastoma*), ale kluczowy też w osteosarcoma.
+
+### Zadanie 6.1: Eksploracja manualna w NCBI i UniProt
+
+1. Wejdź na [NCBI Gene](https://www.ncbi.nlm.nih.gov/gene/) i wyszukaj `TP53`. Znajdź numer RefSeq mRNA (`NM_...`) i białka (`NP_...`).
+2. Wejdź na [UniProt](https://www.uniprot.org/) i wyszukaj `P04637`. Porównaj sekcję **Disease & Variants** z tym, co widziałeś wcześniej dla APOE.
+3. Przejdź do [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) i wyszukaj `TP53`. Ile wariantów klinicznych jest opisanych dla tego genu?
+
+::: {.callout-note}
+## ClinVar — baza wariantów klinicznych
+ClinVar to baza NCBI gromadząca informacje o wariantach genetycznych i ich znaczeniu klinicznym. Każdy wariant może być oznaczony jako *Pathogenic*, *Likely pathogenic*, *Benign* lub *Uncertain significance*.
+:::
+
+### Zadanie 6.2: Pobieranie sekwencji TP53 przez API w R
+
+```{webr-r}
+install.packages("rentrez")
+library(rentrez)
+
+# Pobieramy sekwencję mRNA TP53 w formacie FASTA
+tp53_fasta <- entrez_fetch(db="nuccore", id="NM_000546.6", rettype="fasta", retmode="text")
+
+# Wyświetlamy nagłówek i początek sekwencji
+cat(substr(tp53_fasta, 1, 300))
+```
+
+### Zadanie 6.3: Białko TP53 z UniProt w R
+
+```{webr-r}
+# Pobieramy sekwencję białkową TP53 bezpośrednio z UniProt REST API
+tp53_id <- "P04637"
+url <- paste0("https://rest.uniprot.org/uniprotkb/", tp53_id, ".fasta")
+sekwencja <- readLines(url)
+cat(sekwencja, sep = "\n")
+```
+
+**Do dyskusji:**
+
+* Porównaj długość sekwencji TP53 z długością APOE z Zadania 3.1. Które białko jest dłuższe?
+* Znajdź numer akcesyjny białka RB1 w UniProt i pobierz jego sekwencję analogicznym kodem.
+* Wróć do ClinVar i sprawdź, jakie warianty TP53 są oznaczone jako *Pathogenic*. Czy widzisz wzmiankę o osteosarcoma?
