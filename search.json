@@ -221,6 +221,17 @@
     ]
   },
   {
+    "objectID": "en/lab_6.html#clinical-context-rna-seq-in-osteosarcoma",
+    "href": "en/lab_6.html#clinical-context-rna-seq-in-osteosarcoma",
+    "title": "Lab 6: Gene Expression Analysis (RNA-Seq)",
+    "section": "Clinical Context – RNA-Seq in Osteosarcoma",
+    "text": "Clinical Context – RNA-Seq in Osteosarcoma\nThe osteosarc.com project provides a bulk RNA-Seq count matrix from an osteosarcoma tumour. Below we use realistic expression values for well-known osteosarcoma genes from the scientific literature to create a biologically meaningful Volcano Plot.\n\n\n\n\n\n\nNoteKey genes in osteosarcoma\n\n\n\n\nVEGFA — angiogenesis factor, typically overexpressed\nMDM2 — TP53 inhibitor, amplified in ~10% of OS cases\nRUNX2 — transcriptional regulator of osteoblasts, overexpressed\nCDKN2A — tumour suppressor (p16/p14ARF), frequently silenced\nPTEN — tumour suppressor, downregulated in many cancers\nMKI67 — proliferation marker (Ki-67), overexpressed in aggressive tumours\n\n\n\n\nTask: Volcano Plot with osteosarcoma data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nDiscussion:\n\nWhich genes are most significantly overexpressed? Is MDM2 — the TP53 inhibitor you encountered in previous labs — among them?\nGAPDH and ACTB are so-called housekeeping genes. How do you interpret their log2FC ≈ 0?\nWhat does a negative log2FC for RB1 and PTEN mean? What are the consequences for the cancer cell?",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 6: RNA-Seq (Expression)"
+    ]
+  },
+  {
     "objectID": "en/lab_6.html#knowledge-check",
     "href": "en/lab_6.html#knowledge-check",
     "title": "Lab 6: Gene Expression Analysis (RNA-Seq)",
@@ -1113,6 +1124,18 @@
     "title": "Laboratorium 6: Analiza ekspresji genów (RNA-Seq)",
     "section": "Macierz Zliczeń (Count Matrix)",
     "text": "Macierz Zliczeń (Count Matrix)\nWynikiem eksperymentu RNA-Seq nie jest jedna sekwencja, lecz gigantyczna tabela. W wierszach mamy nazwy genów, w kolumnach próbki (np. “Zdrowe” i “Chore”), a w komórkach – liczby określające, ile razy sekwenator odczytał dany gen.\nNajważniejszym parametrem, który chcemy policzyć, jest Log2 Fold Change (log2FC). Mówi nam on, jak bardzo zmieniła się ekspresja genu: * log2FC &gt; 0: Gen jest nadekspresjonowany (włączony) w chorobie. * log2FC &lt; 0: Gen jest wyciszony.\n\nInteraktywne zadanie: Tworzymy Volcano Plot!\nW profesjonalnej analizie użylibyśmy zaawansowanych pakietów takich jak DESeq2 lub edgeR. My zasymulujemy te wyniki i stworzymy najważniejszy wykres w transkryptomice – Volcano Plot (Wykres Wulkaniczny).\nZadanie: Uruchom poniższy kod. Znajdź na wykresie najbardziej “świecący” na czerwono punkt. To nasz gen celowy! Zmień w kodzie próg p-value (z 0.05 na 0.001), aby zobaczyć, jak ostre kryteria stosują bioinformatycy.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 6: RNA-Seq (Ekspresja)"
+    ]
+  },
+  {
+    "objectID": "laboratorium_6.html#kontekst-kliniczny-rna-seq-w-osteosarcoma",
+    "href": "laboratorium_6.html#kontekst-kliniczny-rna-seq-w-osteosarcoma",
+    "title": "Laboratorium 6: Analiza ekspresji genów (RNA-Seq)",
+    "section": "Kontekst kliniczny – RNA-Seq w osteosarcoma",
+    "text": "Kontekst kliniczny – RNA-Seq w osteosarcoma\nProjekt osteosarc.com udostępnia macierz zliczeń bulk RNA-Seq z guza kostniakomięsaka. Poniżej używamy realistycznych wartości ekspresji znanych genów osteosarcoma z literatury naukowej, aby stworzyć biologicznie znaczący Volcano Plot.\n\n\n\n\n\n\nNoteKluczowe geny w osteosarcoma\n\n\n\n\nVEGFA — czynnik angiogenezy, zazwyczaj nadekspresjonowany\nMDM2 — inhibitor TP53, amplifikowany w ~10% przypadków OS\nRUNX2 — transkrypcyjny regulator osteoblastów, nadekspresjonowany\nCDKN2A — supresor nowotworowy (p16/p14ARF), często wyciszony\nPTEN — supresor nowotworowy, wyciszony w wielu nowotworach\nMKI67 — marker proliferacji (Ki-67), nadekspresjonowany w agresywnych guzach\n\n\n\n\nZadanie: Volcano Plot z danymi osteosarcoma\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nDo dyskusji:\n\nKtóre geny są najbardziej istotnie nadekspresjonowane? Czy wśród nich jest MDM2 — inhibitor TP53, który poznałeś w poprzednich laboratoriach?\nGeny GAPDH i ACTB to tzw. geny referencyjne (housekeeping genes). Jak interpretować ich log2FC ≈ 0?\nCo oznacza, że RB1 i PTEN mają ujemny log2FC? Jakie ma to konsekwencje dla komórki nowotworowej?",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
