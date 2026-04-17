@@ -1051,7 +1051,7 @@
     "href": "laboratorium_7.html",
     "title": "Laboratorium 7: Projektowanie leków (Molecular Docking)",
     "section": "",
-    "text": "Mając przewidzianą strukturę 3D białka (dzięki AlphaFold z Lab 5), możemy przejść do Rational Drug Design (racjonalnego projektowania leków). Zamiast testować w laboratorium miliony związków chemicznych “w ciemno”, wykorzystujemy symulacje komputerowe.\nNajpopularniejszą metodą jest Molecular Docking (wirtualne dokowanie). Przypomina to dopasowywanie klucza (cząsteczki leku, tzw. liganda) do zamka (kieszeni wiążącej w naszym białku receptorowym).\nAlgorytm dokujący ocenia “energię wiązania” (Binding Affinity). Im wynik jest bardziej ujemny (np. -9.0 kcal/mol), tym lek mocniej trzyma się białka!\n\n\nZanim zadokujemy lek, algorytm musi zlokalizować środek “kieszeni” białkowej w trójwymiarowej przestrzeni. W plikach PDB są to po prostu koordynaty X, Y, Z wybranych aminokwasów.\nZadanie: Poniżej mamy współrzędne trzech aminokwasów tworzących miejsce aktywne enzymu. Uruchom kod, aby algorytm wyliczył tzw. Center of Mass (środek masy) kieszeni – to tam skierujemy nasz wirtualny lek!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "Mając przewidzianą strukturę 3D białka (dzięki AlphaFold z Lab 5), możemy przejść do Rational Drug Design (racjonalnego projektowania leków). Zamiast testować w laboratorium miliony związków chemicznych “w ciemno”, wykorzystujemy symulacje komputerowe.\nNajpopularniejszą metodą jest Molecular Docking (wirtualne dokowanie). Przypomina to dopasowywanie klucza (cząsteczki leku, tzw. liganda) do zamka (kieszeni wiążącej w naszym białku receptorowym).\nAlgorytm dokujący ocenia “energię wiązania” (Binding Affinity). Im wynik jest bardziej ujemny (np. -9.0 kcal/mol), tym lek mocniej trzyma się białka!\n\n\n\n\n\n\nNoteDlaczego MDM2?\n\n\n\nW Laboratorium 6 zobaczyliśmy, że MDM2 jest nadekspresjonowany w osteosarcoma. MDM2 wiąże się z TP53 i blokuje jego funkcję supresora nowotworowego. Zablokowanie MDM2 małą cząsteczką przywraca aktywność TP53 — to realna strategia terapeutyczna badana w klinicznych próbach leków jak Nutlin-3 i RG7112.\n\n\n\n\nPrzed dokowaniem algorytm musi znać współrzędne centrum kieszeni białkowej. Używamy rzeczywistych danych ze struktury MDM2 z bazy PDB (4HBM: MDM2 z inhibitorem małocząsteczkowym).\nKluczowe aminokwasy kieszeni wiążącej p53 w MDM2: L26, F55, M62, Y67, V75.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -1059,11 +1059,11 @@
     ]
   },
   {
-    "objectID": "laboratorium_7.html#od-struktury-do-lekarstwa",
-    "href": "laboratorium_7.html#od-struktury-do-lekarstwa",
+    "objectID": "laboratorium_7.html#od-struktury-do-lekarstwa-cel-mdm2",
+    "href": "laboratorium_7.html#od-struktury-do-lekarstwa-cel-mdm2",
     "title": "Laboratorium 7: Projektowanie leków (Molecular Docking)",
     "section": "",
-    "text": "Mając przewidzianą strukturę 3D białka (dzięki AlphaFold z Lab 5), możemy przejść do Rational Drug Design (racjonalnego projektowania leków). Zamiast testować w laboratorium miliony związków chemicznych “w ciemno”, wykorzystujemy symulacje komputerowe.\nNajpopularniejszą metodą jest Molecular Docking (wirtualne dokowanie). Przypomina to dopasowywanie klucza (cząsteczki leku, tzw. liganda) do zamka (kieszeni wiążącej w naszym białku receptorowym).\nAlgorytm dokujący ocenia “energię wiązania” (Binding Affinity). Im wynik jest bardziej ujemny (np. -9.0 kcal/mol), tym lek mocniej trzyma się białka!\n\n\nZanim zadokujemy lek, algorytm musi zlokalizować środek “kieszeni” białkowej w trójwymiarowej przestrzeni. W plikach PDB są to po prostu koordynaty X, Y, Z wybranych aminokwasów.\nZadanie: Poniżej mamy współrzędne trzech aminokwasów tworzących miejsce aktywne enzymu. Uruchom kod, aby algorytm wyliczył tzw. Center of Mass (środek masy) kieszeni – to tam skierujemy nasz wirtualny lek!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "Mając przewidzianą strukturę 3D białka (dzięki AlphaFold z Lab 5), możemy przejść do Rational Drug Design (racjonalnego projektowania leków). Zamiast testować w laboratorium miliony związków chemicznych “w ciemno”, wykorzystujemy symulacje komputerowe.\nNajpopularniejszą metodą jest Molecular Docking (wirtualne dokowanie). Przypomina to dopasowywanie klucza (cząsteczki leku, tzw. liganda) do zamka (kieszeni wiążącej w naszym białku receptorowym).\nAlgorytm dokujący ocenia “energię wiązania” (Binding Affinity). Im wynik jest bardziej ujemny (np. -9.0 kcal/mol), tym lek mocniej trzyma się białka!\n\n\n\n\n\n\nNoteDlaczego MDM2?\n\n\n\nW Laboratorium 6 zobaczyliśmy, że MDM2 jest nadekspresjonowany w osteosarcoma. MDM2 wiąże się z TP53 i blokuje jego funkcję supresora nowotworowego. Zablokowanie MDM2 małą cząsteczką przywraca aktywność TP53 — to realna strategia terapeutyczna badana w klinicznych próbach leków jak Nutlin-3 i RG7112.\n\n\n\n\nPrzed dokowaniem algorytm musi znać współrzędne centrum kieszeni białkowej. Używamy rzeczywistych danych ze struktury MDM2 z bazy PDB (4HBM: MDM2 z inhibitorem małocząsteczkowym).\nKluczowe aminokwasy kieszeni wiążącej p53 w MDM2: L26, F55, M62, Y67, V75.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -1071,11 +1071,23 @@
     ]
   },
   {
-    "objectID": "laboratorium_7.html#finał-prawdziwe-dokowanie-w-chmurze",
-    "href": "laboratorium_7.html#finał-prawdziwe-dokowanie-w-chmurze",
+    "objectID": "laboratorium_7.html#finał-dokowanie-nutlin-3-do-mdm2-w-chmurze",
+    "href": "laboratorium_7.html#finał-dokowanie-nutlin-3-do-mdm2-w-chmurze",
     "title": "Laboratorium 7: Projektowanie leków (Molecular Docking)",
-    "section": "Finał: Prawdziwe dokowanie w chmurze",
-    "text": "Finał: Prawdziwe dokowanie w chmurze\nAby wykonać fizyczne dokowanie (przeszukiwanie konformacji leku w przestrzeni), potrzebujemy potężniejszych narzędzi, takich jak AutoDock Vina.\nPodobnie jak z AlphaFold, wykonamy to w darmowej chmurze obliczeniowej!\n\nWejdź do bazy PDB i pobierz strukturę interesującego Cię białka.\nWejdź do bazy PubChem i pobierz strukturę dowolnego leku (np. Aspiryny lub Ibuprofenu) w formacie SDF.\nOtwórz przygotowany notatnik Google Colab dla AutoDock Vina.\nWgraj pliki i uruchom symulację. Zapisz wynik (energię wiązania)!",
+    "section": "Finał: Dokowanie Nutlin-3 do MDM2 w chmurze",
+    "text": "Finał: Dokowanie Nutlin-3 do MDM2 w chmurze\nNutlin-3 to jeden z pierwszych selektywnych inhibitorów MDM2. Wchodzi do tej samej kieszeni, do której normalnie wchodzi TP53, blokując ich interakcję. Zadokujemy go do struktury MDM2 używając AutoDock Vina.\n\nWejdź do bazy PDB i pobierz strukturę 4HBM (MDM2 z ligandem). Usuń ligand z pliku przed dokowaniem (zostaw tylko białko).\nWejdź do bazy PubChem i wyszukaj Nutlin-3 (CID: 9903051). Pobierz strukturę 3D w formacie SDF.\nOtwórz notatnik Google Colab dla AutoDock Vina.\nWgraj pliki białka i liganda, wpisz współrzędne kieszeni wyliczone powyżej i uruchom symulację.\nZapisz wynik (energię wiązania w kcal/mol) i porównaj z innymi ligandami.\n\n\n\n\n\n\n\nTipSpodziewany wynik\n\n\n\nNutlin-3 wiąże MDM2 z energią ok. -8 do -10 kcal/mol — silne wiązanie, co zgodne jest z jego aktywnością biologiczną w nanomolarnych stężeniach.",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 7: Dokowanie leków"
+    ]
+  },
+  {
+    "objectID": "laboratorium_7.html#podsumowanie-kursu-od-sekwencji-do-leku",
+    "href": "laboratorium_7.html#podsumowanie-kursu-od-sekwencji-do-leku",
+    "title": "Laboratorium 7: Projektowanie leków (Molecular Docking)",
+    "section": "Podsumowanie kursu: Od sekwencji do leku",
+    "text": "Podsumowanie kursu: Od sekwencji do leku\nPrzez siedem laboratoriów przebyliśmy kompletną ścieżkę bioinformatyczną — od pojedynczej sekwencji do wirtualnego projektowania leku, używając osteosarcoma jako spójnego wątku klinicznego:\n\n\n\n\n\n\n\n\nLab\nCo zrobiliśmy\nPołączenie z osteosarcoma\n\n\n\n\n1\nBazy danych i API\nPobieranie sekwencji TP53/RB1\n\n\n2\nAlgorytmy przyrównań\nTP53 człowiek vs. mysz vs. pies\n\n\n3\nProfile i BLAST\nHotspoty mutacyjne TP53 w logo\n\n\n4\nNGS i warianty\nPlik VCF z mutacjami R248W, R273H\n\n\n5\nFilogenetyka i AlphaFold\nDrzewo TP53, struktura 3D z hotspotami\n\n\n6\nRNA-Seq\nVolcano Plot z MDM2 nadekspresjonowanym\n\n\n7\nMolecular Docking\nNutlin-3 blokuje MDM2, przywraca TP53",
     "crumbs": [
       "Home",
       "Materiały ćwiczeniowe",
@@ -1502,29 +1514,40 @@
     "href": "en/lab_7.html",
     "title": "Lab 7: Drug Design (Molecular Docking)",
     "section": "",
-    "text": "Having the predicted 3D structure of a protein (thanks to AlphaFold from Lab 5), we can move on to Rational Drug Design. Instead of testing millions of chemical compounds “blindly” in the laboratory, we use computer simulations.\nThe most popular method is Molecular Docking. It’s like fitting a key (a drug molecule, called a ligand) into a lock (the binding pocket in our receptor protein).\nThe docking algorithm evaluates the Binding Affinity. The more negative the score (e.g., -9.0 kcal/mol), the stronger the drug binds to the protein!\n\n\nBefore we dock the drug, the algorithm must locate the center of the protein “pocket” in 3D space. In PDB files, these are simply the X, Y, Z coordinates of selected amino acids.\nTask: Below are the coordinates of three amino acids forming the active site of an enzyme. Run the code so the algorithm can calculate the Center of Mass of the pocket – this is where we will target our virtual drug!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "Having the predicted 3D structure of a protein (thanks to AlphaFold from Lab 5), we can move on to Rational Drug Design. Instead of testing millions of chemical compounds “blindly” in the laboratory, we use computer simulations.\nThe most popular method is Molecular Docking — fitting a key (a drug molecule, the ligand) into a lock (the binding pocket of our receptor protein).\nThe docking algorithm evaluates the Binding Affinity. The more negative the score (e.g., -9.0 kcal/mol), the stronger the drug binds to the protein!\n\n\n\n\n\n\nNoteWhy MDM2?\n\n\n\nIn Lab 6, we saw that MDM2 is overexpressed in osteosarcoma. MDM2 binds TP53 and blocks its tumour-suppressor function. Blocking MDM2 with a small molecule restores TP53 activity — a real therapeutic strategy under investigation in clinical trials with drugs like Nutlin-3 and RG7112.\n\n\n\n\nBefore docking, the algorithm needs the coordinates of the binding pocket centre. We use real data from the MDM2 crystal structure in the PDB (4HBM: MDM2 with a small-molecule inhibitor).\nKey residues lining the p53-binding cleft of MDM2: L26, F55, M62, Y67, V75.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Laboratory Classes",
       "Lab 7: Drug Docking"
     ]
   },
   {
-    "objectID": "en/lab_7.html#from-structure-to-medicine",
-    "href": "en/lab_7.html#from-structure-to-medicine",
+    "objectID": "en/lab_7.html#from-structure-to-medicine-target-mdm2",
+    "href": "en/lab_7.html#from-structure-to-medicine-target-mdm2",
     "title": "Lab 7: Drug Design (Molecular Docking)",
     "section": "",
-    "text": "Having the predicted 3D structure of a protein (thanks to AlphaFold from Lab 5), we can move on to Rational Drug Design. Instead of testing millions of chemical compounds “blindly” in the laboratory, we use computer simulations.\nThe most popular method is Molecular Docking. It’s like fitting a key (a drug molecule, called a ligand) into a lock (the binding pocket in our receptor protein).\nThe docking algorithm evaluates the Binding Affinity. The more negative the score (e.g., -9.0 kcal/mol), the stronger the drug binds to the protein!\n\n\nBefore we dock the drug, the algorithm must locate the center of the protein “pocket” in 3D space. In PDB files, these are simply the X, Y, Z coordinates of selected amino acids.\nTask: Below are the coordinates of three amino acids forming the active site of an enzyme. Run the code so the algorithm can calculate the Center of Mass of the pocket – this is where we will target our virtual drug!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "Having the predicted 3D structure of a protein (thanks to AlphaFold from Lab 5), we can move on to Rational Drug Design. Instead of testing millions of chemical compounds “blindly” in the laboratory, we use computer simulations.\nThe most popular method is Molecular Docking — fitting a key (a drug molecule, the ligand) into a lock (the binding pocket of our receptor protein).\nThe docking algorithm evaluates the Binding Affinity. The more negative the score (e.g., -9.0 kcal/mol), the stronger the drug binds to the protein!\n\n\n\n\n\n\nNoteWhy MDM2?\n\n\n\nIn Lab 6, we saw that MDM2 is overexpressed in osteosarcoma. MDM2 binds TP53 and blocks its tumour-suppressor function. Blocking MDM2 with a small molecule restores TP53 activity — a real therapeutic strategy under investigation in clinical trials with drugs like Nutlin-3 and RG7112.\n\n\n\n\nBefore docking, the algorithm needs the coordinates of the binding pocket centre. We use real data from the MDM2 crystal structure in the PDB (4HBM: MDM2 with a small-molecule inhibitor).\nKey residues lining the p53-binding cleft of MDM2: L26, F55, M62, Y67, V75.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Laboratory Classes",
       "Lab 7: Drug Docking"
     ]
   },
   {
-    "objectID": "en/lab_7.html#the-finale-real-docking-in-the-cloud",
-    "href": "en/lab_7.html#the-finale-real-docking-in-the-cloud",
+    "objectID": "en/lab_7.html#the-finale-docking-nutlin-3-into-mdm2-in-the-cloud",
+    "href": "en/lab_7.html#the-finale-docking-nutlin-3-into-mdm2-in-the-cloud",
     "title": "Lab 7: Drug Design (Molecular Docking)",
-    "section": "The Finale: Real Docking in the Cloud",
-    "text": "The Finale: Real Docking in the Cloud\nTo perform physical docking (searching for drug conformations in space), we need more powerful tools, such as AutoDock Vina.\nJust like with AlphaFold, we will do this in a free cloud computing environment!\n\nGo to the PDB database and download the structure of your protein of interest.\nGo to the PubChem database and download the structure of any drug (e.g., Aspirin or Ibuprofen) in SDF format.\nOpen the prepared Google Colab for AutoDock Vina.\nUpload the files and run the simulation. Record the result (binding affinity)!",
+    "section": "The Finale: Docking Nutlin-3 into MDM2 in the Cloud",
+    "text": "The Finale: Docking Nutlin-3 into MDM2 in the Cloud\nNutlin-3 was one of the first selective MDM2 inhibitors. It occupies the same pocket that TP53 normally uses, blocking their interaction. We will dock it into the MDM2 structure using AutoDock Vina.\n\nGo to the PDB and download structure 4HBM (MDM2 with ligand). Remove the ligand from the file before docking (keep only the protein).\nGo to PubChem and search for Nutlin-3 (CID: 9903051). Download the 3D structure in SDF format.\nOpen the Google Colab AutoDock Vina notebook.\nUpload the protein and ligand files, enter the pocket coordinates calculated above, and run the simulation.\nRecord the binding affinity (kcal/mol) and compare with other ligands.\n\n\n\n\n\n\n\nTipExpected result\n\n\n\nNutlin-3 binds MDM2 with an affinity of approximately -8 to -10 kcal/mol — strong binding, consistent with its nanomolar biological activity.",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 7: Drug Docking"
+    ]
+  },
+  {
+    "objectID": "en/lab_7.html#course-summary-from-sequence-to-drug",
+    "href": "en/lab_7.html#course-summary-from-sequence-to-drug",
+    "title": "Lab 7: Drug Design (Molecular Docking)",
+    "section": "Course Summary: From Sequence to Drug",
+    "text": "Course Summary: From Sequence to Drug\nOver seven labs we completed a full bioinformatics pipeline — from a single sequence to virtual drug design — using osteosarcoma as a consistent clinical thread:\n\n\n\n\n\n\n\n\nLab\nWhat we did\nOsteosarcoma connection\n\n\n\n\n1\nDatabases & APIs\nFetching TP53/RB1 sequences\n\n\n2\nAlignment algorithms\nTP53: human vs. mouse vs. dog\n\n\n3\nProfiles & BLAST\nTP53 mutation hotspot logo\n\n\n4\nNGS & variant calling\nVCF with R248W, R273H mutations\n\n\n5\nPhylogenetics & AlphaFold\nTP53 tree, 3D structure with hotspots\n\n\n6\nRNA-Seq\nVolcano Plot: MDM2 overexpressed\n\n\n7\nMolecular Docking\nNutlin-3 blocks MDM2, restores TP53",
     "crumbs": [
       "Laboratory Classes",
       "Lab 7: Drug Docking"
