@@ -809,6 +809,18 @@
     ]
   },
   {
+    "objectID": "laboratorium_1.html#część-6-kontekst-kliniczny-kostniakomięsak-osteosarcoma",
+    "href": "laboratorium_1.html#część-6-kontekst-kliniczny-kostniakomięsak-osteosarcoma",
+    "title": "Laboratorium 1: Od klikania do kodowania – eksploracja baz danych przez API",
+    "section": "Część 6: Kontekst kliniczny – Kostniakomięsak (osteosarcoma)",
+    "text": "Część 6: Kontekst kliniczny – Kostniakomięsak (osteosarcoma)\nPrzez cały kurs będziemy wracać do danych z projektu osteosarc.com — publicznie dostępnego, wielopoziomowego zbioru danych omicznych pacjenta z kostniakomięsakiem (osteosarcoma). To rzadki, ale agresywny nowotwór kości, dotykający najczęściej dzieci i młodych dorosłych.\nDwa geny odgrywają kluczową rolę w jego powstawaniu:\n\nTP53 (P04637) — “strażnik genomu”, supresor nowotworowy. Mutacje w TP53 obecne są w ponad 50% przypadków osteosarcoma.\nRB1 (P06400) — pierwotnie odkryty właśnie w siatkówczaku (retinoblastoma), ale kluczowy też w osteosarcoma.\n\n\nZadanie 6.1: Eksploracja manualna w NCBI i UniProt\n\nWejdź na NCBI Gene i wyszukaj TP53. Znajdź numer RefSeq mRNA (NM_...) i białka (NP_...).\nWejdź na UniProt i wyszukaj P04637. Porównaj sekcję Disease & Variants z tym, co widziałeś wcześniej dla APOE.\nPrzejdź do ClinVar i wyszukaj TP53. Ile wariantów klinicznych jest opisanych dla tego genu?\n\n\n\n\n\n\n\nNoteClinVar — baza wariantów klinicznych\n\n\n\nClinVar to baza NCBI gromadząca informacje o wariantach genetycznych i ich znaczeniu klinicznym. Każdy wariant może być oznaczony jako Pathogenic, Likely pathogenic, Benign lub Uncertain significance.\n\n\n\n\nZadanie 6.2: Pobieranie sekwencji TP53 przez API w R\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nZadanie 6.3: Białko TP53 z UniProt w R\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nDo dyskusji:\n\nPorównaj długość sekwencji TP53 z długością APOE z Zadania 3.1. Które białko jest dłuższe?\nZnajdź numer akcesyjny białka RB1 w UniProt i pobierz jego sekwencję analogicznym kodem.\nWróć do ClinVar i sprawdź, jakie warianty TP53 są oznaczone jako Pathogenic. Czy widzisz wzmiankę o osteosarcoma?",
+    "crumbs": [
+      "Home",
+      "Materiały ćwiczeniowe",
+      "Lab 1: Bazy danych i API"
+    ]
+  },
+  {
     "objectID": "laboratorium_2.html",
     "href": "laboratorium_2.html",
     "title": "Laboratorium 2: Algorytmy przyrównań sekwencji",
@@ -1343,7 +1355,18 @@
     "href": "en/lab_1.html#part-3-integration-project-ebola-virus",
     "title": "Lab 1: From Clicking to Coding – Database Exploration via API",
     "section": "Part 3: Integration Project – Ebola Virus",
-    "text": "Part 3: Integration Project – Ebola Virus\nUsing the NCBI Taxonomy database, we can find sequences for the Ebola virus[cite: 349]. Write a short R script (using the WebR editor above) to fetch the full genome of the Zaire Ebolavirus (find its Accession ID online) and calculate its GC-content [cite: 350-353].",
+    "text": "Part 3: Integration Project – Ebola Virus\nUsing the NCBI Taxonomy database, we can find sequences for the Ebola virus. Write a short R script (using the WebR editor above) to fetch the full genome of the Zaire Ebolavirus (find its Accession ID online) and calculate its GC-content.",
+    "crumbs": [
+      "Laboratory Classes",
+      "Lab 1: Databases & APIs"
+    ]
+  },
+  {
+    "objectID": "en/lab_1.html#part-4-clinical-context-osteosarcoma",
+    "href": "en/lab_1.html#part-4-clinical-context-osteosarcoma",
+    "title": "Lab 1: From Clicking to Coding – Database Exploration via API",
+    "section": "Part 4: Clinical Context – Osteosarcoma",
+    "text": "Part 4: Clinical Context – Osteosarcoma\nThroughout this course, we will return to data from osteosarc.com — a publicly available multi-omic dataset from an osteosarcoma patient. Osteosarcoma is a rare but aggressive bone cancer, most commonly affecting children and young adults.\nTwo genes play a central role in its development:\n\nTP53 (P04637) — the “guardian of the genome”, a tumor suppressor. TP53 mutations are found in over 50% of osteosarcoma cases.\nRB1 (P06400) — originally discovered in retinoblastoma, but also critical in osteosarcoma.\n\n\nTask 4.1: Manual exploration in NCBI and UniProt\n\nGo to NCBI Gene and search for TP53. Find the RefSeq accession numbers for the mRNA (NM_...) and protein (NP_...).\nGo to UniProt and search for P04637. Compare the Disease & Variants section with what you saw earlier for APOE.\nGo to ClinVar and search for TP53. How many clinical variants are described for this gene?\n\n\n\n\n\n\n\nNoteClinVar — the clinical variant database\n\n\n\nClinVar is an NCBI database that collects information about genetic variants and their clinical significance. Each variant is classified as Pathogenic, Likely pathogenic, Benign, or Uncertain significance.\n\n\n\n\nTask 4.2: Fetching the TP53 sequence via API in R\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nTask 4.3: TP53 protein from UniProt in R\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nDiscussion:\n\nCompare the length of the TP53 sequence to that of APOE from Task 1. Which protein is longer?\nFind the UniProt accession number for RB1 and fetch its sequence using the same code.\nGo back to ClinVar and check which TP53 variants are classified as Pathogenic. Do you see any mention of osteosarcoma?",
     "crumbs": [
       "Laboratory Classes",
       "Lab 1: Databases & APIs"
