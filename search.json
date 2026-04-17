@@ -637,7 +637,7 @@
     "href": "index.html#materiały-dodatkowe-i-ciekawostki",
     "title": "Podstawy Bioinformatyki",
     "section": "📚 Materiały dodatkowe i Ciekawostki",
-    "text": "📚 Materiały dodatkowe i Ciekawostki\nAby poszerzyć swoją wiedzę poza zajęciami, zachęcam do zapoznania się z poniższymi materiałami:\n\nRekomendowany kurs R (bioinformatyka): Bioconductor R Intro – Carpentries Incubator.\nKsiążka online (za darmo): The Art of R Programming (Norman Matloff).\nŚrodowisko pracy w chmurze (25h darmowych obliczeń w miesiącu): RStudio Cloud / Posit Cloud.\nCiekawostka genetyczna: Publikacja z 2022 roku dotycząca pełnego zsekwencjonowania ludzkiego genomu metodą T2T.\nPolecany kurs dla pasjonatów AI: Machine Learning via Python Notebooks by Andrew Ng.",
+    "text": "📚 Materiały dodatkowe i Ciekawostki\nAby poszerzyć swoją wiedzę poza zajęciami, zachęcam do zapoznania się z poniższymi materiałami:\n\nRekomendowany kurs R (bioinformatyka): Bioconductor R Intro – Carpentries Incubator.\nDane kliniczne używane w laboratoriach: osteosarc.com — publiczny, wielopoziomowy zbiór danych omicznych z osteosarcoma.\nKsiążka online (za darmo): The Art of R Programming (Norman Matloff).\nŚrodowisko pracy w chmurze (25h darmowych obliczeń w miesiącu): RStudio Cloud / Posit Cloud.\nCiekawostka genetyczna: Publikacja z 2022 roku dotycząca pełnego zsekwencjonowania ludzkiego genomu metodą T2T.\nPolecany kurs dla pasjonatów AI: Machine Learning via Python Notebooks by Andrew Ng.",
     "crumbs": [
       "Home",
       "Informacje organizacyjne",
@@ -1382,7 +1382,7 @@
     "href": "en/index.html#additional-materials-curiosities",
     "title": "Bioinformatics Basics",
     "section": "📚 Additional Materials & Curiosities",
-    "text": "📚 Additional Materials & Curiosities\nTo expand your knowledge beyond the classroom, feel free to explore the following resources: * Recommended R course (bioinformatics): Bioconductor R Intro – Carpentries Incubator. * Free Online Book: The Art of R Programming (Norman Matloff). * [cite_start]Cloud Workstation (25h of free computing per month): Posit Cloud[cite: 415]. * [cite_start]Genetics Milestone: The 2022 complete human genome sequencing via the T2T method[cite: 414]. * [cite_start]Recommended AI Course: Machine Learning via Python Notebooks by Andrew Ng[cite: 416].",
+    "text": "📚 Additional Materials & Curiosities\nTo expand your knowledge beyond the classroom, feel free to explore the following resources: * Recommended R course (bioinformatics): Bioconductor R Intro – Carpentries Incubator. * Clinical data used throughout the labs: osteosarc.com — a public multi-omic dataset from an osteosarcoma patient. * Free Online Book: The Art of R Programming (Norman Matloff). * [cite_start]Cloud Workstation (25h of free computing per month): Posit Cloud[cite: 415]. * [cite_start]Genetics Milestone: The 2022 complete human genome sequencing via the T2T method[cite: 414]. * [cite_start]Recommended AI Course: Machine Learning via Python Notebooks by Andrew Ng[cite: 416].",
     "crumbs": [
       "Course Information",
       "Syllabus & Grading"
