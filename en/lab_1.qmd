@@ -41,15 +41,29 @@ cat(apoe_fasta)
 
 ## Part 2: Introduction to Python and Biopython
 
-Python is equally essential in bioinformatics. [cite_start]Instead of manually searching PubMed for publications by Piotr Zielenkiewicz[cite: 336], we will use the Biopython library.
+Python is equally essential in bioinformatics. Instead of manually searching PubMed for publications by Piotr Zielenkiewicz, we will use the Biopython library.
 
+### How to use Google Colab
 
+Google Colab is a free Python environment that runs entirely in your browser — no installation required. All you need is a Google account.
 
-**Task 2:**
-(Note: Perform this task in Google Colab, as WebR currently supports R natively).
+1. Go to [colab.research.google.com](https://colab.research.google.com/).
+2. Click **"New notebook"** in the top-left corner.
+3. A blank notebook opens with one code cell. Run any cell with the ▶ button on the left or **Shift+Enter**.
+4. Lines starting with `!` are system commands (e.g. installing packages via `pip`) — Colab runs them in a terminal.
+
+::: {.callout-tip}
+## Note: Colab resets between sessions
+Every time you reopen a notebook, you must re-run the `!pip install` cell. Installed packages are not saved between sessions.
+:::
+
+### Task 2.1: Searching PubMed with Biopython
+
+Copy the code below into a new cell in Google Colab and run it.
 
 ```python
 !pip install biopython
+
 from Bio import Entrez
 
 # NCBI Good Practice - always provide your email!
@@ -63,7 +77,27 @@ print(f"Number of publications found: {record['Count']}")
 print(f"IDs of latest publications (PMIDs): {record['IdList']}")
 ```
 
-**To do:** Modify the `term` variable to find the 1953 Nature papers by Watson and Crick [cite: 346-347].
+**To do:** Modify the `term` variable to find the 1953 Nature papers by Watson and Crick.
+
+### Task 2.2: Fetching a protein sequence in Python
+
+Now fetch the same APOE sequence you retrieved in R — this time using Python.
+
+```python
+from Bio import Entrez, SeqIO
+
+Entrez.email = "your_email@student.pw.edu.pl"
+
+# Fetch the APOE protein sequence in FASTA format
+handle = Entrez.efetch(db="protein", id="NP_000032.1", rettype="fasta", retmode="text")
+sequence = SeqIO.read(handle, "fasta")
+
+print(f"ID: {sequence.id}")
+print(f"Sequence length: {len(sequence.seq)} amino acids")
+print(f"First 50 aa: {sequence.seq[:50]}")
+```
+
+**Discussion:** Compare the result with what you saw in UniProt for `P02649`. Does the sequence length match?
 
 ---
 

@@ -104,11 +104,27 @@ cat(substr(apoe_record, 1, 500))
 
 W bioinformatyce równie ważny jest dzisiaj Python. Zamiast ręcznie przeszukiwać bazę PubMed, by znaleźć publikacje Piotra Zielenkiewicza, użyjemy biblioteki Biopython.
 
-**Zadanie 4.1:**
-(Uwaga: Ten fragment wykonaj w Google Colab, ponieważ WebR obsługuje na razie natywnie tylko język R).
+### Jak uruchomić Google Colab?
+
+Google Colab to darmowe środowisko do pisania i uruchamiania kodu Python bezpośrednio w przeglądarce — bez instalacji czegokolwiek na swoim komputerze. Potrzebujesz tylko konta Google.
+
+1. Wejdź na [colab.research.google.com](https://colab.research.google.com/).
+2. Kliknij **"New notebook"** (lub **"Nowy notatnik"**) w lewym górnym rogu.
+3. Pojawi się pusty notatnik z jedną komórką kodu. Każdą komórkę uruchamiasz przyciskiem ▶ po lewej stronie lub skrótem **Shift+Enter**.
+4. Linie zaczynające się od `!` to polecenia systemowe (np. instalacja pakietów przez `pip`) — Colab wykonuje je w terminalu.
+
+::: {.callout-tip}
+## Wskazówka: Środowisko Colab resetuje się po każdej sesji
+Za każdym razem, gdy otwierasz notatnik od nowa, musisz ponownie uruchomić komórkę z `!pip install`. Zainstalowane pakiety nie są zapamiętywane między sesjami.
+:::
+
+### Zadanie 4.1: Przeszukiwanie PubMed przez Biopython
+
+Skopiuj poniższy kod do nowej komórki w Google Colab i uruchom go.
 
 ```python
 !pip install biopython
+
 from Bio import Entrez
 
 # Etykieta dobrych praktyk NCBI - zawsze podawaj swój email!
@@ -123,6 +139,26 @@ print(f"ID najnowszych publikacji (PMID): {record['IdList']}")
 ```
 
 **Do zrobienia:** Zmodyfikuj zmienną `term`, aby znaleźć artykuły związane z wirusem Ebola.
+
+### Zadanie 4.2: Pobieranie sekwencji białkowej w Pythonie
+
+Teraz pobierzmy tę samą sekwencję APOE, którą wcześniej pobrałeś w R — tym razem w Pythonie.
+
+```python
+from Bio import Entrez, SeqIO
+
+Entrez.email = "twoj_adres@student.pw.edu.pl"
+
+# Pobieramy sekwencję białkową APOE w formacie FASTA
+handle = Entrez.efetch(db="protein", id="NP_000032.1", rettype="fasta", retmode="text")
+sekwencja = SeqIO.read(handle, "fasta")
+
+print(f"ID: {sekwencja.id}")
+print(f"Długość sekwencji: {len(sekwencja.seq)} aminokwasów")
+print(f"Pierwsze 50 aa: {sekwencja.seq[:50]}")
+```
+
+**Do dyskusji:** Porównaj wynik z tym, co widziałeś wcześniej w UniProt dla `P02649`. Czy długość sekwencji się zgadza?
 
 ---
 
