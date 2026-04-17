@@ -4368,6 +4368,7 @@ vertical-align: -.125em;
   <li><a href="#general-information" id="toc-general-information" class="nav-link active" data-scroll-target="#general-information">👨‍🏫 General Information</a></li>
   <li><a href="#course-description" id="toc-course-description" class="nav-link" data-scroll-target="#course-description">🧬 Course Description</a></li>
   <li><a href="#grading-requirements" id="toc-grading-requirements" class="nav-link" data-scroll-target="#grading-requirements">🎓 Grading &amp; Requirements</a></li>
+  <li><a href="#lab-schedule" id="toc-lab-schedule" class="nav-link" data-scroll-target="#lab-schedule">📋 Lab Schedule</a></li>
   <li><a href="#additional-materials-curiosities" id="toc-additional-materials-curiosities" class="nav-link" data-scroll-target="#additional-materials-curiosities">📚 Additional Materials &amp; Curiosities</a></li>
   </ul>
 </nav>
@@ -4440,6 +4441,70 @@ vertical-align: -.125em;
 <section id="grading-requirements" class="level2">
 <h2 class="anchored" data-anchor-id="grading-requirements">🎓 Grading &amp; Requirements</h2>
 <p>To complete the course, the following conditions must be met: 1. [cite_start]<strong>Attendance:</strong> Participation in laboratory classes is mandatory[cite: 391]. 2. [cite_start]<strong>Final Exam:</strong> The grade is based on a final test[cite: 388]. * [cite_start]The exam is conducted on the Moodle platform (100 minutes)[cite: 389]. * [cite_start]Format: Multiple-choice questions and 2-3 descriptive questions[cite: 390].</p>
+</section>
+<section id="lab-schedule" class="level2">
+<h2 class="anchored" data-anchor-id="lab-schedule">📋 Lab Schedule</h2>
+<p>Throughout the course, we will use data from <a href="https://osteosarc.com/">osteosarc.com</a> — a publicly available multi-omic dataset from an osteosarcoma patient, including WGS/WES, RNA-seq, single-cell RNA-seq, and imaging data. This grounds every lab in a real clinical context.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 15%">
+<col style="width: 25%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Lab</th>
+<th>Topic</th>
+<th>Key Tools</th>
+<th>osteosarc.com Data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Databases &amp; APIs</td>
+<td>NCBI, UniProt, rentrez (R), Biopython</td>
+<td>Exploring TP53/RB1 via API</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Sequence Alignment Algorithms</td>
+<td>Biostrings, Needleman-Wunsch, Smith-Waterman</td>
+<td>TP53 sequences across human, mouse, and dog</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Profiles, BLAST &amp; Evolution</td>
+<td>BLAST, E-value, HMM</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>NGS Data &amp; Variant Calling</td>
+<td>FASTQ/BAM/VCF, VariantAnnotation (R)</td>
+<td>Somatic variants from WES (TP53/RB1)</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>MSA, Phylogenetics &amp; AlphaFold</td>
+<td>T-Coffee, phylogenetic trees, AlphaFold</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Gene Expression Analysis (RNA-Seq)</td>
+<td>DESeq2, Volcano Plot</td>
+<td>Bulk RNA-seq count matrix</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Drug Design (Molecular Docking)</td>
+<td>Molecular Docking, PDB</td>
+<td>MDM2 protein as a therapeutic target</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="additional-materials-curiosities" class="level2">
 <h2 class="anchored" data-anchor-id="additional-materials-curiosities">📚 Additional Materials &amp; Curiosities</h2>

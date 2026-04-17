@@ -599,6 +599,18 @@
     ]
   },
   {
+    "objectID": "index.html#program-laboratoriów",
+    "href": "index.html#program-laboratoriów",
+    "title": "Podstawy Bioinformatyki",
+    "section": "📋 Program laboratoriów",
+    "text": "📋 Program laboratoriów\nPrzez cały kurs będziemy korzystać z publicznie dostępnego zbioru danych projektu osteosarc.com — wielopoziomowych danych omicznych pacjenta z kostniakomięsakiem (osteosarcoma), obejmujących WGS/WES, RNA-seq, scRNA-seq oraz dane obrazowe. Dzięki temu każde laboratorium osadzone jest w realnym kontekście klinicznym.\n\n\n\n\n\n\n\n\n\nLab\nTemat\nKluczowe narzędzia\nDane osteosarc.com\n\n\n\n\n1\nBazy danych i API\nNCBI, UniProt, rentrez (R), Biopython\nEksploracja genów TP53/RB1 przez API\n\n\n2\nAlgorytmy przyrównań sekwencji\nBiostrings, Needleman-Wunsch, Smith-Waterman\nSekwencje TP53 u człowieka, myszy i psa\n\n\n3\nProfile, BLAST i ewolucja\nBLAST, E-value, HMM\n—\n\n\n4\nDane NGS i warianty\nFASTQ/BAM/VCF, VariantAnnotation (R)\nWarianty somatyczne z WES (TP53/RB1)\n\n\n5\nMSA, filogenetyka i AlphaFold\nT-Coffee, drzewa filogenetyczne, AlphaFold\n—\n\n\n6\nAnaliza ekspresji genów (RNA-Seq)\nDESeq2, Volcano Plot\nMacierz zliczeń bulk RNA-seq\n\n\n7\nProjektowanie leków (Docking)\nMolecular Docking, PDB\nBiałko MDM2 jako cel terapeutyczny",
+    "crumbs": [
+      "Home",
+      "Informacje organizacyjne",
+      "Sylabus i zaliczenie"
+    ]
+  },
+  {
     "objectID": "index.html#materiały-dodatkowe-i-ciekawostki",
     "href": "index.html#materiały-dodatkowe-i-ciekawostki",
     "title": "Podstawy Bioinformatyki",
@@ -1255,6 +1267,17 @@
     "title": "Bioinformatics Basics",
     "section": "🎓 Grading & Requirements",
     "text": "🎓 Grading & Requirements\nTo complete the course, the following conditions must be met: 1. [cite_start]Attendance: Participation in laboratory classes is mandatory[cite: 391]. 2. [cite_start]Final Exam: The grade is based on a final test[cite: 388]. * [cite_start]The exam is conducted on the Moodle platform (100 minutes)[cite: 389]. * [cite_start]Format: Multiple-choice questions and 2-3 descriptive questions[cite: 390].",
+    "crumbs": [
+      "Course Information",
+      "Syllabus & Grading"
+    ]
+  },
+  {
+    "objectID": "en/index.html#lab-schedule",
+    "href": "en/index.html#lab-schedule",
+    "title": "Bioinformatics Basics",
+    "section": "📋 Lab Schedule",
+    "text": "📋 Lab Schedule\nThroughout the course, we will use data from osteosarc.com — a publicly available multi-omic dataset from an osteosarcoma patient, including WGS/WES, RNA-seq, single-cell RNA-seq, and imaging data. This grounds every lab in a real clinical context.\n\n\n\n\n\n\n\n\n\nLab\nTopic\nKey Tools\nosteosarc.com Data\n\n\n\n\n1\nDatabases & APIs\nNCBI, UniProt, rentrez (R), Biopython\nExploring TP53/RB1 via API\n\n\n2\nSequence Alignment Algorithms\nBiostrings, Needleman-Wunsch, Smith-Waterman\nTP53 sequences across human, mouse, and dog\n\n\n3\nProfiles, BLAST & Evolution\nBLAST, E-value, HMM\n—\n\n\n4\nNGS Data & Variant Calling\nFASTQ/BAM/VCF, VariantAnnotation (R)\nSomatic variants from WES (TP53/RB1)\n\n\n5\nMSA, Phylogenetics & AlphaFold\nT-Coffee, phylogenetic trees, AlphaFold\n—\n\n\n6\nGene Expression Analysis (RNA-Seq)\nDESeq2, Volcano Plot\nBulk RNA-seq count matrix\n\n\n7\nDrug Design (Molecular Docking)\nMolecular Docking, PDB\nMDM2 protein as a therapeutic target",
     "crumbs": [
       "Course Information",
       "Syllabus & Grading"
