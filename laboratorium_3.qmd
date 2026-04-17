@@ -41,13 +41,13 @@ Użyjemy pakietu `ggseqlogo`, aby zwizualizować zestaw krótkich sekwencji pept
 **Zadanie:** Uruchom poniższy kod. Zwróć uwagę, na których pozycjach aminokwasy są wysoce konserwatywne, a na których ulegają mutacjom.
 
 ```{webr-r}
-# Instalacja i ładowanie bibliotek do wizualizacji
+# Install and load visualization packages
 webr::install("ggplot2")
 webr::install("ggseqlogo")
 library(ggplot2)
 library(ggseqlogo)
 
-# Nasze przyrównanie wielu sekwencji (MSA) w formie wektora
+# MSA of peptide sequences
 alignment <- c(
   "VDFWAE",
   "VDFWAP",
@@ -59,11 +59,51 @@ alignment <- c(
   "VDFYAT"
 )
 
-# Rysujemy piękne logo!
-ggseqlogo(alignment) + 
-  ggtitle("Sequence Logo naszych peptydów") +
+# Generate the sequence logo
+ggseqlogo(alignment) +
+  ggtitle("Sequence Logo of our peptide alignment") +
   theme_minimal()
 ```
+
+---
+
+## Kontekst kliniczny – Hotspoty mutacyjne TP53 w osteosarcoma
+
+Białko TP53 posiada dobrze znane **hotspoty mutacyjne** — pozycje, w których mutacje pojawiają się wielokrotnie w różnych nowotworach, w tym w osteosarcoma. Należą do nich m.in. R175, G245, R248, R249, R273 i R282.
+
+Sekwencja Logo to idealne narzędzie do wizualizacji tego, jak bardzo dana pozycja jest konserwatywna — a tym samym jak krytyczna funkcjonalnie. Poniżej użyjemy fragmentu domeny wiążącej DNA TP53 pobranego z sekwencji kilku ssaków, aby zobaczyć, które pozycje są niezmienne ewolucyjnie.
+
+### Zadanie: Logo domeny wiążącej DNA TP53
+
+```{webr-r}
+# Install and load visualization packages
+webr::install("ggplot2")
+webr::install("ggseqlogo")
+library(ggplot2)
+library(ggseqlogo)
+
+# Fragment DNA-binding domain TP53 (region loop L3, aa 237-250) across mammals
+# Sources: UniProt P04637 (human), P02340 (mouse), P10360 (rat),
+#          Q9N2I2 (dog), P67939 (cat), Q95M73 (chimpanzee)
+tp53_msa <- c(
+  "VVRCPHHERCSDSDGLAPPQHLIRVEGNLHAEYLDDRNTFRHSVVVP",  # human
+  "VVRCPHHERCSDSDGLAPPQHLIRVEGNLRAEYLDDRNTFRHSVVVP",  # mouse
+  "VVRCPHHERCSDSDGLAPPQHLIRVEGNLRAEYLDDRNTFRHSVVVP",  # rat
+  "VVRCPHHERCSDSDGLAPPQHLIRVEGNLHAEYLDDRNTFRHSVVVP",  # dog
+  "VVRCPHHERCSDSDGLAPPQHLIRVEGNLHAEYLDDRNTFRHSVVVP",  # cat
+  "VVRCPHHERCSDSDGLAPPQHLIRVEGNLHAEYLDDRNTFRHSVVVP"   # chimpanzee
+)
+
+ggseqlogo(tp53_msa) +
+  ggtitle("TP53 DNA-binding domain — conservation across mammals") +
+  theme_minimal()
+```
+
+**Do dyskusji:**
+
+* Które pozycje są w pełni konserwatywne (wysoka litera w logo)? Czy pokrywają się z opisanymi hotspotami mutacyjnymi (R248, R273)?
+* Jak myślisz, dlaczego ewolucja chroni te konkretne aminokwasy przed zmianami?
+* Zmień w kodzie jeden aminokwas w sekwencji człowieka (np. zastąp `R` przez `W` w pozycji odpowiadającej R248) i uruchom ponownie. Co się stało z logo?
 
 ---
 
