@@ -32,8 +32,8 @@ library(Biostrings)
 seq1 <- "VDFWAE"
 seq2 <- "VDFWAP"
 
-# Obliczenie przyrównania
-alignment <- pairwiseAlignment(pattern = seq1, 
+# Calculate the alignment
+alignment <- pairwiseAlignment(pattern = seq1,
                                subject = seq2,
                                substitutionMatrix = "BLOSUM62",
                                type = "global",
@@ -41,7 +41,7 @@ alignment <- pairwiseAlignment(pattern = seq1,
                                gapExtension = -1)
 
 print(alignment)
-print(paste("Punktacja (score):", score(alignment)))
+print(paste("Score:", score(alignment)))
 ```
 
 ---
@@ -61,7 +61,7 @@ sekwencja_B <- "ACDEFGHLMN"
 eksperyment <- pairwiseAlignment(pattern = sekwencja_A, 
                                  subject = sekwencja_B,
                                  substitutionMatrix = "BLOSUM62",
-                                 gapOpening = -10,  # <-- ZMIEŃ NA -1
+                                 gapOpening = -10,  # <-- CHANGE TO -1
                                  gapExtension = -1)
 print(eksperyment)
 ```
@@ -78,3 +78,48 @@ print(eksperyment)
 
 **Pytanie 3:** Jaką macierz substytucji (stosowaną do obliczania wartości "score" dla dopasowania aminokwasów) zastosowaliśmy w powyższym kodzie?
 `r fitb("BLOSUM62")`
+
+---
+
+## Kontekst kliniczny – Przyrównanie TP53 między gatunkami
+
+W badaniach nad kostniakomięsakiem (osteosarcoma) naukowcy często korzystają z modeli zwierzęcych. Pies domowy (*Canis lupus familiaris*) choruje na osteosarcoma spontanicznie i jest uważany za lepszy model niż mysz — głównie dlatego, że jego białka są bliższe ludzkim.
+
+Sprawdźmy to sami, porównując fragment **domeny wiążącej DNA białka TP53** między trzema gatunkami. To właśnie w tej domenie skupia się większość mutacji obserwowanych w nowotworach.
+
+### Zadanie 3: Człowiek vs. Mysz vs. Pies
+
+```{webr-r}
+webr::install("Biostrings")
+library(Biostrings)
+
+# TP53 N-terminal fragment (first 30 aa)
+# Source: UniProt P04637 (human), P02340 (mouse), Q9N2I2 (dog)
+tp53_czlowiek <- "MEEPQSDPSVEPPLSQETFSDLWKLLPENNV"
+tp53_mysz     <- "MEESQSDISLELPLSQETFSGLWKLLPPEDV"
+tp53_pies     <- "MEEPQSDLSVELPLSQETFSDLWKLLPENNV"
+
+# Human vs. Mouse
+al_mysz <- pairwiseAlignment(tp53_czlowiek, tp53_mysz,
+                              substitutionMatrix = "BLOSUM62",
+                              type = "global")
+
+# Human vs. Dog
+al_pies <- pairwiseAlignment(tp53_czlowiek, tp53_pies,
+                              substitutionMatrix = "BLOSUM62",
+                              type = "global")
+
+cat("=== Człowiek vs. Mysz ===\n")
+print(al_mysz)
+cat("Score:", score(al_mysz), "\n\n")
+
+cat("=== Człowiek vs. Pies ===\n")
+print(al_pies)
+cat("Score:", score(al_pies), "\n")
+```
+
+**Do dyskusji:**
+
+* Który gatunek ma wyższy wynik dopasowania do człowieka — mysz czy pies?
+* Dlaczego wyższe podobieństwo sekwencji TP53 może oznaczać, że pies jest lepszym modelem zwierzęcym dla badań nad osteosarcoma?
+* Zmień `type = "global"` na `type = "local"` i sprawdź, czy wynik się zmienia. Jak interpretujesz różnicę?

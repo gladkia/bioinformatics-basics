@@ -64,16 +64,16 @@ W klasycznym podejściu wyszukiwalibyśmy rekord dotyczący genu APOE pod numere
 W R możemy pobrać dane z UniProt, generując odpowiedni link.
 
 ```{webr-r}
-# Definiujemy ID białka
+# Define the protein ID
 protein_id <- "P02649"
 
-# Tworzymy URL do pobrania sekwencji w formacie FASTA
+# Build the URL to fetch the sequence in FASTA format
 url <- paste0("https://rest.uniprot.org/uniprotkb/", protein_id, ".fasta")
 
-# Pobieramy treść
+# Download the content
 sekwencja <- readLines(url)
 
-# Wyświetlamy
+# Print the result
 cat(sekwencja, sep = "\n")
 ```
 
@@ -86,10 +86,10 @@ install.packages("seqinr")
 library(rentrez)
 library(seqinr)
 
-# Pobieranie sekwencji APOE (Nuccore) w formacie GenBank (uproszczony tekst)
+# Fetch the APOE sequence (Nuccore) in GenBank format
 apoe_record <- entrez_fetch(db="nuccore", id="NM_000041.4", rettype="gb", retmode="text")
 
-# Wyświetlamy początek pliku
+# Print the first 500 characters
 cat(substr(apoe_record, 1, 500))
 ```
 
@@ -127,10 +127,10 @@ Skopiuj poniższy kod do nowej komórki w Google Colab i uruchom go.
 
 from Bio import Entrez
 
-# Etykieta dobrych praktyk NCBI - zawsze podawaj swój email!
+# NCBI good practice — always provide your email
 Entrez.email = "twoj_adres@student.pw.edu.pl"
 
-# Przeszukujemy bazę PubMed
+# Search PubMed
 handle = Entrez.esearch(db="pubmed", term="Zielenkiewicz P[Author]")
 record = Entrez.read(handle)
 
@@ -149,7 +149,7 @@ from Bio import Entrez, SeqIO
 
 Entrez.email = "twoj_adres@student.pw.edu.pl"
 
-# Pobieramy sekwencję białkową APOE w formacie FASTA
+# Fetch the APOE protein sequence in FASTA format
 handle = Entrez.efetch(db="protein", id="NP_000032.1", rettype="fasta", retmode="text")
 sekwencja = SeqIO.read(handle, "fasta")
 
@@ -207,17 +207,17 @@ ClinVar to baza NCBI gromadząca informacje o wariantach genetycznych i ich znac
 install.packages("rentrez")
 library(rentrez)
 
-# Pobieramy sekwencję mRNA TP53 w formacie FASTA
+# Fetch the TP53 mRNA sequence in FASTA format
 tp53_fasta <- entrez_fetch(db="nuccore", id="NM_000546.6", rettype="fasta", retmode="text")
 
-# Wyświetlamy nagłówek i początek sekwencji
+# Print the header and beginning of the sequence
 cat(substr(tp53_fasta, 1, 300))
 ```
 
 ### Zadanie 6.3: Białko TP53 z UniProt w R
 
 ```{webr-r}
-# Pobieramy sekwencję białkową TP53 bezpośrednio z UniProt REST API
+# Fetch the TP53 protein sequence directly from the UniProt REST API
 tp53_id <- "P04637"
 url <- paste0("https://rest.uniprot.org/uniprotkb/", tp53_id, ".fasta")
 sekwencja <- readLines(url)
