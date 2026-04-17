@@ -44,6 +44,20 @@ Warunki uzyskania zaliczenia są następujące:
    * Egzamin odbywa się na platformie Moodle i trwa 100 minut.
    * Forma: kilkadziesiąt pytań jednokrotnego wyboru oraz 2-3 pytania opisowe.
 
+## 📋 Program laboratoriów
+
+Przez cały kurs będziemy korzystać z publicznie dostępnego zbioru danych projektu [osteosarc.com](https://osteosarc.com/) — wielopoziomowych danych omicznych pacjenta z kostniakomięsakiem (osteosarcoma), obejmujących WGS/WES, RNA-seq, scRNA-seq oraz dane obrazowe. Dzięki temu każde laboratorium osadzone jest w realnym kontekście klinicznym.
+
+| Lab | Temat | Kluczowe narzędzia | Dane osteosarc.com |
+|-----|-------|--------------------|---------------------|
+| 1 | Bazy danych i API | NCBI, UniProt, rentrez (R), Biopython | Eksploracja genów TP53/RB1 przez API |
+| 2 | Algorytmy przyrównań sekwencji | Biostrings, Needleman-Wunsch, Smith-Waterman | Sekwencje TP53 u człowieka, myszy i psa |
+| 3 | Profile, BLAST i ewolucja | BLAST, E-value, HMM | — |
+| 4 | Dane NGS i warianty | FASTQ/BAM/VCF, VariantAnnotation (R) | Warianty somatyczne z WES (TP53/RB1) |
+| 5 | MSA, filogenetyka i AlphaFold | T-Coffee, drzewa filogenetyczne, AlphaFold | — |
+| 6 | Analiza ekspresji genów (RNA-Seq) | DESeq2, Volcano Plot | Macierz zliczeń bulk RNA-seq |
+| 7 | Projektowanie leków (Docking) | Molecular Docking, PDB | Białko MDM2 jako cel terapeutyczny |
+
 ## 📚 Materiały dodatkowe i Ciekawostki
 Aby poszerzyć swoją wiedzę poza zajęciami, zachęcam do zapoznania się z poniższymi materiałami:
 

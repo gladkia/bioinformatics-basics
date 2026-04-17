@@ -41,6 +41,20 @@ To complete the course, the following conditions must be met:
     * [cite_start]The exam is conducted on the Moodle platform (100 minutes)[cite: 389].
     * [cite_start]Format: Multiple-choice questions and 2-3 descriptive questions[cite: 390].
 
+## 📋 Lab Schedule
+
+Throughout the course, we will use data from [osteosarc.com](https://osteosarc.com/) — a publicly available multi-omic dataset from an osteosarcoma patient, including WGS/WES, RNA-seq, single-cell RNA-seq, and imaging data. This grounds every lab in a real clinical context.
+
+| Lab | Topic | Key Tools | osteosarc.com Data |
+|-----|-------|-----------|---------------------|
+| 1 | Databases & APIs | NCBI, UniProt, rentrez (R), Biopython | Exploring TP53/RB1 via API |
+| 2 | Sequence Alignment Algorithms | Biostrings, Needleman-Wunsch, Smith-Waterman | TP53 sequences across human, mouse, and dog |
+| 3 | Profiles, BLAST & Evolution | BLAST, E-value, HMM | — |
+| 4 | NGS Data & Variant Calling | FASTQ/BAM/VCF, VariantAnnotation (R) | Somatic variants from WES (TP53/RB1) |
+| 5 | MSA, Phylogenetics & AlphaFold | T-Coffee, phylogenetic trees, AlphaFold | — |
+| 6 | Gene Expression Analysis (RNA-Seq) | DESeq2, Volcano Plot | Bulk RNA-seq count matrix |
+| 7 | Drug Design (Molecular Docking) | Molecular Docking, PDB | MDM2 protein as a therapeutic target |
+
 ## 📚 Additional Materials & Curiosities
 To expand your knowledge beyond the classroom, feel free to explore the following resources:
 * [cite_start]Free Online Book: [The Art of R Programming (Norman Matloff)](https://diytranscriptomics.com/Reading/files/The%20Art%20of%20R%20Programming.pdf)[cite: 407].
