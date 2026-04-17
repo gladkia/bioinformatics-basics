@@ -89,6 +89,10 @@ website:
               file: en/lab_4.qmd
             - text: "Lab 5: Protein Structures (AI)"
               file: en/lab_5.qmd
+            - text: "Lab 6: RNA-Seq (Expression)"
+              file: en/lab_6.qmd
+            - text: "Lab 7: Drug Docking"
+              file: en/lab_7.qmd
         - section: "Important Links"
           contents:
             - text: "Grades (Google Docs)"

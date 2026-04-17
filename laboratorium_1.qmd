@@ -81,9 +81,8 @@ cat(sekwencja, sep = "\n")
 Pobierzmy dane o genomie, które wcześniej widziałeś na stronie WWW.
 
 ```{webr-r}
-# Ładowanie pakietów (w WebR są one preinstalowane lub pobierane w locie)
-webr::install("rentrez")
-webr::install("seqinr")
+install.packages("rentrez")
+install.packages("seqinr")
 library(rentrez)
 library(seqinr)
 
