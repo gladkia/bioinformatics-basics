@@ -27,7 +27,7 @@ Dawniej używalibyście klikanego interfejsu w programie **Jalview**, aby wylicz
 **Wyzwanie:** Zmień w kodzie nazwę "Gatunek_D" na "Człowiek", a "Gatunek_E" na "Szympans" i zobacz, jak zgrupują się te organizmy!
 
 ```{webr-r}
-# Symulowana macierz odległości na podstawie MSA
+# Simulated distance matrix based on an MSA
 odleglosci <- matrix(c(
   0,  2,  8, 10, 11,
   2,  0,  7,  9, 10,
@@ -36,17 +36,50 @@ odleglosci <- matrix(c(
  11, 10,  5,  3,  0
 ), nrow=5, byrow=TRUE)
 
-# Nazwy naszych organizmów
+# Species names
 colnames(odleglosci) <- c("Gatunek_A", "Gatunek_B", "Gatunek_C", "Gatunek_D", "Gatunek_E")
 rownames(odleglosci) <- colnames(odleglosci)
 
-# Klastrowanie metodą UPGMA (Average Distance)
+# Clustering using UPGMA (Average Distance)
 dist_obj <- as.dist(odleglosci)
 drzewo <- hclust(dist_obj, method = "average")
 
-# Rysowanie drzewa
-plot(drzewo, main="Drzewo filogenetyczne na bazie MSA", xlab="Organizmy", ylab="Odległość ewolucyjna", sub="")
+# Plot the tree
+plot(drzewo, main="Phylogenetic tree from MSA", xlab="Organisms", ylab="Evolutionary distance", sub="")
 ```
+
+### Interaktywne zadanie 2: Drzewo filogenetyczne TP53
+
+Teraz zastąpmy abstrakcyjne gatunki **prawdziwymi danymi**. Poniższe odległości ewolucyjne obliczono na podstawie procentowej identyczności sekwencji białkowej TP53 między sześcioma ssakami. To te same gatunki, których używaliśmy w Laboratorium 3!
+
+```{webr-r}
+# Evolutionary distances derived from TP53 protein sequence identity
+# (distance ≈ 100 - %identity; sources: UniProt pairwise alignments)
+tp53_dist <- matrix(c(
+   0,  1, 23, 22, 12,  5,
+   1,  0, 23, 22, 12,  5,
+  23, 23,  0,  4, 22, 22,
+  22, 22,  4,  0, 21, 21,
+  12, 12, 22, 21,  0, 11,
+   5,  5, 22, 21, 11,  0
+), nrow=6, byrow=TRUE)
+
+species <- c("Human", "Chimpanzee", "Mouse", "Rat", "Dog", "Cat")
+colnames(tp53_dist) <- species
+rownames(tp53_dist) <- species
+
+# Build and plot the UPGMA tree
+tree <- hclust(as.dist(tp53_dist), method = "average")
+plot(tree,
+     main = "TP53 phylogenetic tree (6 mammals)",
+     xlab = "Species", ylab = "Evolutionary distance", sub = "")
+```
+
+**Do dyskusji:**
+
+* Które gatunki grupują się najbliżej człowieka? Czy wynik zgadza się z tym, czego oczekiwałeś?
+* Przypomnij sobie wyniki przyrównania z Laboratorium 2: pies miał wyższy score niż mysz. Czy drzewo to potwierdza?
+* Dlaczego bliskie podobieństwo TP53 psa do ludzkiego jest ważne z punktu widzenia badań nad osteosarcoma?
 
 ---
 
@@ -57,14 +90,27 @@ Przez dziesięciolecia przewidywanie struktury 3D białka na podstawie samej sek
 **Jak AlphaFold wykorzystuje MSA?**
 AlphaFold nie działa w próżni. Jego głównym wejściem jest właśnie **MSA**. Algorytm analizuje setki spokrewnionych sekwencji, by zidentyfikować "koewoluujące" reszty aminokwasowe. Jeśli dwie pozycje w białku mutują razem u różnych gatunków, najprawdopodobniej stykają się ze sobą w przestrzeni 3D.
 
-### Ostatnie Zadanie: Przewiduj z ColabFold
+### Zadanie 3: Struktura TP53 w AlphaFold — gdzie są hotspoty?
 
-Użyjemy **ColabFold** – opartej na chmurze wersji AlphaFold, by zobaczyć białko w 3D!
+W Laboratorium 4 zidentyfikowaliśmy mutacje somatyczne TP53 z osteosarcoma: **R248W**, **R273H** i **R175H**. Teraz zobaczymy, gdzie te pozycje leżą w trójwymiarowej strukturze białka.
+
+1. Wejdź na stronę AlphaFold dla TP53: [https://alphafold.ebi.ac.uk/entry/P04637](https://alphafold.ebi.ac.uk/entry/P04637)
+2. Zaobserwuj kolorowanie struktury według pewności predykcji (pLDDT). Które regiony są przewidziane pewnie (niebieski), a które nie (żółty/pomarańczowy)?
+3. Użyj wyszukiwarki reszty aminokwasowej, aby zlokalizować pozycje **R175**, **R248** i **R273** w domenie wiążącej DNA.
+
+::: {.callout-note}
+## Dlaczego hotspoty są w domenie wiążącej DNA?
+Domena wiążąca DNA TP53 (aa 94–292) kontaktuje się bezpośrednio z sekwencją promotorową genów docelowych. Mutacje R175H, R248W i R273H niszczą kontakt z DNA lub destabilizują strukturę domeny — stąd ich silny efekt onkogenny.
+:::
+
+### Zadanie 4: Przewidywanie struktury własnego białka z ColabFold
+
+Użyjemy **ColabFold** — opartej na chmurze wersji AlphaFold — by samodzielnie wygenerować strukturę 3D.
 
 1. Otwórz notatnik [ColabFold](https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb).
-2. Wklej sekwencję szczurzej **konwertazy NRD** (Accession: `gi:1352519`) lub zidentyfikowanej wcześniej domeny konserwatywnej.
-3. Uruchom przewidywanie (Run all). 
-4. Pobierz plik `.pdb` i wyświetl go w wybranej przeglądarce struktur!
+2. Wklej sekwencję białkową **RB1** (pobrana z UniProt `P06400`) lub fragment domeny wiążącej DNA TP53.
+3. Uruchom przewidywanie (*Run all*).
+4. Pobierz plik `.pdb` i wyświetl go w przeglądarce struktur [Mol*](https://molstar.org/viewer/).
 
 ---
 
