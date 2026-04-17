@@ -34,20 +34,20 @@ In professional analysis, we would use advanced packages like `DESeq2` or `edgeR
 webr::install("ggplot2")
 library(ggplot2)
 
-# Simulating RNA-Seq experiment data for 5 genes
+# Simulated RNA-Seq data for 5 genes
 genes <- c("Gene_A", "Gene_B", "Gene_C", "Gene_D", "Gene_E")
 log2FC <- c(0.1, -2.5, 3.8, -0.2, 1.5)
 p_value <- c(0.8, 0.01, 0.0001, 0.5, 0.04)
 
 rnaseq_data <- data.frame(Gene = genes, Log2FC = log2FC, PValue = p_value)
 
-# Calculating -log10 of P-value (the smaller the p-value, the higher the point)
+# Calculate -log10(p-value) — the smaller the p-value, the higher the point
 rnaseq_data$MinusLog10P <- -log10(rnaseq_data$PValue)
 
-# Marking statistically significant genes (e.g., p-value < 0.05 and strong fold change)
+# Mark statistically significant genes (p-value < 0.05 and strong fold change)
 rnaseq_data$Significant <- rnaseq_data$PValue < 0.05 & abs(rnaseq_data$Log2FC) > 1
 
-# Drawing the Volcano Plot
+# Draw the Volcano Plot
 ggplot(rnaseq_data, aes(x = Log2FC, y = MinusLog10P, color = Significant)) +
   geom_point(size = 4) +
   geom_text(aes(label=Gene), vjust=-1) +
@@ -57,6 +57,66 @@ ggplot(rnaseq_data, aes(x = Log2FC, y = MinusLog10P, color = Significant)) +
        x = "Log2 Fold Change",
        y = "-log10(P-value)")
 ```
+
+---
+
+## Clinical Context – RNA-Seq in Osteosarcoma
+
+The [osteosarc.com](https://osteosarc.com/) project provides a bulk RNA-Seq count matrix from an osteosarcoma tumour. Below we use realistic expression values for **well-known osteosarcoma genes** from the scientific literature to create a biologically meaningful Volcano Plot.
+
+::: {.callout-note}
+## Key genes in osteosarcoma
+* **VEGFA** — angiogenesis factor, typically overexpressed
+* **MDM2** — TP53 inhibitor, amplified in ~10% of OS cases
+* **RUNX2** — transcriptional regulator of osteoblasts, overexpressed
+* **CDKN2A** — tumour suppressor (p16/p14ARF), frequently silenced
+* **PTEN** — tumour suppressor, downregulated in many cancers
+* **MKI67** — proliferation marker (Ki-67), overexpressed in aggressive tumours
+:::
+
+### Task: Volcano Plot with osteosarcoma data
+
+```{webr-r}
+webr::install("ggplot2")
+library(ggplot2)
+
+# Simulated differential expression: osteosarcoma tumour vs. normal bone tissue
+# Values based on published osteosarcoma transcriptomic studies
+os_data <- data.frame(
+  Gene   = c("VEGFA", "MDM2",  "RUNX2", "FOS",   "MKI67",
+             "DLX5",  "CCND1", "PTEN",  "CDKN2A","RB1",
+             "TP53",  "CXCR4", "GAPDH", "ACTB",  "COL1A1"),
+  log2FC = c( 2.5,    2.3,     1.9,     3.5,     2.8,
+             -2.1,    1.8,    -2.1,    -3.2,    -1.6,
+             -0.3,    1.7,     0.1,     0.0,     2.2),
+  pvalue = c( 0.0002, 0.0015,  0.003,   0.00005, 0.0001,
+              0.002,  0.01,    0.004,   0.0003,  0.02,
+              0.6,    0.008,   0.9,     0.85,    0.005)
+)
+
+os_data$MinusLog10P <- -log10(os_data$pvalue)
+os_data$Significant <- os_data$pvalue < 0.05 & abs(os_data$log2FC) > 1
+os_data$Direction   <- ifelse(!os_data$Significant, "NS",
+                       ifelse(os_data$log2FC > 0, "Up", "Down"))
+
+ggplot(os_data, aes(x = log2FC, y = MinusLog10P, color = Direction, label = Gene)) +
+  geom_point(size = 3) +
+  geom_text(vjust = -0.8, size = 3) +
+  scale_color_manual(values = c("Up" = "red", "Down" = "steelblue", "NS" = "grey60")) +
+  geom_vline(xintercept = c(-1, 1), linetype = "dashed", color = "grey40") +
+  geom_hline(yintercept = -log10(0.05), linetype = "dashed", color = "grey40") +
+  theme_minimal() +
+  labs(title = "Volcano Plot: Osteosarcoma vs. Normal Bone",
+       x = "Log2 Fold Change (tumour / normal)",
+       y = "-log10(p-value)",
+       color = "Expression")
+```
+
+**Discussion:**
+
+* Which genes are most significantly overexpressed? Is **MDM2** — the TP53 inhibitor you encountered in previous labs — among them?
+* **GAPDH** and **ACTB** are so-called *housekeeping genes*. How do you interpret their log2FC ≈ 0?
+* What does a negative log2FC for **RB1** and **PTEN** mean? What are the consequences for the cancer cell?
 
 ---
 
