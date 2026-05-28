@@ -2,8 +2,6 @@
 title: "Laboratorium 4: Wstęp do danych NGS i poszukiwania wariantów"
 format: html
 engine: knitr
-filters:
-  - webr
 ---
 
 ```{r, echo = FALSE, results='asis'}
@@ -39,8 +37,8 @@ Poniżej zasymulowaliśmy fragment genomu referencyjnego oraz jeden krótki odcz
 2. Przyjrzyj się wynikowi przyrównania. Czy potrafisz zidentyfikować mutację **SNP** (Single Nucleotide Polymorphism)? 
 3. Na jakiej pozycji pacjent różni się od referencji?
 
-```{webr-r}
-webr::install("Biostrings")
+```{r eval=FALSE}
+BiocManager::install("Biostrings")
 library(Biostrings)
 
 # Genom referencyjny (zdrowy / dziki typ)
