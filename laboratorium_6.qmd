@@ -2,8 +2,6 @@
 title: "Laboratorium 6: Analiza ekspresji genów (RNA-Seq)"
 format: html
 engine: knitr
-filters:
-  - webr
 ---
 
 ```{r, echo = FALSE, results='asis'}
@@ -30,8 +28,8 @@ W profesjonalnej analizie użylibyśmy zaawansowanych pakietów takich jak `DESe
 
 **Zadanie:** Uruchom poniższy kod. Znajdź na wykresie najbardziej "świecący" na czerwono punkt. To nasz gen celowy! Zmień w kodzie próg p-value (z `0.05` na `0.001`), aby zobaczyć, jak ostre kryteria stosują bioinformatycy.
 
-```{webr-r}
-webr::install("ggplot2")
+```{r eval=FALSE}
+install.packages("ggplot2")
 library(ggplot2)
 
 # Symulujemy dane z eksperymentu RNA-Seq dla 5 genów
