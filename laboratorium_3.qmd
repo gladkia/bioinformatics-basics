@@ -2,8 +2,6 @@
 title: "Laboratorium 3: Profile sekwencyjne, Ewolucja i ukryte wiadomości"
 format: html
 engine: knitr
-filters:
-  - webr
 ---
 
 ```{r, echo = FALSE, results='asis'}
@@ -40,10 +38,10 @@ Użyjemy pakietu `ggseqlogo`, aby zwizualizować zestaw krótkich sekwencji pept
 
 **Zadanie:** Uruchom poniższy kod. Zwróć uwagę, na których pozycjach aminokwasy są wysoce konserwatywne, a na których ulegają mutacjom.
 
-```{webr-r}
+```{r eval=FALSE}
 # Instalacja i ładowanie bibliotek do wizualizacji
-webr::install("ggplot2")
-webr::install("ggseqlogo")
+install.packages("ggplot2")
+install.packages("ggseqlogo")
 library(ggplot2)
 library(ggseqlogo)
 
