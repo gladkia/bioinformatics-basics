@@ -103,55 +103,5 @@ print(f"First 50 aa: {sequence.seq[:50]}")
 
 ## Part 3: Integration Project – Ebola Virus
 
-Using the NCBI Taxonomy database, we can find sequences for the Ebola virus. Write a short R script (using the WebR editor above) to fetch the full genome of the Zaire Ebolavirus (find its Accession ID online) and calculate its **GC-content**.
-
----
-
-## Part 4: Clinical Context – Osteosarcoma
-
-Throughout this course, we will return to data from [osteosarc.com](https://osteosarc.com/) — a publicly available multi-omic dataset from an **osteosarcoma** patient. Osteosarcoma is a rare but aggressive bone cancer, most commonly affecting children and young adults.
-
-Two genes play a central role in its development:
-
-* **TP53** (`P04637`) — the "guardian of the genome", a tumor suppressor. TP53 mutations are found in over 50% of osteosarcoma cases.
-* **RB1** (`P06400`) — originally discovered in retinoblastoma, but also critical in osteosarcoma.
-
-### Task 4.1: Manual exploration in NCBI and UniProt
-
-1. Go to [NCBI Gene](https://www.ncbi.nlm.nih.gov/gene/) and search for `TP53`. Find the RefSeq accession numbers for the mRNA (`NM_...`) and protein (`NP_...`).
-2. Go to [UniProt](https://www.uniprot.org/) and search for `P04637`. Compare the **Disease & Variants** section with what you saw earlier for APOE.
-3. Go to [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) and search for `TP53`. How many clinical variants are described for this gene?
-
-::: {.callout-note}
-## ClinVar — the clinical variant database
-ClinVar is an NCBI database that collects information about genetic variants and their clinical significance. Each variant is classified as *Pathogenic*, *Likely pathogenic*, *Benign*, or *Uncertain significance*.
-:::
-
-### Task 4.2: Fetching the TP53 sequence via API in R
-
-```{webr-r}
-install.packages("rentrez")
-library(rentrez)
-
-# Fetch the TP53 mRNA sequence in FASTA format
-tp53_fasta <- entrez_fetch(db="nuccore", id="NM_000546.6", rettype="fasta", retmode="text")
-
-# Display the header and beginning of the sequence
-cat(substr(tp53_fasta, 1, 300))
-```
-
-### Task 4.3: TP53 protein from UniProt in R
-
-```{webr-r}
-# Fetch the TP53 protein sequence directly from the UniProt REST API
-tp53_id <- "P04637"
-url <- paste0("https://rest.uniprot.org/uniprotkb/", tp53_id, ".fasta")
-sequence <- readLines(url)
-cat(sequence, sep = "\n")
-```
-
-**Discussion:**
-
-* Compare the length of the TP53 sequence to that of APOE from Task 1. Which protein is longer?
-* Find the UniProt accession number for RB1 and fetch its sequence using the same code.
-* Go back to ClinVar and check which TP53 variants are classified as *Pathogenic*. Do you see any mention of osteosarcoma?
+Using the NCBI Taxonomy database, we can find sequences for the Ebola virus[cite: 349]. 
+Write a short R script (using the WebR editor above) to fetch the full genome of the Zaire Ebolavirus (find its Accession ID online) and calculate its **GC-content** [cite: 350-353].

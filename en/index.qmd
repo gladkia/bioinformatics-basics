@@ -57,9 +57,7 @@ Throughout the course, we will use data from [osteosarc.com](https://osteosarc.c
 
 ## 📚 Additional Materials & Curiosities
 To expand your knowledge beyond the classroom, feel free to explore the following resources:
-* Recommended R course (bioinformatics): [Bioconductor R Intro – Carpentries Incubator](https://carpentries-incubator.github.io/bioc-intro/).
-* Clinical data used throughout the labs: [osteosarc.com](https://osteosarc.com/) — a public multi-omic dataset from an osteosarcoma patient.
-* Free Online Book: [The Art of R Programming (Norman Matloff)](https://diytranscriptomics.com/Reading/files/The%20Art%20of%20R%20Programming.pdf).
+* [cite_start]Free Online Book: [The Art of R Programming (Norman Matloff)](https://diytranscriptomics.com/Reading/files/The%20Art%20of%20R%20Programming.pdf)[cite: 407].
 * [cite_start]Cloud Workstation (25h of free computing per month): [Posit Cloud](https://rstudio.cloud/)[cite: 415].
 * [cite_start]Genetics Milestone: The 2022 complete human genome sequencing via the [T2T method](https://www.science.org/doi/10.1126/science.abp8653)[cite: 414].
 * [cite_start]Recommended AI Course: [Machine Learning via Python Notebooks by Andrew Ng](https://www.coursera.org/specializations/machine-learning-introduction)[cite: 416].

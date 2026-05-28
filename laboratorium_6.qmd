@@ -2,8 +2,6 @@
 title: "Laboratorium 6: Analiza ekspresji genów (RNA-Seq)"
 format: html
 engine: knitr
-filters:
-  - webr
 ---
 
 ```{r, echo = FALSE, results='asis'}
@@ -30,93 +28,33 @@ W profesjonalnej analizie użylibyśmy zaawansowanych pakietów takich jak `DESe
 
 **Zadanie:** Uruchom poniższy kod. Znajdź na wykresie najbardziej "świecący" na czerwono punkt. To nasz gen celowy! Zmień w kodzie próg p-value (z `0.05` na `0.001`), aby zobaczyć, jak ostre kryteria stosują bioinformatycy.
 
-```{webr-r}
-webr::install("ggplot2")
+```{r eval=FALSE}
+install.packages("ggplot2")
 library(ggplot2)
 
-# Simulated RNA-Seq data for 5 genes
+# Symulujemy dane z eksperymentu RNA-Seq dla 5 genów
 geny <- c("Gen_A", "Gen_B", "Gen_C", "Gen_D", "Gen_E")
 log2FC <- c(0.1, -2.5, 3.8, -0.2, 1.5)
 p_value <- c(0.8, 0.01, 0.0001, 0.5, 0.04)
 
 dane_rnaseq <- data.frame(Gen = geny, Log2FC = log2FC, PValue = p_value)
 
-# Calculate -log10(p-value) — the smaller the p-value, the higher the point
+# Obliczamy -log10 z P-value (im mniejsze p-value, tym punkt będzie wyżej)
 dane_rnaseq$MinusLog10P <- -log10(dane_rnaseq$PValue)
 
-# Mark statistically significant genes (p-value < 0.05 and strong fold change)
+# Oznaczamy geny istotne statystycznie (np. p-value < 0.05 i mocna zmiana)
 dane_rnaseq$Istotny <- dane_rnaseq$PValue < 0.05 & abs(dane_rnaseq$Log2FC) > 1
 
-# Draw the Volcano Plot
+# Rysujemy Volcano Plot
 ggplot(dane_rnaseq, aes(x = Log2FC, y = MinusLog10P, color = Istotny)) +
   geom_point(size = 4) +
   geom_text(aes(label=Gen), vjust=-1) +
   scale_color_manual(values = c("black", "red")) +
   theme_minimal() +
-  labs(title = "Volcano Plot: Expression Analysis",
-       x = "Log2 Fold Change",
-       y = "-log10(P-value)")
+  labs(title = "Volcano Plot: Analiza Ekspresji",
+       x = "Log2 Fold Change (Zmiana ekspresji)",
+       y = "-log10(P-value) (Wiarygodność)")
 ```
-
----
-
-## Kontekst kliniczny – RNA-Seq w osteosarcoma
-
-Projekt [osteosarc.com](https://osteosarc.com/) udostępnia macierz zliczeń bulk RNA-Seq z guza kostniakomięsaka. Poniżej używamy realistycznych wartości ekspresji **znanych genów osteosarcoma** z literatury naukowej, aby stworzyć biologicznie znaczący Volcano Plot.
-
-::: {.callout-note}
-## Kluczowe geny w osteosarcoma
-* **VEGFA** — czynnik angiogenezy, zazwyczaj nadekspresjonowany
-* **MDM2** — inhibitor TP53, amplifikowany w ~10% przypadków OS
-* **RUNX2** — transkrypcyjny regulator osteoblastów, nadekspresjonowany
-* **CDKN2A** — supresor nowotworowy (p16/p14ARF), często wyciszony
-* **PTEN** — supresor nowotworowy, wyciszony w wielu nowotworach
-* **MKI67** — marker proliferacji (Ki-67), nadekspresjonowany w agresywnych guzach
-:::
-
-### Zadanie: Volcano Plot z danymi osteosarcoma
-
-```{webr-r}
-webr::install("ggplot2")
-library(ggplot2)
-
-# Simulated differential expression: osteosarcoma tumour vs. normal bone tissue
-# Values based on published osteosarcoma transcriptomic studies
-os_data <- data.frame(
-  Gene   = c("VEGFA", "MDM2",  "RUNX2", "FOS",   "MKI67",
-             "DLX5",  "CCND1", "PTEN",  "CDKN2A","RB1",
-             "TP53",  "CXCR4", "GAPDH", "ACTB",  "COL1A1"),
-  log2FC = c( 2.5,    2.3,     1.9,     3.5,     2.8,
-             -2.1,    1.8,    -2.1,    -3.2,    -1.6,
-             -0.3,    1.7,     0.1,     0.0,     2.2),
-  pvalue = c( 0.0002, 0.0015,  0.003,   0.00005, 0.0001,
-              0.002,  0.01,    0.004,   0.0003,  0.02,
-              0.6,    0.008,   0.9,     0.85,    0.005)
-)
-
-os_data$MinusLog10P <- -log10(os_data$pvalue)
-os_data$Significant <- os_data$pvalue < 0.05 & abs(os_data$log2FC) > 1
-os_data$Direction   <- ifelse(!os_data$Significant, "NS",
-                       ifelse(os_data$log2FC > 0, "Up", "Down"))
-
-ggplot(os_data, aes(x = log2FC, y = MinusLog10P, color = Direction, label = Gene)) +
-  geom_point(size = 3) +
-  geom_text(vjust = -0.8, size = 3) +
-  scale_color_manual(values = c("Up" = "red", "Down" = "steelblue", "NS" = "grey60")) +
-  geom_vline(xintercept = c(-1, 1), linetype = "dashed", color = "grey40") +
-  geom_hline(yintercept = -log10(0.05), linetype = "dashed", color = "grey40") +
-  theme_minimal() +
-  labs(title = "Volcano Plot: Osteosarcoma vs. Normal Bone",
-       x = "Log2 Fold Change (tumour / normal)",
-       y = "-log10(p-value)",
-       color = "Expression")
-```
-
-**Do dyskusji:**
-
-* Które geny są najbardziej istotnie nadekspresjonowane? Czy wśród nich jest **MDM2** — inhibitor TP53, który poznałeś w poprzednich laboratoriach?
-* Geny **GAPDH** i **ACTB** to tzw. geny referencyjne (*housekeeping genes*). Jak interpretować ich log2FC ≈ 0?
-* Co oznacza, że **RB1** i **PTEN** mają ujemny log2FC? Jakie ma to konsekwencje dla komórki nowotworowej?
 
 ---
 

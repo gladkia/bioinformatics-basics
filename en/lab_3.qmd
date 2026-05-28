@@ -42,13 +42,13 @@ Before playing detective, we must understand how BLAST evaluates whether a match
 **Task:** Run the code below. Observe which positions are highly conserved and which are variable.
 
 ```{webr-r}
-# Install and load visualization packages
+# Installing and loading visualization packages
 webr::install("ggplot2")
 webr::install("ggseqlogo")
 library(ggplot2)
 library(ggseqlogo)
 
-# MSA of peptide sequences
+# Our MSA peptide sequences from previous studies
 alignment <- c(
   "VDFWAE",
   "VDFWAP",
@@ -60,51 +60,11 @@ alignment <- c(
   "VDFYAT"
 )
 
-# Generate the sequence logo
-ggseqlogo(alignment) +
-  ggtitle("Sequence Logo of our peptide alignment") +
+# Generate the logo
+ggseqlogo(alignment) + 
+  ggtitle("Sequence Logo of our Peptide Alignment") +
   theme_minimal()
 ```
-
----
-
-## Clinical Context – TP53 Mutation Hotspots in Osteosarcoma
-
-The TP53 protein has well-known **mutation hotspots** — positions where mutations recur across many cancer types, including osteosarcoma. These include R175, G245, R248, R249, R273, and R282.
-
-A Sequence Logo is the perfect tool for visualising how conserved — and therefore how functionally critical — each position is. Below we use a fragment of the TP53 DNA-binding domain from several mammals to see which positions are evolutionarily invariant.
-
-### Task: TP53 DNA-binding domain logo
-
-```{webr-r}
-# Install and load visualization packages
-webr::install("ggplot2")
-webr::install("ggseqlogo")
-library(ggplot2)
-library(ggseqlogo)
-
-# Fragment of the TP53 DNA-binding domain (loop L3 region, aa 237-250) across mammals
-# Sources: UniProt P04637 (human), P02340 (mouse), P10360 (rat),
-#          Q9N2I2 (dog), P67939 (cat), Q95M73 (chimpanzee)
-tp53_msa <- c(
-  "VVRCPHHERCSDSDGLAPPQHLIRVEGNLHAEYLDDRNTFRHSVVVP",  # human
-  "VVRCPHHERCSDSDGLAPPQHLIRVEGNLRAEYLDDRNTFRHSVVVP",  # mouse
-  "VVRCPHHERCSDSDGLAPPQHLIRVEGNLRAEYLDDRNTFRHSVVVP",  # rat
-  "VVRCPHHERCSDSDGLAPPQHLIRVEGNLHAEYLDDRNTFRHSVVVP",  # dog
-  "VVRCPHHERCSDSDGLAPPQHLIRVEGNLHAEYLDDRNTFRHSVVVP",  # cat
-  "VVRCPHHERCSDSDGLAPPQHLIRVEGNLHAEYLDDRNTFRHSVVVP"   # chimpanzee
-)
-
-ggseqlogo(tp53_msa) +
-  ggtitle("TP53 DNA-binding domain — conservation across mammals") +
-  theme_minimal()
-```
-
-**Discussion:**
-
-* Which positions are fully conserved (tall letters in the logo)? Do they overlap with known hotspots (R248, R273)?
-* Why might evolution protect these specific amino acids from change?
-* Modify one amino acid in the human sequence (e.g. replace `R` with `W` at the position corresponding to R248) and re-run. What happens to the logo?
 
 ---
 

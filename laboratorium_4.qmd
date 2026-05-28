@@ -2,8 +2,6 @@
 title: "Laboratorium 4: Wstęp do danych NGS i poszukiwania wariantów"
 format: html
 engine: knitr
-filters:
-  - webr
 ---
 
 ```{r, echo = FALSE, results='asis'}
@@ -39,23 +37,23 @@ Poniżej zasymulowaliśmy fragment genomu referencyjnego oraz jeden krótki odcz
 2. Przyjrzyj się wynikowi przyrównania. Czy potrafisz zidentyfikować mutację **SNP** (Single Nucleotide Polymorphism)? 
 3. Na jakiej pozycji pacjent różni się od referencji?
 
-```{webr-r}
-webr::install("Biostrings")
+```{r eval=FALSE}
+BiocManager::install("Biostrings")
 library(Biostrings)
 
-# Reference genome (wild type)
+# Genom referencyjny (zdrowy / dziki typ)
 referencja <- DNAString("ATGCGTACGTAGCTAGCTAGCTGATCGATCGTAGCTAGCTAGCTGATCG")
 
-# Short read from a patient sample (extracted from a FASTQ file)
+# Krótki odczyt z próbki od pacjenta (FASTQ)
 odczyt_pacjenta <- DNAString("CGTACGTAGCTTGCTAGCTG")
 
-# Mapping (local alignment)
-mapowanie <- pairwiseAlignment(pattern = odczyt_pacjenta,
-                               subject = referencja,
+# Mapowanie (przyrównanie lokalne)
+mapowanie <- pairwiseAlignment(pattern = odczyt_pacjenta, 
+                               subject = referencja, 
                                type = "local")
 
-# Display the mapping result
-print("Mapping result (Read vs Reference):")
+# Wyświetlamy proces mapowania
+print("Wynik mapowania odczytu do genomu referencyjnego:")
 print(mapowanie)
 ```
 
@@ -83,63 +81,3 @@ Przed erą NGS, badacze często używali BLASTa do znalezienia ortologów w inny
 
 **Pytanie 3:** Jak nazywa się wartość statystyczna, która wskazuje liczbę dopasowań, jakich można się "spodziewać" przez przypadek podczas przeszukiwania bazy danych?
 `r fitb(c("E-value", "e-value", "Expect value"))`
-
----
-
-## Kontekst kliniczny – Warianty somatyczne w osteosarcoma
-
-Projekt [osteosarc.com](https://osteosarc.com/) udostępnia dane WES (whole exome sequencing) pacjenta z kostniakomięsakiem. Wynikiem analizy takich danych jest plik **VCF** zawierający mutacje somatyczne — zmiany obecne w komórkach nowotworowych, ale nieobecne w zdrowych tkankach.
-
-Poniżej przedstawiamy uproszczony plik VCF z **rzeczywistymi hotspotami mutacyjnymi TP53** obserwowanymi w osteosarcoma. Format VCF zawiera:
-
-| Kolumna | Znaczenie |
-|---------|-----------|
-| `CHROM` | Chromosom |
-| `POS` | Pozycja w genomie (hg38) |
-| `REF` | Nukleotyd referencyjny |
-| `ALT` | Zmutowany nukleotyd |
-| `INFO` | Dodatkowe informacje |
-
-### Zadanie 4.1: Parsowanie pliku VCF w R
-
-```{webr-r}
-# Simulated VCF with known somatic TP53/RB1 hotspot mutations from osteosarcoma
-# Coordinates: GRCh38/hg38
-vcf_data <- data.frame(
-  CHROM = c("chr17", "chr17", "chr17", "chr13"),
-  POS   = c(7674220, 7673802, 7675088, 48941648),
-  ID    = c(".", ".", ".", "."),
-  REF   = c("C", "G", "G", "C"),
-  ALT   = c("T", "A", "A", "T"),
-  QUAL  = c(85, 92, 78, 88),
-  FILTER= c("PASS", "PASS", "PASS", "PASS"),
-  INFO  = c("GENE=TP53;AA=R248W", "GENE=TP53;AA=R273H",
-            "GENE=TP53;AA=R175H", "GENE=RB1;AA=R455C"),
-  stringsAsFactors = FALSE
-)
-
-print(vcf_data)
-```
-
-### Zadanie 4.2: Filtrowanie i analiza wariantów
-
-```{webr-r}
-# Filter only TP53 variants
-tp53_variants <- vcf_data[grepl("TP53", vcf_data$INFO), ]
-cat("TP53 variants found:", nrow(tp53_variants), "\n\n")
-
-# Extract amino acid changes
-aa_changes <- gsub(".*AA=", "", tp53_variants$INFO)
-cat("Amino acid changes:\n")
-print(data.frame(
-  Position = tp53_variants$POS,
-  Change   = paste0(tp53_variants$REF, ">", tp53_variants$ALT),
-  AA_change = aa_changes
-))
-```
-
-**Do dyskusji:**
-
-* Mutacja **R248W** (C→T) to jedna z najczęstszych mutacji somatycznych we wszystkich nowotworach. Dlaczego akurat argininę (R) zastępuje tryptofan (W)?
-* Jak sprawdziłbyś w ClinVar, czy znalezione warianty są oznaczone jako *Pathogenic*? Wejdź na [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) i wyszukaj `TP53 R248W`.
-* Projekt osteosarc.com udostępnia prawdziwe pliki VCF. Jakie narzędzia bioinformatyczne byłyby potrzebne do pracy z pełnym plikiem VCF z WES (kilkadziesiąt tysięcy wariantów)?

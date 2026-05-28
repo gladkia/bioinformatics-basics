@@ -2,8 +2,6 @@
 title: "Laboratorium 1: Od klikania do kodowania – eksploracja baz danych przez API"
 format: html
 engine: knitr
-filters:
-  - webr
 ---
 
 ```{r, echo = FALSE, results='asis'}
@@ -63,33 +61,33 @@ W klasycznym podejściu wyszukiwalibyśmy rekord dotyczący genu APOE pod numere
 ### Zadanie 3.1: Pobieranie sekwencji z UniProt przez URL
 W R możemy pobrać dane z UniProt, generując odpowiedni link.
 
-```{webr-r}
-# Define the protein ID
+```{r eval=FALSE}
+# Definiujemy ID białka
 protein_id <- "P02649"
 
-# Build the URL to fetch the sequence in FASTA format
+# Tworzymy URL do pobrania sekwencji w formacie FASTA
 url <- paste0("https://rest.uniprot.org/uniprotkb/", protein_id, ".fasta")
 
-# Download the content
+# Pobieramy treść
 sekwencja <- readLines(url)
 
-# Print the result
+# Wyświetlamy
 cat(sekwencja, sep = "\n")
 ```
 
 ### Zadanie 3.2: Odpytywanie NCBI przez rentrez
 Pobierzmy dane o genomie, które wcześniej widziałeś na stronie WWW.
 
-```{webr-r}
+```{r eval=FALSE}
 install.packages("rentrez")
 install.packages("seqinr")
 library(rentrez)
 library(seqinr)
 
-# Fetch the APOE sequence (Nuccore) in GenBank format
+# Pobieranie sekwencji APOE (Nuccore) w formacie GenBank (uproszczony tekst)
 apoe_record <- entrez_fetch(db="nuccore", id="NM_000041.4", rettype="gb", retmode="text")
 
-# Print the first 500 characters
+# Wyświetlamy początek pliku
 cat(substr(apoe_record, 1, 500))
 ```
 
@@ -127,10 +125,10 @@ Skopiuj poniższy kod do nowej komórki w Google Colab i uruchom go.
 
 from Bio import Entrez
 
-# NCBI good practice — always provide your email
+# Etykieta dobrych praktyk NCBI - zawsze podawaj swój email!
 Entrez.email = "twoj_adres@student.pw.edu.pl"
 
-# Search PubMed
+# Przeszukujemy bazę PubMed
 handle = Entrez.esearch(db="pubmed", term="Zielenkiewicz P[Author]")
 record = Entrez.read(handle)
 
@@ -149,7 +147,7 @@ from Bio import Entrez, SeqIO
 
 Entrez.email = "twoj_adres@student.pw.edu.pl"
 
-# Fetch the APOE protein sequence in FASTA format
+# Pobieramy sekwencję białkową APOE w formacie FASTA
 handle = Entrez.efetch(db="protein", id="NP_000032.1", rettype="fasta", retmode="text")
 sekwencja = SeqIO.read(handle, "fasta")
 
@@ -178,54 +176,3 @@ print(f"Pierwsze 50 aa: {sekwencja.seq[:50]}")
 ## Część 5: Mini-projekt integracyjny – Wirus Ebola
 
 W bazie NCBI odnajdź dostępne sekwencje wirusa Ebola. Napisz krótki skrypt w R lub Pythonie, który pobierze pełny genom wirusa (np. wariant Zaire), a następnie oblicz zawartość par G-C (GC-content).
-
----
-
-## Część 6: Kontekst kliniczny – Kostniakomięsak (osteosarcoma)
-
-Przez cały kurs będziemy wracać do danych z projektu [osteosarc.com](https://osteosarc.com/) — publicznie dostępnego, wielopoziomowego zbioru danych omicznych pacjenta z **kostniakomięsakiem** (osteosarcoma). To rzadki, ale agresywny nowotwór kości, dotykający najczęściej dzieci i młodych dorosłych.
-
-Dwa geny odgrywają kluczową rolę w jego powstawaniu:
-
-* **TP53** (`P04637`) — "strażnik genomu", supresor nowotworowy. Mutacje w TP53 obecne są w ponad 50% przypadków osteosarcoma.
-* **RB1** (`P06400`) — pierwotnie odkryty właśnie w siatkówczaku (*retinoblastoma*), ale kluczowy też w osteosarcoma.
-
-### Zadanie 6.1: Eksploracja manualna w NCBI i UniProt
-
-1. Wejdź na [NCBI Gene](https://www.ncbi.nlm.nih.gov/gene/) i wyszukaj `TP53`. Znajdź numer RefSeq mRNA (`NM_...`) i białka (`NP_...`).
-2. Wejdź na [UniProt](https://www.uniprot.org/) i wyszukaj `P04637`. Porównaj sekcję **Disease & Variants** z tym, co widziałeś wcześniej dla APOE.
-3. Przejdź do [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) i wyszukaj `TP53`. Ile wariantów klinicznych jest opisanych dla tego genu?
-
-::: {.callout-note}
-## ClinVar — baza wariantów klinicznych
-ClinVar to baza NCBI gromadząca informacje o wariantach genetycznych i ich znaczeniu klinicznym. Każdy wariant może być oznaczony jako *Pathogenic*, *Likely pathogenic*, *Benign* lub *Uncertain significance*.
-:::
-
-### Zadanie 6.2: Pobieranie sekwencji TP53 przez API w R
-
-```{webr-r}
-install.packages("rentrez")
-library(rentrez)
-
-# Fetch the TP53 mRNA sequence in FASTA format
-tp53_fasta <- entrez_fetch(db="nuccore", id="NM_000546.6", rettype="fasta", retmode="text")
-
-# Print the header and beginning of the sequence
-cat(substr(tp53_fasta, 1, 300))
-```
-
-### Zadanie 6.3: Białko TP53 z UniProt w R
-
-```{webr-r}
-# Fetch the TP53 protein sequence directly from the UniProt REST API
-tp53_id <- "P04637"
-url <- paste0("https://rest.uniprot.org/uniprotkb/", tp53_id, ".fasta")
-sekwencja <- readLines(url)
-cat(sekwencja, sep = "\n")
-```
-
-**Do dyskusji:**
-
-* Porównaj długość sekwencji TP53 z długością APOE z Zadania 3.1. Które białko jest dłuższe?
-* Znajdź numer akcesyjny białka RB1 w UniProt i pobierz jego sekwencję analogicznym kodem.
-* Wróć do ClinVar i sprawdź, jakie warianty TP53 są oznaczone jako *Pathogenic*. Czy widzisz wzmiankę o osteosarcoma?
