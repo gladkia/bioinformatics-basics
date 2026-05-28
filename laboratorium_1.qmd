@@ -2,8 +2,6 @@
 title: "Laboratorium 1: Od klikania do kodowania – eksploracja baz danych przez API"
 format: html
 engine: knitr
-filters:
-  - webr
 ---
 
 ```{r, echo = FALSE, results='asis'}
@@ -63,7 +61,7 @@ W klasycznym podejściu wyszukiwalibyśmy rekord dotyczący genu APOE pod numere
 ### Zadanie 3.1: Pobieranie sekwencji z UniProt przez URL
 W R możemy pobrać dane z UniProt, generując odpowiedni link.
 
-```{webr-r}
+```{r eval=FALSE}
 # Definiujemy ID białka
 protein_id <- "P02649"
 
@@ -80,7 +78,7 @@ cat(sekwencja, sep = "\n")
 ### Zadanie 3.2: Odpytywanie NCBI przez rentrez
 Pobierzmy dane o genomie, które wcześniej widziałeś na stronie WWW.
 
-```{webr-r}
+```{r eval=FALSE}
 install.packages("rentrez")
 install.packages("seqinr")
 library(rentrez)
