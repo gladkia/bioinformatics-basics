@@ -2,8 +2,6 @@
 title: "Laboratorium 2: Algorytmy przyrównań sekwencji"
 format: html
 engine: knitr
-filters:
-  - webr
 ---
 
 ```{r, echo = FALSE, results='asis'}
@@ -25,8 +23,8 @@ Poniżej znajduje się kod wykorzystujący pakiet `Biostrings`.
 2. Zmień `type = "global"` na `type = "local"` i uruchom ponownie.
 3. Zwróć uwagę, jak zmienia się punktacja oraz wygląd samego przyrównania.
 
-```{webr-r}
-webr::install("Biostrings")
+```{r eval=FALSE}
+BiocManager::install("Biostrings")
 library(Biostrings)
 
 seq1 <- "VDFWAE"
@@ -54,7 +52,7 @@ Procesy ewolucyjne sprawiają, że w sekwencjach pojawiają się przerwy. Jak wa
 
 Zmień karę za otwarcie przerwy (`gapOpening`) z `-10` na `-1`. Zobacz, jak algorytm "chętniej" rozrywa sekwencję, aby znaleźć dopasowania!
 
-```{webr-r}
+```{r eval=FALSE}
 sekwencja_A <- "ACDEFGHIKLMN"
 sekwencja_B <- "ACDEFGHLMN"
 
