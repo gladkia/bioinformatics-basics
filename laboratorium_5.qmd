@@ -2,8 +2,6 @@
 title: "Laboratorium 5: Ewolucja w 3D – MSA, Drzewa filogenetyczne i AlphaFold"
 format: html
 engine: knitr
-filters:
-  - webr
 ---
 
 ```{r, echo = FALSE, results='asis'}
@@ -26,7 +24,7 @@ Dawniej używalibyście klikanego interfejsu w programie **Jalview**, aby wylicz
 **Zadanie:** Uruchom kod, który rysuje dendrogram na podstawie macierzy odległości.
 **Wyzwanie:** Zmień w kodzie nazwę "Gatunek_D" na "Człowiek", a "Gatunek_E" na "Szympans" i zobacz, jak zgrupują się te organizmy!
 
-```{webr-r}
+```{r eval=FALSE}
 # Symulowana macierz odległości na podstawie MSA
 odleglosci <- matrix(c(
   0,  2,  8, 10, 11,
