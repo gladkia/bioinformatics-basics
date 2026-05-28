@@ -2,8 +2,6 @@
 title: "Laboratorium 7: Projektowanie leków (Molecular Docking)"
 format: html
 engine: knitr
-filters:
-  - webr
 ---
 
 ```{r, echo = FALSE, results='asis'}
@@ -24,7 +22,7 @@ Zanim zadokujemy lek, algorytm musi zlokalizować środek "kieszeni" białkowej 
 
 **Zadanie:** Poniżej mamy współrzędne trzech aminokwasów tworzących miejsce aktywne enzymu. Uruchom kod, aby algorytm wyliczył tzw. **Center of Mass** (środek masy) kieszeni – to tam skierujemy nasz wirtualny lek!
 
-```{webr-r}
+```{r eval=FALSE}
 # Współrzędne X, Y, Z kluczowych aminokwasów w miejscu aktywnym (z pliku PDB)
 x_coords <- c(12.5, 14.1, 10.8)
 y_coords <- c(-5.2, -6.0, -4.5)
