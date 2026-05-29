@@ -158,7 +158,39 @@ print(f"Pierwsze 50 aa: {sekwencja.seq[:50]}")
 
 **Do dyskusji:** Porównaj wynik z tym, co widziałeś wcześniej w UniProt dla `P02649`. Czy długość sekwencji się zgadza?
 
----
+## Interpretacja kliniczna
+
+### APOE ε4 a choroba Alzheimera
+Wariant ε4 genu apolipoproteiny E (*APOE*) jest najsilniejszym genetycznym czynnikiem ryzyka sporadycznej postaci choroby Alzheimera o późnym początku. Białko APOE uczestniczy w transporcie lipidów oraz czyszczeniu mózgu z peptydów amyloidowych. Obecność allelu ε4 zaburza ten proces, prowadząc do przyspieszonej akumulacji płytek starczych.
+
+### TP53 R175H jako mutacja gain-of-function
+Mutacja podstawienia aminokwasu w pozycji 175 (arginina na histydynę — R175H) w genie kodującym białko p53 (*TP53*) jest jedną z najczęstszych mutacji w nowotworach. Jest to mutacja typu *gain-of-function* (nabycie nowej funkcji), co oznacza, że zmutowane białko nie tylko traci zdolność supresji nowotworów, ale aktywnie promuje przeżywalność komórek rakowych i oporność na chemioterapię.
+
+### Pobieranie danych z UniProt API dla białka TP53
+
+```{r}
+# Wczytanie bibliotek do obsługi API i danych JSON
+library(jsonlite)
+
+# Adres URL API dla ludzkiego białka TP53 (Identyfikator UniProt: P04637)
+url <- "https://rest.uniprot.org/uniprotkb/P04637.json"
+
+# Pobranie danych
+uniprot_data <- fromJSON(url)
+
+# Wyświetlenie podstawowych informacji
+cat("Nazwa białka:", uniprot_data$proteinDescription$recommendedName$fullName$value, "\n")
+cat("Organizm:", uniprot_data$organism$scientificName, "\n")
+cat("Liczba aminokwasów:", uniprot_data$sequence$length, "\n")
+```
+
+## Porównanie baz danych: NCBI vs UniProt
+
+| Cecha / Kryterium | NCBI (National Center for Biotechnology Information) | UniProt (Universal Protein Resource) |
+| :--- | :--- | :--- |
+| **Kiedy używać?** | Gdy szukasz kompleksowych danych genomowych, transkryptomicznych (RNA), sekwencji nukleotydowych oraz artykułów naukowych (PubMed). | Gdy interesuje Cię wyłącznie biologia białek: ich funkcja, struktura 3D, modyfikacje potranslacyjne i interakcje. |
+| **Co głównie zawiera?** | DNA, RNA, Geny, Białka, Publikacje, Struktury makrocząsteczek. | Sekwencje aminokwasowe białek i ich szczegółową adnotację funkcjonalną. |
+| **Co zwraca API?** | Formaty XML, JSON (przez e-utils), a także surowe pliki FASTA/GenBank. | Format JSON, XML, TSV, oraz pliki tekstowe (Flat File) i FASTA. |
 
 ## Sprawdź co zapamiętałeś!
 
@@ -171,6 +203,14 @@ print(f"Pierwsze 50 aa: {sekwencja.seq[:50]}")
 **Pytanie 3:** Jaki format danych z UniProt pobrałeś w Zadaniu 3.1 (ten zaczynający się od znaku `>`)?
 `r fitb(c("FASTA", "fasta"))`
 
+**Pytanie 4:** Który wariant genu APOE jest powiązany z najwyższym ryzykiem choroby Alzheimera?
+`r fitb(c("E4", "e4", "ε4", "epsilon 4", "epsilon4"))`
+
+**Pytanie 5:** Mutacja TP53 R175H to mutacja typu:
+`r mcq(c("Loss-of-function", answer = "Gain-of-function", "Neutralna"))`
+
+**Pytanie 6:** Która baza danych jest najbardziej wyspecjalizowana wyłącznie w adnotacji funkcji białek?
+`r mcq(c("NCBI", answer = "UniProt", "Ensembl"))`
 ---
 
 ## Część 5: Mini-projekt integracyjny – Wirus Ebola
