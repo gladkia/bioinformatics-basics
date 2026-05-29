@@ -168,7 +168,7 @@ Mutacja podstawienia aminokwasu w pozycji 175 (arginina na histydynę — R175H)
 
 ### Pobieranie danych z UniProt API dla białka TP53
 
-```{{r}}
+```{r}
 # Wczytanie bibliotek do obsługi API i danych JSON
 library(jsonlite)
 
@@ -182,6 +182,7 @@ uniprot_data <- fromJSON(url)
 cat("Nazwa białka:", uniprot_data$proteinDescription$recommendedName$fullName$value, "\n")
 cat("Organizm:", uniprot_data$organism$scientificName, "\n")
 cat("Liczba aminokwasów:", uniprot_data$sequence$length, "\n")
+```
 
 ## Porównanie baz danych: NCBI vs UniProt
 
@@ -203,7 +204,7 @@ cat("Liczba aminokwasów:", uniprot_data$sequence$length, "\n")
 `r fitb(c("FASTA", "fasta"))`
 
 **Pytanie 4:** Który wariant genu APOE jest powiązany z najwyższym ryzykiem choroby Alzheimera?
-`r fitb(c("E4", "e4"))`
+`r fitb(c("E4", "e4", "ε4", "epsilon 4", "epsilon4"))`
 
 **Pytanie 5:** Mutacja TP53 R175H to mutacja typu:
 `r mcq(c("Loss-of-function", answer = "Gain-of-function", "Neutralna"))`
